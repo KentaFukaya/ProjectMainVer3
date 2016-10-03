@@ -1,16 +1,21 @@
 package com.example.b1014100_2.projectmainver3.map;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Movie;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.b1014100_2.projectmainver3.DesiginPattern.Iterator;
 import com.example.b1014100_2.projectmainver3.R;
+import com.example.b1014100_2.projectmainver3.movie.MovieActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -57,6 +62,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //remove polyline
         Polyline polyline = this.mMap.addPolyline(new PolylineOptions());
         polyline.remove();
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                // TODO Auto-generated method stub
+                Log.d("Map", "onMarkerClick:id ="+aggregateMapLocation.getIdbyName(marker.getTitle()) +", Name :"+marker.getTitle());
+                Intent intent = new Intent(getApplication(), MovieActivity.class);
+                intent.putExtra("id",aggregateMapLocation.getIdbyName(marker.getTitle()) );
+                startActivity(intent);
+                return false;
+            }
+        });
     }
 
     public void ReadLocaitonCsv(){
