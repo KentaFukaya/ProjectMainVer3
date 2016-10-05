@@ -56,7 +56,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+        mMap.setMapType(4);
         ReadLocaitonCsv();
         setMarker();
         //remove polyline
