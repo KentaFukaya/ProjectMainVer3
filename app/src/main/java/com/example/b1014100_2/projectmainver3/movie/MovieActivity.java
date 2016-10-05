@@ -106,6 +106,7 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
 		id = intent.getIntExtra("id", 0);
 
 		ReadMovieCsv();
+		moviename = movieDatas.getMovieDataAt(id).getMovieName();
 		Log.d("TEST", "onCreate: MovieName is  "+ movieDatas.getMovieDataAt(id).getMovieName()+",random = "+Random(id));
 		SaveMovieCsv();
 	}
