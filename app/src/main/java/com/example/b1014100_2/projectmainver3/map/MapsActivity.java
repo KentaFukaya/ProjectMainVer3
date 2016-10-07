@@ -32,6 +32,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private AggregateMapLocation aggregateMapLocation = new AggregateMapLocation();
     private ArrayList<LatLng> lats= new ArrayList<>();
+    private ArrayList<Marker> Markers= new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,8 +110,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         while(it.hasNext()){
             MapLocation mapLocation = (MapLocation)it.next();
             lats.add(new LatLng(mapLocation.getXcor(),mapLocation.getYcor()));
-            //addmaerker
-            mMap.addMarker(new MarkerOptions().position(lats.get(mapLocation.getId())).title(mapLocation.getName()));
+            //add_maerker
+            Markers.add(mMap.addMarker(new MarkerOptions().position(lats.get(mapLocation.getId())).title(mapLocation.getName())));
             //change cmaera
             mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(mapLocation.getXcor(),mapLocation.getYcor())));
         }
