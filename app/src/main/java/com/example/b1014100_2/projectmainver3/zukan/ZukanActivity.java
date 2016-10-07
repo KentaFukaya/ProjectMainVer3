@@ -7,6 +7,7 @@ import com.example.b1014100_2.projectmainver3.R;
 
 public class ZukanActivity extends AppCompatActivity {
 
+    //zukanactivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
