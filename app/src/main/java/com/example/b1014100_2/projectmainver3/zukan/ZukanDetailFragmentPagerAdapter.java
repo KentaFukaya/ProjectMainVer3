@@ -31,7 +31,7 @@ public class ZukanDetailFragmentPagerAdapter extends FragmentPagerAdapter{
 
     //ページ数を動的に指定するためのメソッド
     public int getPageSize() {
-        return 1;
+        return zukans.size();
 //        int pageSize = zukans.size();//zukanitemの総数を取得
         /*
         * ex3の時) pageSize == 12 の場合　12 / 3 == 4を返す

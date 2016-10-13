@@ -16,16 +16,15 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/button5" />
+        android:id="@+id/zukan_detail_right" />
 
     <Button
         android:text="←"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button4"
-        android:layout_alignBaseline="@+id/button5"
-        android:layout_alignBottom="@+id/button5"
-        android:layout_alignParentStart="true" />
+        android:id="@+id/zukan_detail_left"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/zukan_detail_right" />
 
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"

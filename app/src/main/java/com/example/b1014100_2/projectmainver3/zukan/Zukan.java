@@ -68,6 +68,8 @@ public class Zukan {
         zukans.add(new Zukan(2, "ヤリイカ", "海水魚", "ヤリイカ科", 100, "zukan2"));
         zukans.add(new Zukan(3, "クロマグロ", "海水魚", "サバ科", 100, "zukan3"));
         zukans.add(new Zukan(4, "マダイ", "海水魚", "タイ科", 100, "zukan4"));
+        zukans.add(new Zukan(5, "アイナメ", "海水魚", "アイナメ科", 100, "zukan5"));
+        zukans.add(new Zukan(6, "アカガレイ", "海水魚", "カレイ科", 100, "zukan6"));
 
         return zukans;
     }
