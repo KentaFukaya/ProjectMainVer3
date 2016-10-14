@@ -9,6 +9,8 @@ import android.util.Log;
 
 import com.example.b1014100_2.projectmainver3.R;
 
+
+//test
 public class ZukanDetailActivity extends AppCompatActivity {
 
     @Override
