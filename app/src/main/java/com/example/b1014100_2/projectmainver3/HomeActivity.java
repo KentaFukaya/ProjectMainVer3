@@ -7,9 +7,11 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.b1014100_2.projectmainver3.map.MapsActivity;
+import com.example.b1014100_2.projectmainver3.zukan.ZukanActivity;
 
 public class HomeActivity extends AppCompatActivity {
     private Button Map_btn;
+    private Button Zukan_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,15 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public  void onClick(View v){
                 Intent intent = new Intent(HomeActivity.this, MapsActivity.class); //ダイビングアクティビティに飛ぶ処理
+                startActivity(intent);
+            }
+        });
+
+        Map_btn = (Button)findViewById(R.id.zukan_button);
+        Map_btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public  void onClick(View v){
+                Intent intent = new Intent(HomeActivity.this, ZukanActivity.class);
                 startActivity(intent);
             }
         });
