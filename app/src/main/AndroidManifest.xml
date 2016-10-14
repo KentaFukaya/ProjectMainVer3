@@ -41,6 +41,8 @@
             android:name=".movie.MovieActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".zukan.ZukanActivity"></activity>
+        <activity android:name=".quiz.QuizActivity">
+        </activity>
     </application>
 
 </manifest>

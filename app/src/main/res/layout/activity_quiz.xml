@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:id="@+id/quiz_layout">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="魚の名前"
+        android:id="@+id/quiz_name"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="294dp"
+        android:layout_height="114dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="問題文"
+        android:id="@+id/quiz_question"
+        android:layout_gravity="right"
+        android:layout_below="@+id/quiz_name"
+        android:layout_toRightOf="@+id/quiz_image"
+        android:paddingLeft="30dp"
+        android:layout_marginTop="26dp" />
+
+    <ImageView
+        android:layout_width="179dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/quiz_image"
+        android:layout_weight="3.39"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/quiz_question"
+        android:layout_alignBottom="@+id/quiz_question"
+        android:layout_toStartOf="@+id/quiz_name" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/quiz_o"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/quiz_O"
+        android:layout_alignParentBottom="true"
+        android:translationZ="5dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/quiz_x"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/quiz_X"
+        android:layout_alignParentBottom="true"
+        android:translationZ="5dp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/quiz_question"
+        android:id="@+id/frame_choice1"
+        android:paddingTop="30dp"
+        android:paddingLeft="80dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="選択肢1"
+            android:id="@+id/quiz_choice1"
+            android:background="@drawable/button_shape"
+            android:padding="5dp"
+            android:layout_marginEnd="60dp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/quiz_question"
+        android:paddingTop="30dp"
+        android:id="@+id/frame_choice2" >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="選択肢2"
+            android:id="@+id/quiz_choice2"
+            android:background="@drawable/button_shape"
+            android:padding="5dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_centerHorizontal="true" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/quiz_question"
+        android:id="@+id/frame_choice3"
+        android:paddingTop="30dp"
+        android:paddingRight="80dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="選択肢3"
+            android:id="@+id/quiz_choice3"
+            android:background="@drawable/button_shape"
+            android:layout_gravity="right"
+            android:padding="5dp"
+            android:layout_marginBottom="43dp"
+            android:layout_marginStart="63dp"
+            android:layout_alignParentBottom="true" />
+    </FrameLayout>
+
+    <Button
+        android:text="戻る"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/main_return_button" />
+
+</RelativeLayout>
