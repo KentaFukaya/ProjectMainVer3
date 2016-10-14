@@ -36,12 +36,12 @@
         android:id="@+id/button2" />
 
     <Button
-        android:text="gotozukn"
+        android:text="gotozukan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button2"
         android:layout_alignStart="@+id/button2"
         android:layout_marginStart="13dp"
         android:layout_marginTop="58dp"
-        android:id="@+id/button3" />
+        android:id="@+id/zukan_button" />
 </RelativeLayout>
