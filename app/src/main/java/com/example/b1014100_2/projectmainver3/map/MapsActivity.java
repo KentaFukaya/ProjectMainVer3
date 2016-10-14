@@ -81,6 +81,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //remove polyline
         Polyline polyline = this.mMap.addPolyline(new PolylineOptions());
         polyline.remove();
+
+
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
@@ -88,14 +90,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Intent intent = new Intent(getApplication(), MovieActivity.class);
                 intent.putExtra("id", aggregateMapLocation.getIdbyName(marker.getTitle()));
                 startActivity(intent);
-                return fal
-            }
-        });
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-                // TODO Auto-generated method stub
-
             }
         });
     }
@@ -139,20 +133,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 @Override
                 public View getInfoContents(Marker marker) {
                  // TODO Auto-generated method stub
-                    View view = getLayoutInflater().inflate(R.layout.info_window, null);
-                    // タイトル設定
-                    TextView title = (TextView)view.findViewById(R.id.info_title);
-                    title.setText(marker.getTitle());
-                    // 画像設定
-                    ImageView img = (ImageView)view.findViewById(R.id.info_image);
-                    img.setImageResource(R.drawable.cast_album_art_placeholder);
-                    return view;
+                   return null;
                     }
 
                 @Override
                 public View getInfoWindow(Marker marker) {
                     // TODO Auto-generated method stub
-                    return null;
+                    View view = getLayoutInflater().inflate(R.layout.info_window, null);
+                    // タイトル設定
+                    TextView title = (TextView)view.findViewById(R.id.info_title);
+                    title.setText(marker.getTitle());
+                    return view;
                     }
                 });
             //change cmaera
