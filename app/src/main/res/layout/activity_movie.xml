@@ -1,4 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/framecontainer"
     android:layout_width="match_parent"
@@ -13,7 +14,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <Button
             android:id="@+id/stopbutton"
@@ -68,9 +69,29 @@
             android:paddingLeft="22dp"
             android:paddingRight="22dp"
             android:paddingTop="6dp" />
+    <RelativeLayout
+        android:id="@+id/movie_bg"
+        android:background="@color/wallet_holo_blue_light"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:text="backtomap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="79dp"
+            android:id="@+id/movie_back_button" />
 
-
-
+        <Button
+            android:text="replay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/movie_back_button"
+            android:layout_alignEnd="@+id/movie_back_button"
+            android:layout_marginTop="45dp"
+            android:id="@+id/movie_replay_button" />
+        </RelativeLayout>
     </RelativeLayout>
 
 </FrameLayout>

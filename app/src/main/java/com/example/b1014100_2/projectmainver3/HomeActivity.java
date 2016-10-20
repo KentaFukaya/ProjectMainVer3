@@ -26,14 +26,5 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        Map_btn = (Button)findViewById(R.id.zukan_button);
-        Map_btn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public  void onClick(View v){
-                Intent intent = new Intent(HomeActivity.this, ZukanActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 }
