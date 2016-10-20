@@ -3,13 +3,12 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <Button
-        android:text="Button"
+        android:text="quiz"
         android:layout_width="147dp"
         android:layout_height="29dp"
         android:id="@+id/button4" />
-
     <Button
-        android:text="Button"
+        android:text="zukan"
         android:layout_width="179dp"
         android:layout_height="wrap_content"
         android:id="@+id/button5" />

@@ -74,13 +74,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         button4.setOnClickListener(new View.OnClickListener(){
             @Override
             public  void onClick(View v){
-                Log.d("TEST", "onClick: button4");
+                Intent intent = new Intent(MapsActivity.this, ZukanActivity.class); //ダイビングアクティビティに飛ぶ処理
+                startActivity(intent);
             }
         });
         button5.setOnClickListener(new View.OnClickListener(){
             @Override
             public  void onClick(View v){
-                Log.d("TEST", "onClick: button5");
+                Intent intent = new Intent(MapsActivity.this, ZukanActivity.class); //ダイビングアクティビティに飛ぶ処理
+                startActivity(intent);
             }
         });
     }
