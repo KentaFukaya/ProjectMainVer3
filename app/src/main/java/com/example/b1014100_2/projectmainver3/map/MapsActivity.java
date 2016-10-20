@@ -8,12 +8,17 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.b1014100_2.projectmainver3.DesiginPattern.Iterator;
+import com.example.b1014100_2.projectmainver3.HomeActivity;
 import com.example.b1014100_2.projectmainver3.R;
 import com.example.b1014100_2.projectmainver3.movie.MovieActivity;
+import com.example.b1014100_2.projectmainver3.zukan.ZukanActivity;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -53,6 +58,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+       //viewの上書き
+        View view = this.getLayoutInflater().inflate(R.layout.activity_map_on, null);
+        addContentView(view, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,ViewGroup.LayoutParams.FILL_PARENT));
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -60,6 +68,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        //clicklistner
+        Button button4 = (Button) findViewById(R.id.button4);
+        Button button5 = (Button) findViewById(R.id.button5);
+        button4.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public  void onClick(View v){
+                Log.d("TEST", "onClick: button4");
+            }
+        });
+        button5.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public  void onClick(View v){
+                Log.d("TEST", "onClick: button5");
+            }
+        });
     }
 
 
@@ -81,7 +104,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //remove polyline
         Polyline polyline = this.mMap.addPolyline(new PolylineOptions());
         polyline.remove();
-
 
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override

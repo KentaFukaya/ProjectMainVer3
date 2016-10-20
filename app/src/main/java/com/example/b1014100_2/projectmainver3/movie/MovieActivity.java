@@ -65,7 +65,7 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
 	Button _touchButton;
 	SeekBar _scrubber;
 	OrientationEventListener ol;
-
+	Button testbutton;
 	//add 2016 10 03 Kenta Fukaya
 	String moviename = "skyrim360.mp4";
 	int id;
@@ -104,11 +104,12 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
 		Intent intent = getIntent();
 		intent.getIntExtra("id", 0);
 		id = intent.getIntExtra("id", 0);
-
-		ReadMovieCsv();
-		moviename = movieDatas.getMovieDataAt(id).getMovieName();
-		Log.d("TEST", "onCreate: MovieName is  "+ movieDatas.getMovieDataAt(id).getMovieName()+",random = "+Random(id));
-		SaveMovieCsv();
+		//testbutton = (Button)findViewById(R.id.button3);
+        //testbutton.setOnClickListener(testListener);
+        //ReadMovieCsv();
+		//moviename = movieDatas.getMovieDataAt(id).getMovieName();
+		//Log.d("TEST", "onCreate: MovieName is  "+ movieDatas.getMovieDataAt(id).getMovieName()+",random = "+Random(id));
+		//SaveMovieCsv();
 	}
    
 	
@@ -410,6 +411,18 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
 		
 	}
 
+	/**
+	 * Click listener for the stop/back button
+	 *
+	 */
+	private OnClickListener testListener = new OnClickListener() {
+		public void onClick(View v) {
+			Intent intent = getIntent();
+			finish();
+            intent.putExtra("id", id);
+            startActivity(intent);
+		}
+	};
 
 	public void ReadMovieCsv() {
 		// AssetManagerの呼び出し
