@@ -13,6 +13,7 @@ package com.example.b1014100_2.projectmainver3.movie;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -25,11 +26,14 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
 import com.example.b1014100_2.projectmainver3.DesiginPattern.Iterator;
 import com.example.b1014100_2.projectmainver3.R;
+import com.example.b1014100_2.projectmainver3.map.MapsActivity;
+import com.example.b1014100_2.projectmainver3.zukan.ZukanActivity;
 import com.panframe.android.lib.PFAsset;
 import com.panframe.android.lib.PFAssetObserver;
 import com.panframe.android.lib.PFAssetStatus;
@@ -70,8 +74,10 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
 	String moviename = "skyrim360.mp4";
 	int id;
 	AggregateMovieData movieDatas = new AggregateMovieData();
-	
-	/**
+	Button backButton;
+    Button replayButton;
+    RelativeLayout movieBg;
+    /**
 	 * Creation and initalization of the Activitiy.
 	 * Initializes variables, listeners, and starts request of a movie list.
 	 *
@@ -90,26 +96,45 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
 		_stopButton = (Button)findViewById(R.id.stopbutton);
 		_touchButton = (Button)findViewById(R.id.touchbutton);
 		_scrubber = (SeekBar)findViewById(R.id.scrubber);
-		
-		_playButton.setOnClickListener(playListener);               
+
+         backButton = (Button) findViewById(R.id.movie_back_button);
+         replayButton = (Button) findViewById(R.id.movie_replay_button);
+         movieBg = (RelativeLayout) findViewById(R.id.movie_bg);
+
+        _playButton.setOnClickListener(playListener);
 		_stopButton.setOnClickListener(stopListener);        		
 		_touchButton.setOnClickListener(touchListener);         
 		_scrubber.setOnSeekBarChangeListener(this);
-		
-		_scrubber.setEnabled(false);
 
-		showControls(true);
+        backButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public  void onClick(View v){
+                finish();//backto mapActivity
+            }
+        });
+        replayButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public  void onClick(View v){
+                Intent intent = new Intent(MovieActivity.this, MovieActivity.class); //ダイビングアクティビティに飛ぶ処理
+                intent.putExtra("id",id);
+                startActivity(intent);
+                finish();
+            }
+        });
+        _scrubber.setEnabled(false);
+
+        setReplayView(false);//set INVISIBLE
+		showControls(true);//set moviemenu VISBE
 
 		//add 2016 10 03 Kenta Fukaya
 		Intent intent = getIntent();
 		intent.getIntExtra("id", 0);
 		id = intent.getIntExtra("id", 0);
-		//testbutton = (Button)findViewById(R.id.button3);
-        //testbutton.setOnClickListener(testListener);
-        //ReadMovieCsv();
-		//moviename = movieDatas.getMovieDataAt(id).getMovieName();
-		//Log.d("TEST", "onCreate: MovieName is  "+ movieDatas.getMovieDataAt(id).getMovieName()+",random = "+Random(id));
-		//SaveMovieCsv();
+
+        ReadMovieCsv();
+		moviename = movieDatas.getMovieDataAt(id).getMovieName();
+		Log.d("TEST", "onCreate: MovieName is  "+ movieDatas.getMovieDataAt(id).getMovieName()+",random = "+Random(id));
+		SaveMovieCsv();
 	}
    
 	
@@ -236,18 +261,20 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
 				_scrubber.setProgress(0);
 				_scrubber.setEnabled(false);
 		        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-				break;
+                break;
 			case COMPLETE:
 				Log.d("SimplePlayer", "Complete");
 				_playButton.setText("play");
-				if (_scrubberMonitorTimer != null)
+                if (_scrubberMonitorTimer != null)
 				{
 					_scrubberMonitorTimer.cancel();
 					_scrubberMonitorTimer.purge();
 					_scrubberMonitorTimer = null;
 				}
 		        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-				break;
+                setReplayView(true);//set VISIBLE
+                showControls(false);//movie menu INVISIBLE
+                break;
 			case ERROR:
 				Log.d("SimplePlayer", "Error");
 				break;
@@ -511,4 +538,15 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
 		//Log.d("TEST", "Random: id="+id+",return ="+min%md.getMax());
 		return min%md.getMax();
 	}
+	public void setReplayView(boolean check){
+        if(check == true){
+            backButton.setVisibility(View.VISIBLE);
+            replayButton.setVisibility(View.VISIBLE);
+            movieBg.setVisibility(View.VISIBLE);
+        }else{
+            backButton.setVisibility(View.INVISIBLE);
+            replayButton.setVisibility(View.INVISIBLE);
+            movieBg.setVisibility(View.INVISIBLE);
+        }
+    }
 }

@@ -9,13 +9,11 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.b1014100_2.projectmainver3.HomeActivity">
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/textView" />
-
+        android:text="ボタンはマップ画面にあるよ!"
+        android:id="@+id/textView"/>
     <Button
         android:text="go to google map"
         android:layout_width="wrap_content"
