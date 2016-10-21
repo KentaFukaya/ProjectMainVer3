@@ -16,6 +16,10 @@ import com.example.b1014100_2.projectmainver3.R;
 import com.example.b1014100_2.projectmainver3.map.MapsActivity;
 import com.example.b1014100_2.projectmainver3.zukan.ZukanActivity;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Created by b1014169 on 2016/10/07.
  */
@@ -42,11 +46,9 @@ public class QuizActivity extends AppCompatActivity{
         //正解　画像セット
         O_img = (ImageView) findViewById(R.id.quiz_O);
         O_img.setVisibility(View.GONE);
-//        O_img.setImageResource(R.drawable.quiz_o);
         //不正解　画像セット
         X_img = (ImageView) findViewById(R.id.quiz_X);
         X_img.setVisibility(View.GONE);
-//        X_img.setImageResource(R.drawable.quiz_x);
     }
 
     // 1～63
@@ -54,9 +56,6 @@ public class QuizActivity extends AppCompatActivity{
         // クイズデータの取得
         QuizData.set(i);
 
-        // 魚の名前を設定
-        TextView name = (TextView) findViewById(R.id.quiz_name);
-        name.setText(QuizData.name);
         // 魚の画像を設定
         ImageView image = (ImageView) findViewById(R.id.quiz_image);
         image.setImageResource(QuizData.imageId);
@@ -64,19 +63,16 @@ public class QuizActivity extends AppCompatActivity{
         TextView question = (TextView) findViewById(R.id.quiz_question);
         question.setText(QuizData.question);
         // 選択肢ボタンの設定
+        // 配列からListへ変換します。
+        List<String> list= Arrays.asList(QuizData.choices);
+        // リストの並びをシャッフルします。
+        Collections.shuffle(list);
         choices[0] = (Button) findViewById(R.id.quiz_choice1);
-        choices[0].setText(QuizData.choices[0]);
+        choices[0].setText(list.get(0));
         choices[1] = (Button) findViewById(R.id.quiz_choice2);
-        choices[1].setText(QuizData.choices[1]);
+        choices[1].setText(list.get(1));
         choices[2] = (Button) findViewById(R.id.quiz_choice3);
-        choices[2].setText(QuizData.choices[2]);
-
-        Animation a1 = AnimationUtils.loadAnimation(this, R.anim.a1);
-        // 1000～2000の間の値
-        a1.setDuration(3000);
-        findViewById(R.id.frame_choice1).startAnimation(a1);
-        findViewById(R.id.frame_choice2).startAnimation(a1);
-        findViewById(R.id.frame_choice3).startAnimation(a1);
+        choices[2].setText(list.get(2));
 
         choices[0].setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,21 +138,30 @@ public class QuizActivity extends AppCompatActivity{
     }
 
     private void setResult(){
-        // 表示画面の変更
+        // result画面に変更
         setContentView(R.layout.result_quiz);
         // 正解・不正解の設定
         TextView O_X = (TextView) findViewById(R.id.quiz_correct);
+        ImageView ika = (ImageView) findViewById(R.id.result_ika);
+        ImageView ox = (ImageView) findViewById(R.id.quiz_ox);
         if(correct) {
             O_X.setText("正解");
+            ika.setImageResource(R.drawable.ika_o);
+            ox.setImageResource(R.drawable.quiz_o);
         }else{
             O_X.setText("不正解");
+            // 調整中
+            ika.setImageResource(R.drawable.ika_x);
+            ika.setMaxWidth(250);
+            ika.setMaxHeight(250);
+            ox.setImageResource(R.drawable.quiz_x);
         }
         // 正解の選択肢の設定
         TextView answer = (TextView) findViewById(R.id.quiz_answer);
         answer.setText(QuizData.getAnswer());
         // 解説の設定
         TextView comment = (TextView) findViewById(R.id.quiz_comment);
-        comment.setText(QuizData.comment);
+        comment.setText(QuizData.getComment());
         // 戻るボタンの設定
         Button r = (Button) findViewById(R.id.result_return_button);
         r.setOnClickListener(new View.OnClickListener() {

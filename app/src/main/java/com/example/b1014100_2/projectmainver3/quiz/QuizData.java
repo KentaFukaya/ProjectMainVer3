@@ -18,7 +18,11 @@ public class QuizData {
     protected static String answer;// 答えのテキスト
 
     protected static String getAnswer(){
-        return "正解は「" + answer + "」";
+        return "答えは・・・「" + answer + "」だよ";
+    }
+
+    protected static String getComment(){
+        return "解説:\n" + comment;
     }
 
     // i番目のクイズデータを取得
@@ -32,7 +36,7 @@ public class QuizData {
             choices[1] = "ギュウニュウビン";
             choices[2] = "ペットボトル";
             answer = choices[0];
-            comment = "解説\nアイナメは、関東の釣り師の間で30センチを超えるとビールビン（ビール瓶）、40センチ以上になるとイッショウビン（一升瓶）と呼ばれています。";
+            comment = "アイナメは、関東の釣り師の間で30センチを超えるとビールビン（ビール瓶）、40センチ以上になるとイッショウビン（一升瓶）と呼ばれています。";
         }
         // 2番　アカガレイ
         if(i == 2){
@@ -709,12 +713,12 @@ public class QuizData {
         if(i == 63){
             name = "ヤリイカ";
             imageId = 0;
-            question = "問題文";
-            choices[0] = "";
-            choices[1] = "";
-            choices[2] = "";
-            answer = choices[0];
-            comment = "解説";
+            question = "イカやタコの血は何色でしょう？";
+            choices[0] = "赤";
+            choices[1] = "青";
+            choices[2] = "緑";
+            answer = choices[1];
+            comment = "イカやタコを切っても赤い血は出ないが、血がないわけではなく、薄い空色の血が流れている。";
         }
     }
 }
