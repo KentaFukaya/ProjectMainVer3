@@ -7,14 +7,21 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.b1014100_2.projectmainver3.R;
+
+import java.util.ArrayList;
 
 public class ZukanActivity extends AppCompatActivity {
 
     private static int currentPage;
     //QuizSQLiteOpenHelperで使う
     private static Context ctx;
+    //表示する図鑑データ
+    static ArrayList<Zukan> zukans;
+
 
     static final int RESULT_SUBACTIVITY = 1000;
 
@@ -25,8 +32,12 @@ public class ZukanActivity extends AppCompatActivity {
         currentPage = 0;
         //QuizSQLiteOpenHelperで使う
         ctx = this;
+        //図鑑を全て表示にする
+        zukans = ZukanDatabase.getZukanAll();
+        zukans = ZukanDatabase.getZukan(null, null, "春");
         setContentView(R.layout.activity_zukan);
         setViews(currentPage);
+        setButton();
     }
 
     @Override
@@ -53,6 +64,26 @@ public class ZukanActivity extends AppCompatActivity {
         ZukanFragmentPagerAdapter adapter = new ZukanFragmentPagerAdapter(manager);
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(currentPage);
+    }
+
+    private void setButton(){
+        Button buttonSpring = (Button) findViewById(R.id.season_spring);
+        buttonSpring.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                zukans = ZukanDatabase.getZukan(null, null, "春");
+                setViews(currentPage);
+            }
+        });
+
+        Button buttonReset = (Button) findViewById(R.id.season_reset);
+        buttonReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                zukans = ZukanDatabase.getZukan(null, null, null);
+                setViews(currentPage);
+            }
+        });
     }
 
     public  void toDetailActivity(int fishId){

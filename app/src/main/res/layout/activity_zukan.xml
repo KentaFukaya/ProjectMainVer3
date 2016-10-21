@@ -8,6 +8,14 @@
     android:elevation="1dp">
 
     <Button
+        android:text="reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/spring"
+        android:layout_alignEnd="@+id/spring"
+        android:id="@+id/season_reset" />
+
+    <Button
         android:text="→"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,4 +39,12 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp" />
+
+    <Button
+        android:text="spring"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/season_spring"
+        android:layout_above="@+id/zukan_left"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

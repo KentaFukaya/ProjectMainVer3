@@ -15,13 +15,13 @@ class ZukanSQLiteOpenHelper extends SQLiteOpenHelper {
 
     static final String DB_NAME = "zukans.db";
     static final String TABLE_NAME = "fish";
-    static final int DB_VERSION = 2;
+    static final int DB_VERSION = 1;
 
     static final String CREATE_TABLE = "create table " + TABLE_NAME + "( " +
             "_id integer primary key not null, " +
             "name text, " +
             "content text, " +
-            "group text, " +
+            "type text, " +
             "length integer, " +
             "season text, " +
             "image_name text);";

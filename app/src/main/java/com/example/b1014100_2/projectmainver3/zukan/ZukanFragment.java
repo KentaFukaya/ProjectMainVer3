@@ -23,10 +23,9 @@ public class ZukanFragment extends Fragment {
 
     static final int RESULT_SUBACTIVITY = 1000;
 
-    private ArrayList<Zukan> zukans = ZukanDatabase.getZukanAll();
-//    for(int j = 0; j < zukans.; j++){
-//
-//    }
+//    private ArrayList<Zukan> zukans = ZukanDatabase.getZukanAll();
+//    private ArrayList<Zukan> zukans = ZukanDatabase.getZukan(null, null, "春");
+    private ArrayList<Zukan> zukans = ZukanActivity.zukans;
 //    private ArrayList<Zukan> zukans = Zukan.zukanCrate();
     int i;
 
@@ -51,6 +50,7 @@ public class ZukanFragment extends Fragment {
 
         final int page = getArguments().getInt(POSITION);
         int maxPage = getArguments().getInt(MAX_PAGE);
+        Log.d("ZukanFragment", "onCreateView: " + page + " max:" + maxPage);
 
         View view = inflater.inflate(R.layout.fragment_zukan, null);
         LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.fragment_zukan);
@@ -105,23 +105,25 @@ public class ZukanFragment extends Fragment {
 
 
         //1個目のコンテンツセット
-        ImageButton image1 = (ImageButton) view.findViewById(R.id.zukan1+i);
-        //ボタンを表示
-        image1.setVisibility(View.VISIBLE);
-        //文字列から画像のdrawableのIDを取得する
-        int imageId1 = getResources().getIdentifier(zukans.get(fishIds[0]).getImageName(), "drawable", getActivity().getPackageName());
-        //画像をImageViewにセットする
-        image1.setImageResource(imageId1);
-        image1.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Log.d("Test", getActivity()+"onClick: Zukanid = "+fishIds[0]);
-                Intent intent = new Intent(getActivity(),ZukanDetailActivity.class); //図鑑アクティビティにに飛ぶ処理
-                intent.putExtra("id",fishIds[0]);
-                getActivity().startActivityForResult(intent, RESULT_SUBACTIVITY);
+        if(fishIds[0] != 0) {
+            ImageButton image1 = (ImageButton) view.findViewById(R.id.zukan1 + i);
+            //ボタンを表示
+            image1.setVisibility(View.VISIBLE);
+            //文字列から画像のdrawableのIDを取得する
+            int imageId1 = getResources().getIdentifier(zukans.get(fishIds[0] - 1).getImageName(), "drawable", getActivity().getPackageName());
+            //画像をImageViewにセットする
+            image1.setImageResource(imageId1);
+            image1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d("Test", getActivity() + "onClick: Zukanid = " + fishIds[0]);
+                    Intent intent = new Intent(getActivity(), ZukanDetailActivity.class); //図鑑アクティビティにに飛ぶ処理
+                    intent.putExtra("id", fishIds[0]);
+                    getActivity().startActivityForResult(intent, RESULT_SUBACTIVITY);
 //                startActivity(intent);
-            }
-        });
+                }
+            });
+        }
 
         //2個目のコンテンツセット
         if(fishIds[1] != 0) {

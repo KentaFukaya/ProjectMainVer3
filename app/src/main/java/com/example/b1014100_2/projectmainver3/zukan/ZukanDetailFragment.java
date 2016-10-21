@@ -21,7 +21,9 @@ import static android.app.Activity.RESULT_OK;
 public class ZukanDetailFragment extends Fragment {
     private final static String BACKGROUND_COLOR = "background_color";
 
-    private ArrayList<Zukan> zukans = ZukanDatabase.getZukanAll();
+//    private ArrayList<Zukan> zukans = ZukanDatabase.getZukanAll();
+//private ArrayList<Zukan> zukans = ZukanDatabase.getZukan(null, null, "春");
+    private ArrayList<Zukan> zukans = ZukanActivity.zukans;
 //    private ArrayList<Zukan> zukans = Zukan.zukanCrate();
 
     public static ZukanDetailFragment newInstance(int fishId) {

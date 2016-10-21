@@ -3,14 +3,14 @@ package com.example.b1014100_2.projectmainver3.zukan;
 import java.util.ArrayList;
 
 /**
- * Created by Allen on 2016/10/11.
+ * Created by 1014159 on 2016/10/11.
  */
 
 public class Zukan {
     private int id;
     private String name;
     private String content;
-    private String group;
+    private String type;
     private int length;
     private String season;
     private String imageName;
@@ -33,11 +33,11 @@ public class Zukan {
     public void setContent(String content) {
         this.content = content;
     }
-    public String getGroup() {
-        return group;
+    public String getType() {
+        return type;
     }
-    public void setGroup(String group) {
-        this.group = group;
+    public void setType(String type) {
+        this.type = type;
     }
     public int getLength() {
         return length;
@@ -61,11 +61,11 @@ public class Zukan {
     public Zukan() {
     }
 
-    public Zukan(int id, String name, String content, String group, int length, String season, String imageName) {
+    public Zukan(int id, String name, String content, String type, int length, String season, String imageName) {
         this.id = id;
         this.name = name;
         this.content = content;
-        this.group = group;
+        this.type = type;
         this.length = length;
         this.season = season;
         this.imageName = imageName;
@@ -83,5 +83,11 @@ public class Zukan {
         zukans.add(new Zukan(6, "アカガレイ", "海水魚", "カレイ科", 100, "夏", "zukan6"));
 
         return zukans;
+    }
+
+    public String printall(){
+        String allcontents;
+        allcontents = getId() + " " + getName() + " " + getContent() + " " + getType() + " " + getLength() + " " + getSeason() + " " + getImageName();
+        return allcontents;
     }
 }
