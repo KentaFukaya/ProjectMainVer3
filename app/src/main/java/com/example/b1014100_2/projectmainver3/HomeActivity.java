@@ -7,9 +7,11 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.b1014100_2.projectmainver3.map.MapsActivity;
+import com.example.b1014100_2.projectmainver3.zukan.ZukanActivity;
 
 public class HomeActivity extends AppCompatActivity {
     private Button Map_btn;
+    private Button Zukan_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

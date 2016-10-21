@@ -9,13 +9,11 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.b1014100_2.projectmainver3.HomeActivity">
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/textView" />
-
+        android:text="ボタンはマップ画面にあるよ!"
+        android:id="@+id/textView"/>
     <Button
         android:text="go to google map"
         android:layout_width="wrap_content"
@@ -25,23 +23,4 @@
         android:layout_marginStart="58dp"
         android:layout_marginTop="33dp"
         android:id="@+id/map_button" />
-
-    <Button
-        android:text="go to quiz"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button"
-        android:layout_toEndOf="@+id/textView"
-        android:layout_marginTop="102dp"
-        android:id="@+id/button2" />
-
-    <Button
-        android:text="gotozukn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button2"
-        android:layout_alignStart="@+id/button2"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="58dp"
-        android:id="@+id/button3" />
 </RelativeLayout>
