@@ -23,7 +23,11 @@ public class ZukanFragment extends Fragment {
 
     static final int RESULT_SUBACTIVITY = 1000;
 
-    private ArrayList<Zukan> zukans = Zukan.zukanCrate();
+    private ArrayList<Zukan> zukans = ZukanDatabase.getZukanAll();
+//    for(int j = 0; j < zukans.; j++){
+//
+//    }
+//    private ArrayList<Zukan> zukans = Zukan.zukanCrate();
     int i;
 
     public static ZukanFragment newInstance(int position, int maxPage) {
@@ -101,11 +105,11 @@ public class ZukanFragment extends Fragment {
 
 
         //1個目のコンテンツセット
-        ImageButton image1 = (ImageButton) view.findViewById(R.id.zukan1);
+        ImageButton image1 = (ImageButton) view.findViewById(R.id.zukan1+i);
         //ボタンを表示
         image1.setVisibility(View.VISIBLE);
         //文字列から画像のdrawableのIDを取得する
-        int imageId1 = getResources().getIdentifier(zukans.get(fishIds[0]-1).getImageName(), "drawable", getActivity().getPackageName());
+        int imageId1 = getResources().getIdentifier(zukans.get(fishIds[0]).getImageName(), "drawable", getActivity().getPackageName());
         //画像をImageViewにセットする
         image1.setImageResource(imageId1);
         image1.setOnClickListener(new View.OnClickListener(){

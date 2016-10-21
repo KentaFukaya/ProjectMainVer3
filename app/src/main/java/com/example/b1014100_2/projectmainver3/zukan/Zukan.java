@@ -12,6 +12,7 @@ public class Zukan {
     private String content;
     private String group;
     private int length;
+    private String season;
     private String imageName;
 
     public int getId() {
@@ -44,6 +45,12 @@ public class Zukan {
     public void setLength(int length) {
         this.length = length;
     }
+    public String getSeason() {
+        return season;
+    }
+    public void setSeason(String season) {
+        this.season = season;
+    }
     public String getImageName() {
         return imageName;
     }
@@ -51,12 +58,16 @@ public class Zukan {
         this.imageName = imageName;
     }
 
-    public Zukan(int id, String name, String content, String group, int length, String imageName) {
+    public Zukan() {
+    }
+
+    public Zukan(int id, String name, String content, String group, int length, String season, String imageName) {
         this.id = id;
         this.name = name;
         this.content = content;
         this.group = group;
         this.length = length;
+        this.season = season;
         this.imageName = imageName;
     }
 
@@ -64,12 +75,12 @@ public class Zukan {
 
         ArrayList<Zukan> zukans = new ArrayList<Zukan>();
 
-        zukans.add(new Zukan(1, "マアジ", "海水魚", "アジ科", 100, "zukan1"));
-        zukans.add(new Zukan(2, "ヤリイカ", "海水魚", "ヤリイカ科", 100, "zukan2"));
-        zukans.add(new Zukan(3, "クロマグロ", "海水魚", "サバ科", 100, "zukan3"));
-        zukans.add(new Zukan(4, "マダイ", "海水魚", "タイ科", 100, "zukan4"));
-        zukans.add(new Zukan(5, "アイナメ", "海水魚", "アイナメ科", 100, "zukan5"));
-        zukans.add(new Zukan(6, "アカガレイ", "海水魚", "カレイ科", 100, "zukan6"));
+        zukans.add(new Zukan(1, "マアジ", "海水魚", "アジ科", 100, "春", "zukan1"));
+        zukans.add(new Zukan(2, "ヤリイカ", "海水魚", "ヤリイカ科", 100, "夏", "zukan2"));
+        zukans.add(new Zukan(3, "クロマグロ", "海水魚", "サバ科", 100, "秋", "zukan3"));
+        zukans.add(new Zukan(4, "マダイ", "海水魚", "タイ科", 100, "冬", "zukan4"));
+        zukans.add(new Zukan(5, "アイナメ", "海水魚", "アイナメ科", 100, "春", "zukan5"));
+        zukans.add(new Zukan(6, "アカガレイ", "海水魚", "カレイ科", 100, "夏", "zukan6"));
 
         return zukans;
     }

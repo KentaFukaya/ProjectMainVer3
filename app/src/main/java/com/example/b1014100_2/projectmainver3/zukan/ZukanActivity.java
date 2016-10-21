@@ -1,5 +1,6 @@
 package com.example.b1014100_2.projectmainver3.zukan;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -12,6 +13,8 @@ import com.example.b1014100_2.projectmainver3.R;
 public class ZukanActivity extends AppCompatActivity {
 
     private static int currentPage;
+    //QuizSQLiteOpenHelperで使う
+    private static Context ctx;
 
     static final int RESULT_SUBACTIVITY = 1000;
 
@@ -20,6 +23,8 @@ public class ZukanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //ページを最初にする
         currentPage = 0;
+        //QuizSQLiteOpenHelperで使う
+        ctx = this;
         setContentView(R.layout.activity_zukan);
         setViews(currentPage);
     }
@@ -35,6 +40,11 @@ public class ZukanActivity extends AppCompatActivity {
             Log.d("currentpage", "onActivityResult: " + currentPage);
             setViews(currentPage);
         }
+    }
+
+    //QuizSQLiteOpenHelperで使う
+    public static Context getContext() {
+        return ctx;
     }
 
     private void setViews(int currentPage) {

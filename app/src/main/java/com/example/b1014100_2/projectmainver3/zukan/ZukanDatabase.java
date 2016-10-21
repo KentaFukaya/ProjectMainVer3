@@ -1,0 +1,158 @@
+package com.example.b1014100_2.projectmainver3.zukan;
+
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
+
+/*
+ * Created by b1014159
+ */
+public class ZukanDatabase {
+    private static SQLiteDatabase mDb;
+    private static String[] FROM = {"_id", "name", "content", "length", "season", "image_name"};
+//    private static String[] FROM = {"_id", "name", "content", "group", "length", "season", "image_name"};
+    private static String ORDER_BY = "_id" + " ASC";//並べる順
+
+    /*
+    // データベースに登録する。
+    public static void setQuizData(QuizDetail quizDetail) {
+        ZukanSQLiteOpenHelper helper = new ZukanSQLiteOpenHelper(QuizActivity.getContext());
+        mDb = helper.getWritableDatabase();
+        //Cursor c = mDb.query(ZukanSQLiteOpenHelper.TABLE_NAME, FROM, null, null, null, null, ORDER_BY);//queryの実行
+        if(!c.moveToPosition(quizDetail.getId())) {
+
+            // ContentValuesにデータを格納
+            ContentValues values = new ContentValues();
+            // カラム名に値を渡す
+            values.put("_id", quizDetail.getId());
+            values.put("ImageUrl", quizDetail.getImageUrl());
+            values.put("fishId", quizDetail.getFishId());
+            values.put("question", quizDetail.getQuestion());
+            values.put("choice1", quizDetail.getChoices()[0]);
+            values.put("choice2", quizDetail.getChoices()[1]);
+            values.put("choice3", quizDetail.getChoices()[2]);
+            try {
+                // データの挿入
+                //mDb.insert(ZukanSQLiteOpenHelper.TABLE_NAME, null, values);
+            } finally {
+                mDb.close();
+            }
+        }
+        mDb.close();
+        c.close();
+    }
+    */
+
+    /*
+    // データベース上のすべてのdataをQuizDetailsで返す。
+    public static ArrayList<QuizDetail> getQuizDetailsAll() {
+        ArrayList<QuizDetail> quizDetails = new ArrayList<>();
+
+        ZukanSQLiteOpenHelper helper = new ZukanSQLiteOpenHelper(QuizActivity.getContext());
+        mDb = helper.getReadableDatabase();
+        //Cursor c = mDb.query(ZukanSQLiteOpenHelper.TABLE_NAME, FROM, null, null, null, null, ORDER_BY);//queryの実行
+
+        while (c.moveToNext()) {
+            QuizDetail quizDetail = new QuizDetail();
+            quizDetail.setId(c.getInt(0));
+            quizDetail.setImageUrl(c.getInt(1));
+            quizDetail.setFishId(c.getInt(2));
+            quizDetail.setQuestion(c.getString(3));
+            quizDetail.setChoices(new String[]{c.getString(4), c.getString(5), c.getString(6)});
+            //選択肢をシャッフルする
+            quizDetail.shuffleChoices();
+            quizDetails.add(quizDetail);
+        }
+        c.close();
+        mDb.close();
+
+        return quizDetails;
+    }
+    */
+
+    /*
+    // データベース上の指定fishIdのdataをQuizDetailsで返す。
+    public static ArrayList<QuizDetail> getQuizDetails(int fishId) {
+        ArrayList<QuizDetail> quizDetails = new ArrayList<>();
+
+        ZukanSQLiteOpenHelper helper = new ZukanSQLiteOpenHelper(QuizActivity.getContext());
+        mDb = helper.getReadableDatabase();
+        //Cursor c = mDb.query(ZukanSQLiteOpenHelper.TABLE_NAME, FROM, "fishId = ?", new String[]{ "" + fishId }, null, null, ORDER_BY);//queryの実行
+
+        while (c.moveToNext()) {
+            QuizDetail quizDetail = new QuizDetail();
+            quizDetail.setId(c.getInt(0));
+            quizDetail.setImageUrl(c.getInt(1));
+            quizDetail.setFishId(c.getInt(2));
+            quizDetail.setQuestion(c.getString(3));
+            quizDetail.setChoices(new String[]{c.getString(4), c.getString(5), c.getString(6)});
+            //選択肢をシャッフルする
+            quizDetail.shuffleChoices();
+            quizDetails.add(quizDetail);
+        }
+        c.close();
+        mDb.close();
+
+        return quizDetails;
+    }
+    */
+
+    // Fromassets テスト
+    public static ArrayList<Zukan> getZukanAll() {
+        ArrayList<Zukan> zukans = new ArrayList<>();
+
+        //ZukanSQLiteOpenHelper helper = new ZukanSQLiteOpenHelper(ZukanActivity.getContext());
+        //mDb = helper.getReadableDatabase();
+
+        ZukanSQLiteOpenFromAssets helper = new ZukanSQLiteOpenFromAssets(ZukanActivity.getContext(), "zukans.db", null,1);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        Cursor c = db.query(ZukanSQLiteOpenHelper.TABLE_NAME, FROM, null, null, null, null, ORDER_BY);//queryの実行
+
+        while (c.moveToNext()) {
+            Zukan zukan = new Zukan();
+            zukan.setId(c.getInt(0));
+            zukan.setName(c.getString(1));
+            zukan.setContent(c.getString(2));
+//            zukan.setGroup(c.getString(3));
+            zukan.setLength(c.getInt(3));
+            zukan.setSeason(c.getString(4));
+            zukan.setImageName(c.getString(5));
+            zukans.add(zukan);
+        }
+        c.close();
+        db.close();
+
+        return zukans;
+    }
+
+    // Fromassets テスト
+    public static ArrayList<Zukan> getZukan(int fishId) {
+        ArrayList<Zukan> quizDetails = new ArrayList<>();
+
+        //ZukanSQLiteOpenHelper helper = new ZukanSQLiteOpenHelper(ZukanActivity.getContext());
+        //mDb = helper.getReadableDatabase();
+
+        ZukanSQLiteOpenFromAssets helper = new ZukanSQLiteOpenFromAssets(ZukanActivity.getContext(), "Zukan.db", null,1);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        Cursor c = db.query(ZukanSQLiteOpenHelper.TABLE_NAME, FROM,"fishId = ?", new String[]{ "" + fishId }, null, null, ORDER_BY);//queryの実行
+
+        while (c.moveToNext()) {
+//            Zukan zukan = new Zukan();
+            /*
+            quizDetail.setId(c.getInt(0));
+            //選択肢をシャッフルする
+            quizDetail.shuffleChoices();
+            quizDetail.setImageName(c.getString(1));
+            quizDetails.add(quizDetail);
+            */
+        }
+        c.close();
+        db.close();
+
+        return quizDetails;
+    }
+}
