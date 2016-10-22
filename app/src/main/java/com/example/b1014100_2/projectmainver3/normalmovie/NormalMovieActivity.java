@@ -1,12 +1,18 @@
 package com.example.b1014100_2.projectmainver3.normalmovie;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
-import android.support.v7.app.AppCompatActivity;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.VideoView;
 
 import com.example.b1014100_2.projectmainver3.DesiginPattern.Iterator;
 import com.example.b1014100_2.projectmainver3.R;
@@ -22,26 +28,53 @@ import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.StringTokenizer;
 
-public class NormalMovieActivity extends AppCompatActivity {
+public class NormalMovieActivity extends Activity {
     AggregateMovieData movieDatas = new AggregateMovieData();
     int id;
     String moviename;
+    VideoView Vv;
+    Button nMovieback,nMoviereplay;
+    RelativeLayout nMoviebg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);//INVISIVLE titilebar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//full screan
+        requestWindowFeature(Window.FEATURE_NO_TITLE);//INVISIVLE titilebar
         setContentView(R.layout.activity_normal_movie);
+
+        Vv = (VideoView) findViewById(R.id.videoView);
+        nMoviebg = (RelativeLayout)findViewById(R.id.n_movie_bg);
+        nMovieback = (Button) findViewById(R.id.n_movie_backbutton);
+        nMoviereplay = (Button) findViewById(R.id.n_movie_replaybutton);
+        setReplayView(false);
 
         //get id from intent
         Intent intent = getIntent();
         intent.getIntExtra("id", 0);
         id = intent.getIntExtra("id", 0);
 
+        //select movie name at random
         ReadMovieCsv();
-        moviename = movieDatas.getMovieDataAt(id).getMovieName();
         Log.d("TEST", "onCreate: id = "+id+", MovieName is  "+ movieDatas.getMovieDataAt(id).getMovieName()+",random = "+Random(id));
+        moviename = movieDatas.getMovieDataAt(id).getMovieName();
         SaveMovieCsv();
+
+        //make path
+        int movie_R_Id = getResources().getIdentifier(moviename, "raw", getPackageName());//get R.raw."moviename"
+        String path = "android.resource://" + getPackageName() + "/" + movie_R_Id;
+        Vv.setVideoURI(Uri.parse(path));
+
+        Vv.start();
+
+        //movie finish listener
+        Vv.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
+        {
+            public void onCompletion(MediaPlayer mp)
+            {
+                Log.d("MoviePlayer:test", "moive FInfished");
+                setReplayView(true);
+            }
+        });
     }
 
     public void ReadMovieCsv() {
@@ -129,5 +162,19 @@ public class NormalMovieActivity extends AppCompatActivity {
         md.setWatchbynumber(min % md.getMax());
         //Log.d("TEST", "Random: id="+id+",return ="+min%md.getMax());
         return min%md.getMax();
+    }
+
+    public void setReplayView(boolean visible){
+        if(visible){
+            nMoviereplay.setVisibility(View.VISIBLE);
+            nMoviereplay.setVisibility(View.VISIBLE);
+            nMoviebg.setVisibility(View.VISIBLE);
+            Vv.setVisibility(View.INVISIBLE);
+        }else{
+            nMoviereplay.setVisibility(View.INVISIBLE);
+            nMoviereplay.setVisibility(View.INVISIBLE);
+            nMoviebg.setVisibility(View.INVISIBLE);
+            Vv.setVisibility(View.VISIBLE);
+        }
     }
 }
