@@ -544,7 +544,7 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
 	}
 
 	public void setReplayView(boolean check){
-        if(check == true){
+        if(check){
             backButton.setVisibility(View.VISIBLE);
             replayButton.setVisibility(View.VISIBLE);
             movieBg.setVisibility(View.VISIBLE);

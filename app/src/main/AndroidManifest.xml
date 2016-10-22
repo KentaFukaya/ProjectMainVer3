@@ -39,16 +39,19 @@
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".movie.MovieActivity"
-            android:label="@string/title_activity_maps"></activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+            android:label="@string/title_activity_maps" />
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-            android:label="@string/title_activity_maps" />
-
+        android:label="@string/title_activity_maps" />
         <activity android:name=".zukan.ZukanActivity" />
-        <activity android:name=".zukan.ZukanDetailActivity"></activity>
-        <activity android:name=".quiz.QuizActivity"></activity>
+        <activity android:name=".zukan.ZukanDetailActivity" />
+        <activity android:name=".quiz.QuizActivity" />
+        <activity android:name=".normalmovie.NormalMovieActivity"></activity>
     </application>
 
 </manifest>
