@@ -45,8 +45,10 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
             android:label="@string/title_activity_maps" />
+
         <activity android:name=".zukan.ZukanActivity" />
         <activity android:name=".zukan.ZukanDetailActivity"></activity>
+        <activity android:name=".quiz.QuizActivity"></activity>
     </application>
 
 </manifest>
