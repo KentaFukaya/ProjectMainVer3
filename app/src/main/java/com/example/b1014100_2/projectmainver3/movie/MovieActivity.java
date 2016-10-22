@@ -135,7 +135,10 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
 		moviename = movieDatas.getMovieDataAt(id).getMovieName();
 		Log.d("TEST", "onCreate: MovieName is  "+ movieDatas.getMovieDataAt(id).getMovieName()+",random = "+Random(id));
 		SaveMovieCsv();
-	}
+        if (_pfasset == null)
+            loadVideo("file:///android_asset/"+moviename);
+        _pfasset.play();
+    }
    
 	
 	public void onConfigurationChanged(Configuration newConfig) {
@@ -198,7 +201,8 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
         hp2.setCoordinates(0, 40, 0);
         hp2.setClickListener(this);
         */
-        _frameContainer.addView(_pfview.getView(), 0);   
+        _frameContainer.addView(_pfview.getView(), 0);
+
     }
 	
 	/**
@@ -538,6 +542,7 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
 		//Log.d("TEST", "Random: id="+id+",return ="+min%md.getMax());
 		return min%md.getMax();
 	}
+
 	public void setReplayView(boolean check){
         if(check == true){
             backButton.setVisibility(View.VISIBLE);
