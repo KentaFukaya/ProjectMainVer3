@@ -18,6 +18,7 @@ import com.example.b1014100_2.projectmainver3.DesiginPattern.Iterator;
 import com.example.b1014100_2.projectmainver3.HomeActivity;
 import com.example.b1014100_2.projectmainver3.R;
 import com.example.b1014100_2.projectmainver3.movie.MovieActivity;
+import com.example.b1014100_2.projectmainver3.normalmovie.NormalMovieActivity;
 import com.example.b1014100_2.projectmainver3.zukan.ZukanActivity;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -111,7 +112,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if(clicked_check360 == 1) {//start 360movie activity
                    intent = new Intent(getApplication(), MovieActivity.class);
                 }else{//start normal movie activity
-                    intent = new Intent(getApplication(), MovieActivity.class);
+                    intent = new Intent(getApplication(), NormalMovieActivity.class);
                 }
                 intent.putExtra("id", clicked_id);
                 startActivity(intent);
