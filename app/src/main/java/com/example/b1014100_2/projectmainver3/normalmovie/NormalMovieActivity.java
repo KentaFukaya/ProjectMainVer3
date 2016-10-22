@@ -19,11 +19,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Date;
 import java.util.StringTokenizer;
 
 public class NormalMovieActivity extends AppCompatActivity {
     AggregateMovieData movieDatas = new AggregateMovieData();
     int id;
+    String moviename;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,8 @@ public class NormalMovieActivity extends AppCompatActivity {
         id = intent.getIntExtra("id", 0);
 
         ReadMovieCsv();
+        moviename = movieDatas.getMovieDataAt(id).getMovieName();
+        Log.d("TEST", "onCreate: id = "+id+", MovieName is  "+ movieDatas.getMovieDataAt(id).getMovieName()+",random = "+Random(id));
         SaveMovieCsv();
     }
 
@@ -113,4 +117,17 @@ public class NormalMovieActivity extends AppCompatActivity {
         }
     }
 
+    public int Random(int id){
+        //現在の秒数を取得
+        Date rowdate = new Date();
+        String date[] = rowdate.toString().split(" ");
+        int min = Integer.parseInt(date[3].substring(6, 8));
+        //watchフラグが立っていないものを選ぶ
+        MovieData md = movieDatas.getMovieDataAt(id);
+        while(md.checkWatch(min % md.getMax()))
+            min++;
+        md.setWatchbynumber(min % md.getMax());
+        //Log.d("TEST", "Random: id="+id+",return ="+min%md.getMax());
+        return min%md.getMax();
+    }
 }

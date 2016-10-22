@@ -131,10 +131,12 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
 		intent.getIntExtra("id", 0);
 		id = intent.getIntExtra("id", 0);
 
+        //select movie name at random
         ReadMovieCsv();
 		moviename = movieDatas.getMovieDataAt(id).getMovieName();
 		Log.d("TEST", "onCreate: MovieName is  "+ movieDatas.getMovieDataAt(id).getMovieName()+",random = "+Random(id));
 		SaveMovieCsv();
+
         //auto start
         if (_pfasset == null)
             loadVideo("file:///android_asset/"+moviename);
