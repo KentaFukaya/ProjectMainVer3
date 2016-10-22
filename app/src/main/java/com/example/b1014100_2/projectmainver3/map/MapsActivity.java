@@ -103,10 +103,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-                Log.d("Map", "onMarkerClick:id =" + aggregateMapLocation.getIdbyName(marker.getTitle()) + ", Name :" + marker.getTitle());
-                Intent intent = new Intent(getApplication(), MovieActivity.class);
-                intent.putExtra("id", aggregateMapLocation.getIdbyName(marker.getTitle()));
-                startActivity(intent);
+                int clicked_id = aggregateMapLocation.getIdbyName(marker.getTitle());
+                int clicked_check360 = aggregateMapLocation.getMapLocationAt(clicked_id).getCheck360();
+                Log.d("Map", "onMarkerClick:id =" + clicked_id + ", Name :" + marker.getTitle()+
+                        ", Check360 : "+clicked_check360);
+                if(clicked_check360 == 1) {//start 360movie activity
+                    Intent intent = new Intent(getApplication(), MovieActivity.class);
+                    intent.putExtra("id", clicked_id);
+                    startActivity(intent);
+                }else{//start normal movie activity
+
+                }
             }
         });
     }
