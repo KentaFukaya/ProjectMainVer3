@@ -6,10 +6,5 @@
         android:text="quiz"
         android:layout_width="179dp"
         android:layout_height="wrap_content"
-        android:id="@+id/button4" />
-    <Button
-        android:text="zukan"
-        android:layout_width="179dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/button5" />
+        android:id="@+id/map_to_quiz_button" />
 </LinearLayout>

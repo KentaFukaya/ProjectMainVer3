@@ -70,16 +70,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
         //clicklistner
-        Button button4 = (Button) findViewById(R.id.button4);
-        Button button5 = (Button) findViewById(R.id.button5);
-        button4.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public  void onClick(View v){
-                Intent intent = new Intent(MapsActivity.this, ZukanActivity.class); //ダイビングアクティビティに飛ぶ処理
-                startActivity(intent);
-            }
-        });
-        button5.setOnClickListener(new View.OnClickListener(){
+        Button toQuizbutton = (Button) findViewById(R.id.map_to_quiz_button);
+        toQuizbutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public  void onClick(View v){
                 Intent intent = new Intent(MapsActivity.this, ZukanActivity.class); //ダイビングアクティビティに飛ぶ処理
