@@ -28,6 +28,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -134,7 +135,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 String name = st.nextToken();
                 double xcor = Double.parseDouble(st.nextToken());
                 double ycor = Double.parseDouble(st.nextToken());
-                aggregateMapLocation.appendMapLocation(new MapLocation(id, name, xcor, ycor));
+                int check360 = Integer.parseInt(st.nextToken());
+                aggregateMapLocation.appendMapLocation(new MapLocation(id, name, xcor, ycor,check360));
                 // Log.d("ReadCsv", "read location"+id+","+name+","+xcor+","+ycor);
             }
             bufferReader.close();
@@ -146,20 +148,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void setMarker() {
         //set zoom
         mMap.moveCamera(CameraUpdateFactory.zoomTo(12));
-
         Iterator it = aggregateMapLocation.Iterator();
         while (it.hasNext()) {
             MapLocation mapLocation = (MapLocation) it.next();
+            //get lats
             lats.add(new LatLng(mapLocation.getXcor(), mapLocation.getYcor()));
             //add_maerker
-            Markers.add(mMap.addMarker(new MarkerOptions().position(lats.get(mapLocation.getId())).title(mapLocation.getName())));
+            if(mapLocation.getCheck360() == 1)//set red marker
+                Markers.add(mMap.addMarker(new MarkerOptions().position(lats.get(mapLocation.getId())).title(mapLocation.getName())));
+            else//set blue marker
+                Markers.add(mMap.addMarker(new MarkerOptions().position(lats.get(mapLocation.getId())).title(mapLocation.getName()).
+                    icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))));//add color change
             mMap.setInfoWindowAdapter(new InfoWindowAdapter() {
                 @Override
                 public View getInfoContents(Marker marker) {
                  // TODO Auto-generated method stub
                    return null;
                     }
-
                 @Override
                 public View getInfoWindow(Marker marker) {
                     // TODO Auto-generated method stub
