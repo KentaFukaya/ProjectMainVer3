@@ -17,6 +17,7 @@ import android.widget.VideoView;
 import com.example.b1014100_2.projectmainver3.DesiginPattern.Iterator;
 import com.example.b1014100_2.projectmainver3.R;
 import com.example.b1014100_2.projectmainver3.movie.AggregateMovieData;
+import com.example.b1014100_2.projectmainver3.movie.MovieActivity;
 import com.example.b1014100_2.projectmainver3.movie.MovieData;
 
 import java.io.BufferedReader;
@@ -73,6 +74,23 @@ public class NormalMovieActivity extends Activity {
             {
                 Log.d("MoviePlayer:test", "moive FInfished");
                 setReplayView(true);
+            }
+        });
+
+        //button click listenre
+        nMovieback.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public  void onClick(View v){
+                finish();//backto mapActivity
+            }
+        });
+        nMoviereplay.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public  void onClick(View v){
+                Intent intent = new Intent(NormalMovieActivity.this, NormalMovieActivity.class); //ダイビングアクティビティに飛ぶ処理
+                intent.putExtra("id",id);
+                startActivity(intent);
+                finish();
             }
         });
     }
