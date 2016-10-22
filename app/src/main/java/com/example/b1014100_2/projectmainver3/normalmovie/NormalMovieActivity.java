@@ -6,13 +6,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
+import android.view.WindowManager;
 
+import com.example.b1014100_2.projectmainver3.DesiginPattern.Iterator;
 import com.example.b1014100_2.projectmainver3.R;
 import com.example.b1014100_2.projectmainver3.movie.AggregateMovieData;
 import com.example.b1014100_2.projectmainver3.movie.MovieData;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -25,6 +28,7 @@ public class NormalMovieActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);//INVISIVLE titilebar
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//full screan
         setContentView(R.layout.activity_normal_movie);
 
         //get id from intent
@@ -33,6 +37,7 @@ public class NormalMovieActivity extends AppCompatActivity {
         id = intent.getIntExtra("id", 0);
 
         ReadMovieCsv();
+        SaveMovieCsv();
     }
 
     public void ReadMovieCsv() {
@@ -52,8 +57,9 @@ public class NormalMovieActivity extends AppCompatActivity {
                 int id = Integer.parseInt(st.nextToken());
                 int max = Integer.parseInt(st.nextToken());
                 String name = st.nextToken();
+                name = name.substring(0,name.length()-4);//deleate .mp4
                 movieDatas.appendMovieData(new MovieData(id,max,name));
-                Log.d("ReadMovieCsv", "id = "+id +", max = "+max+", name ="+name);
+                //Log.d("ReadMovieCsv", "id = "+id +", max = "+max+", name ="+name);
             }
             bufferReader.close();
         } catch (IOException e) {
@@ -86,4 +92,25 @@ public class NormalMovieActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    public void SaveMovieCsv(){
+        String FileName = "watch.csv";
+        try {
+            // 書き込み先のストリームを開く
+            FileOutputStream output = this.openFileOutput(FileName, MODE_PRIVATE);
+
+            Iterator it = movieDatas.Iterator();
+            while(it.hasNext()){
+                MovieData md = (MovieData) it.next();
+                Log.d("test", "SaveMovieCsv: id = "+md.getId()+", watch ="+md.getWatchtoString() );
+                output.write(md.getWatchtoString().getBytes());
+                output.write("\n".getBytes());
+            }
+            // ストリームを閉じる
+            output.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

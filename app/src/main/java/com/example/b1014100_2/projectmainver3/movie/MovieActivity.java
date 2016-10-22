@@ -135,6 +135,7 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
 		moviename = movieDatas.getMovieDataAt(id).getMovieName();
 		Log.d("TEST", "onCreate: MovieName is  "+ movieDatas.getMovieDataAt(id).getMovieName()+",random = "+Random(id));
 		SaveMovieCsv();
+        //auto start
         if (_pfasset == null)
             loadVideo("file:///android_asset/"+moviename);
         _pfasset.play();
