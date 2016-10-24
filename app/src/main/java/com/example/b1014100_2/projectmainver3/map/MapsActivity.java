@@ -18,6 +18,7 @@ import com.example.b1014100_2.projectmainver3.DesiginPattern.Iterator;
 import com.example.b1014100_2.projectmainver3.HomeActivity;
 import com.example.b1014100_2.projectmainver3.R;
 import com.example.b1014100_2.projectmainver3.movie.MovieActivity;
+import com.example.b1014100_2.projectmainver3.normalmovie.NormalMovieActivity;
 import com.example.b1014100_2.projectmainver3.zukan.ZukanActivity;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -28,6 +29,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -69,16 +71,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
         //clicklistner
-        Button button4 = (Button) findViewById(R.id.button4);
-        Button button5 = (Button) findViewById(R.id.button5);
-        button4.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public  void onClick(View v){
-                Intent intent = new Intent(MapsActivity.this, ZukanActivity.class); //ダイビングアクティビティに飛ぶ処理
-                startActivity(intent);
-            }
-        });
-        button5.setOnClickListener(new View.OnClickListener(){
+        Button toQuizbutton = (Button) findViewById(R.id.map_to_quiz_button);
+        toQuizbutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public  void onClick(View v){
                 Intent intent = new Intent(MapsActivity.this, ZukanActivity.class); //ダイビングアクティビティに飛ぶ処理
@@ -110,9 +104,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-                Log.d("Map", "onMarkerClick:id =" + aggregateMapLocation.getIdbyName(marker.getTitle()) + ", Name :" + marker.getTitle());
-                Intent intent = new Intent(getApplication(), MovieActivity.class);
-                intent.putExtra("id", aggregateMapLocation.getIdbyName(marker.getTitle()));
+                Intent intent;
+                int clicked_id = aggregateMapLocation.getIdbyName(marker.getTitle());
+                int clicked_check360 = aggregateMapLocation.getMapLocationAt(clicked_id).getCheck360();
+                Log.d("Map", "onMarkerClick:id =" + clicked_id + ", Name :" + marker.getTitle()+
+                        ", Check360 : "+clicked_check360);
+                if(clicked_check360 == 1) {//start 360movie activity
+                   intent = new Intent(getApplication(), MovieActivity.class);
+                }else{//start normal movie activity
+                    intent = new Intent(getApplication(), NormalMovieActivity.class);
+                }
+                intent.putExtra("id", clicked_id);
                 startActivity(intent);
             }
         });
@@ -134,7 +136,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 String name = st.nextToken();
                 double xcor = Double.parseDouble(st.nextToken());
                 double ycor = Double.parseDouble(st.nextToken());
-                aggregateMapLocation.appendMapLocation(new MapLocation(id, name, xcor, ycor));
+                int check360 = Integer.parseInt(st.nextToken());
+                aggregateMapLocation.appendMapLocation(new MapLocation(id, name, xcor, ycor,check360));
                 // Log.d("ReadCsv", "read location"+id+","+name+","+xcor+","+ycor);
             }
             bufferReader.close();
@@ -146,20 +149,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void setMarker() {
         //set zoom
         mMap.moveCamera(CameraUpdateFactory.zoomTo(12));
-
         Iterator it = aggregateMapLocation.Iterator();
         while (it.hasNext()) {
             MapLocation mapLocation = (MapLocation) it.next();
+            //get lats
             lats.add(new LatLng(mapLocation.getXcor(), mapLocation.getYcor()));
             //add_maerker
-            Markers.add(mMap.addMarker(new MarkerOptions().position(lats.get(mapLocation.getId())).title(mapLocation.getName())));
+            if(mapLocation.getCheck360() == 1)//set red marker
+                Markers.add(mMap.addMarker(new MarkerOptions().position(lats.get(mapLocation.getId())).title(mapLocation.getName())));
+            else//set blue marker
+                Markers.add(mMap.addMarker(new MarkerOptions().position(lats.get(mapLocation.getId())).title(mapLocation.getName()).
+                    icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))));//add color change
             mMap.setInfoWindowAdapter(new InfoWindowAdapter() {
                 @Override
                 public View getInfoContents(Marker marker) {
                  // TODO Auto-generated method stub
                    return null;
                     }
-
                 @Override
                 public View getInfoWindow(Marker marker) {
                     // TODO Auto-generated method stub

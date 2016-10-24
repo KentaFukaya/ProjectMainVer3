@@ -8,12 +8,13 @@ public class MapLocation {
     private int id;
     private String name;
     private double xcor,ycor;
-
-    public MapLocation(int id,String name,double xcor,double ycor){
+    private int check360;
+    public MapLocation(int id,String name,double xcor,double ycor,int check360){
         this.id = id;
         this.name = name;
         this.xcor = xcor;
         this.ycor = ycor;
+        this.check360 = check360;
     }
 
     /*getter*/
@@ -29,22 +30,21 @@ public class MapLocation {
     public double getYcor(){
         return ycor;
     }
+    public int getCheck360() {return check360;}
 
     /*setter*/
     public void setId(int id) {
         this.id = id;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public void setXcor(double xcor) {
         this.xcor = xcor;
     }
-
     public void setYcor(double ycor) {
         this.ycor = ycor;
     }
+    public void setCheck360(int check360) {this.check360 = check360;}
 
 }
