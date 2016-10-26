@@ -22,6 +22,8 @@ public class ZukanActivity extends AppCompatActivity {
     //表示する図鑑データ
     static ArrayList<Zukan> zukans;
 
+    ViewPager viewPager;
+    ZukanFragmentPagerAdapter adapter;
 
     static final int RESULT_SUBACTIVITY = 1000;
 
@@ -34,7 +36,7 @@ public class ZukanActivity extends AppCompatActivity {
         ctx = this;
         //図鑑を全て表示にする
         zukans = ZukanDatabase.getZukanAll();
-        zukans = ZukanDatabase.getZukan(null, null, "春");
+//        zukans = ZukanDatabase.getZukan(null, null, "春");
         setContentView(R.layout.activity_zukan);
         setViews(currentPage);
         setButton();
@@ -59,9 +61,18 @@ public class ZukanActivity extends AppCompatActivity {
     }
 
     private void setViews(int currentPage) {
+        /*
         FragmentManager manager = getSupportFragmentManager();
         ViewPager viewPager = (ViewPager) findViewById(R.id.Zukan_ViewPager);
         ZukanFragmentPagerAdapter adapter = new ZukanFragmentPagerAdapter(manager);
+        viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(currentPage);
+        */
+
+        FragmentManager manager = getSupportFragmentManager();
+        viewPager = (ViewPager) findViewById(R.id.Zukan_ViewPager);
+        if(adapter != null) adapter.notifyDataSetChanged();
+        adapter = new ZukanFragmentPagerAdapter(manager);
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(currentPage);
     }
@@ -72,6 +83,8 @@ public class ZukanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 zukans = ZukanDatabase.getZukan(null, null, "春");
+
+                currentPage = 0;
                 setViews(currentPage);
             }
         });
@@ -81,6 +94,7 @@ public class ZukanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 zukans = ZukanDatabase.getZukan(null, null, null);
+                currentPage = 0;
                 setViews(currentPage);
             }
         });
