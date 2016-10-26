@@ -151,7 +151,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.zoomTo(12));
         Iterator it = aggregateMapLocation.Iterator();
         while (it.hasNext()) {
-            MapLocation mapLocation = (MapLocation) it.next();
+            final MapLocation mapLocation = (MapLocation) it.next();
             //get lats
             lats.add(new LatLng(mapLocation.getXcor(), mapLocation.getYcor()));
             //add_maerker
@@ -169,7 +169,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 @Override
                 public View getInfoWindow(Marker marker) {
                     // TODO Auto-generated method stub
-                    View view = getLayoutInflater().inflate(R.layout.info_window, null);
+                    View view;
+                    int clicked_id = aggregateMapLocation.getIdbyName(marker.getTitle());
+                    if(aggregateMapLocation.getMapLocationAt(clicked_id).getCheck360() == 1)
+                         view = getLayoutInflater().inflate(R.layout.info_window3d, null);
+                    else
+                         view = getLayoutInflater().inflate(R.layout.info_window2d, null);
+
                     // タイトル設定
                     TextView title = (TextView)view.findViewById(R.id.info_title);
                     title.setText(marker.getTitle());
