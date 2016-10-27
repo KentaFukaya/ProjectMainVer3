@@ -2,6 +2,7 @@ package com.example.b1014100_2.projectmainver3.zukan;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -45,6 +46,8 @@ public class ZukanListActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.zukan_list_drawer_view, new ZukanListSortSyllabaryFragment());
         fragmentTransaction.commit();
+
+        ((DrawerLayout) findViewById(R.id.zukan_list_drawer_layout)).setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 
     private void setButton(){
@@ -71,7 +74,32 @@ public class ZukanListActivity extends AppCompatActivity {
                 drawer.openDrawer(GravityCompat.END);
             }
         });
+
+        //種類順ソートボタン
+        findViewById(R.id.zukan_list_sort_type).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSortDrawer(new ZukanListSortTypeFragment());
+            }
+        });
+
+        //季節順ソートボタン
+        findViewById(R.id.zukan_list_sort_season).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSortDrawer(new ZukanListSortSeasonFragment());
+            }
+        });
     }
 
+    private void openSortDrawer(Fragment newFragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.zukan_list_drawer_view, newFragment);
+        fragmentTransaction.commit();
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.zukan_list_drawer_layout);
+        drawer.openDrawer(GravityCompat.END);
+    }
 
 }
