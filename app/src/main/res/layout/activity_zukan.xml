@@ -47,4 +47,12 @@
         android:id="@+id/season_spring"
         android:layout_above="@+id/zukan_left"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="zukan list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/season_reset"
+        android:layout_alignEnd="@+id/season_spring"
+        android:id="@+id/activity_zukan_list_button" />
 </RelativeLayout>

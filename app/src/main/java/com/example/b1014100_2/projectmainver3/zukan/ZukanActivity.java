@@ -78,6 +78,15 @@ public class ZukanActivity extends AppCompatActivity {
     }
 
     private void setButton(){
+        Button buttonList = (Button) findViewById(R.id.activity_zukan_list_button);
+        buttonList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), ZukanListActivity.class);
+                startActivity( intent );
+            }
+        });
+
         Button buttonSpring = (Button) findViewById(R.id.season_spring);
         buttonSpring.setOnClickListener(new View.OnClickListener() {
             @Override

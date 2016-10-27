@@ -1,38 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_zukan_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.b1014100_2.projectmainver3.zukan.ZukanDetailActivity">
+    tools:context="com.example.b1014100_2.projectmainver3.zukan.ZukanDetailActivity"
+    android:background="@drawable/zukan_detail_background">
 
-    <Button
-        android:text="→"
-        android:layout_width="wrap_content"
+    <ImageButton
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/zukan_detail_right" />
+        app:srcCompat="@drawable/zukan_list_back_button"
+        android:id="@+id/zukan_detail_back_button"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:scaleType="fitStart" />
 
-    <Button
-        android:text="←"
-        android:layout_width="wrap_content"
+    <ImageView
+        app:srcCompat="@drawable/zukan_detail_image_sample"
+        android:id="@+id/zukan_detail_image"
+        android:layout_below="@+id/zukan_detail_back_button"
+        android:padding="5dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginLeft="38dp"
+        android:layout_width="230dp"
+        android:layout_height="140dp"
+        android:background="@android:color/holo_orange_dark"
+        android:scaleType="fitXY" />
+
+    <ImageButton
+        app:srcCompat="@drawable/zukan_detail_quiz_button"
+        android:id="@+id/zukan_detail_quiz_button"
+        android:background="@null"
+        android:scaleType="fitStart"
         android:layout_height="wrap_content"
-        android:id="@+id/zukan_detail_left"
-        android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/zukan_detail_right" />
-
-    <android.support.v4.view.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/Zukan_Detail_ViewPager"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp"
+        android:adjustViewBounds="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_width="96dp" />
+
+    <TextView
+        android:text="カツオ"
+        android:layout_width="match_parent"
+        android:id="@+id/zukan_detail_fish_name"
+        android:layout_toRightOf="@+id/zukan_detail_image"
+        android:layout_below="@+id/zukan_detail_quiz_button"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="6dp"
+        android:textColor="@android:color/black"
+        android:textSize="50sp"
+        android:layout_height="55dp" />
+
+    <TextView
+        android:text="スズキ科"
+        android:id="@+id/zukan_detail_fish_ka"
+        android:layout_alignStart="@+id/zukan_detail_fish_name"
+        android:layout_below="@+id/zukan_detail_fish_name"
+        android:layout_marginTop="35dp"
+        android:layout_width="115dp"
+        android:layout_height="35dp"
+        android:textColor="@android:color/black"
+        android:textSize="30sp" />
+
+    <TextView
+        android:text="100cm"
+        android:layout_height="35dp"
+        android:id="@+id/zukan_detail_fish_length"
+        android:layout_alignTop="@+id/zukan_detail_fish_ka"
+        android:layout_toRightOf="@+id/zukan_detail_fish_ka"
+        android:layout_marginLeft="35dp"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:layout_width="90dp" />
 
 </RelativeLayout>

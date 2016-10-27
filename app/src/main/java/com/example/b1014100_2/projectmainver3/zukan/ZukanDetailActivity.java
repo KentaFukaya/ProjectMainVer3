@@ -34,10 +34,10 @@ public class ZukanDetailActivity extends AppCompatActivity {
     }
 
     public void setViews(int fishId) {
-        FragmentManager manager = getSupportFragmentManager();
-        ViewPager viewPager = (ViewPager) findViewById(R.id.Zukan_Detail_ViewPager);
-        ZukanDetailFragmentPagerAdapter adapter = new ZukanDetailFragmentPagerAdapter(manager);
-        viewPager.setAdapter(adapter);
-        viewPager.setCurrentItem(fishId - 1);
+//        FragmentManager manager = getSupportFragmentManager();
+////        ViewPager viewPager = (ViewPager) findViewById(R.id.Zukan_Detail_ViewPager);
+//        ZukanDetailFragmentPagerAdapter adapter = new ZukanDetailFragmentPagerAdapter(manager);
+//        viewPager.setAdapter(adapter);
+//        viewPager.setCurrentItem(fishId - 1);
     }
 }
