@@ -20,6 +20,7 @@ import com.example.b1014100_2.projectmainver3.R;
 import com.example.b1014100_2.projectmainver3.movie.MovieActivity;
 import com.example.b1014100_2.projectmainver3.normalmovie.NormalMovieActivity;
 import com.example.b1014100_2.projectmainver3.zukan.ZukanActivity;
+import com.example.b1014100_2.projectmainver3.zukan.ZukanListActivity;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -75,7 +76,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         toQuizbutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public  void onClick(View v){
-                Intent intent = new Intent(MapsActivity.this, ZukanActivity.class); //ダイビングアクティビティに飛ぶ処理
+                Intent intent = new Intent(getApplication(), ZukanListActivity.class); //ダイビングアクティビティに飛ぶ処理
                 startActivity(intent);
             }
         });

@@ -12,7 +12,9 @@ import java.util.ArrayList;
 
 public class ZukanFragmentPagerAdapter extends FragmentPagerAdapter{
 
-    ArrayList<Zukan> zukans = Zukan.zukanCrate();
+//    ArrayList<Zukan> zukans = Zukan.zukanCrate();
+    ArrayList<Zukan> zukans = ZukanListActivity.zukans;
+
 
     public ZukanFragmentPagerAdapter(FragmentManager fm) {
         super(fm);

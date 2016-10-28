@@ -21,7 +21,10 @@ import static android.app.Activity.RESULT_OK;
 public class ZukanDetailFragment extends Fragment {
     private final static String BACKGROUND_COLOR = "background_color";
 
-    private ArrayList<Zukan> zukans = Zukan.zukanCrate();
+//    private ArrayList<Zukan> zukans = ZukanDatabase.getZukanAll();
+//private ArrayList<Zukan> zukans = ZukanDatabase.getZukan(null, null, "春");
+    private ArrayList<Zukan> zukans = ZukanActivity.zukans;
+//    private ArrayList<Zukan> zukans = Zukan.zukanCrate();
 
     public static ZukanDetailFragment newInstance(int fishId) {
         //page数をBundleに詰める
@@ -46,20 +49,20 @@ public class ZukanDetailFragment extends Fragment {
 //        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.fragment_zukan);
 
         //右左bottonのクリックリスナー
-        Button leftAllow = (Button) getActivity().findViewById(R.id.zukan_detail_left);
-        leftAllow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                moveViewPager(-1);
-            }
-        });
-        Button rightAllow = (Button) getActivity().findViewById(R.id.zukan_detail_right);
-        rightAllow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                moveViewPager(1);
-            }
-        });
+//        Button leftAllow = (Button) getActivity().findViewById(R.id.zukan_detail_left);
+//        leftAllow.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                moveViewPager(-1);
+//            }
+//        });
+//        Button rightAllow = (Button) getActivity().findViewById(R.id.zukan_detail_right);
+//        rightAllow.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                moveViewPager(1);
+//            }
+//        });
 
         // MainActivity へ戻るボタン
         ImageButton backButton = (ImageButton) view.findViewById(R.id.ZukanDetail_back);
@@ -95,9 +98,9 @@ public class ZukanDetailFragment extends Fragment {
 
     //ボタンを押したときにviewpagerの移動
     //iは、1で進む、-1で戻る
-    private void moveViewPager(int i){
-        ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.Zukan_Detail_ViewPager);
-        viewPager.setCurrentItem(viewPager.getCurrentItem() + i);
-    }
+//    private void moveViewPager(int i){
+//        ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.Zukan_Detail_ViewPager);
+//        viewPager.setCurrentItem(viewPager.getCurrentItem() + i);
+//    }
 
 }
