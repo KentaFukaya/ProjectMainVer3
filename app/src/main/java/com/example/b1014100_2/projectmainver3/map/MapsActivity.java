@@ -80,6 +80,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 startActivity(intent);
             }
         });
+        /*-----------------------------------------------------------------*/
+        //test
+        Button InfoButton = (Button) findViewById(R.id.map_getinfo);
+        InfoButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public  void onClick(View v){
+                Log.d("TEST Map", mMap.getCameraPosition().toString());
+            }
+        });
     }
 
 
@@ -148,8 +157,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void setMarker() {
-        //set zoom
-        mMap.moveCamera(CameraUpdateFactory.zoomTo(12));
         Iterator it = aggregateMapLocation.Iterator();
         while (it.hasNext()) {
             final MapLocation mapLocation = (MapLocation) it.next();
@@ -183,8 +190,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     return view;
                     }
                 });
-            //change cmaera
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(mapLocation.getXcor(), mapLocation.getYcor())));
+            //set zoom
+            mMap.moveCamera(CameraUpdateFactory.zoomTo(12));
+            //change view postion
+            double x = aggregateMapLocation.getMapLocationAt(6).getXcor();
+            double y = aggregateMapLocation.getMapLocationAt(6).getYcor();
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(x,y))
+            );
         }
     }
 
