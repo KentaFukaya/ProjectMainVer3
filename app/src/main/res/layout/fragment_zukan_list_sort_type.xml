@@ -8,7 +8,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_ainame"
+        app:srcCompat="@drawable/zukan_list_sort_type_ainame"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_ainame"
         android:adjustViewBounds="true"
@@ -17,7 +17,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_akaika"
+        app:srcCompat="@drawable/zukan_list_sort_type_akaika"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_akaika"
         android:adjustViewBounds="true"
@@ -26,7 +26,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_anago"
+        app:srcCompat="@drawable/zukan_list_sort_type_anago"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_anago"
         android:adjustViewBounds="true"
@@ -35,7 +35,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_ayu"
+        app:srcCompat="@drawable/zukan_list_sort_type_ayu"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_ayu"
         android:adjustViewBounds="true"
@@ -44,7 +44,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_ikanago"
+        app:srcCompat="@drawable/zukan_list_sort_type_ikanago"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_ikanago"
         android:adjustViewBounds="true"
@@ -53,7 +53,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_itabogaki"
+        app:srcCompat="@drawable/zukan_list_sort_type_itabogaki"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_itabogaki"
         android:adjustViewBounds="true"
@@ -62,7 +62,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_itayagai"
+        app:srcCompat="@drawable/zukan_list_sort_type_itayagai"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_itayagai"
         android:adjustViewBounds="true"
@@ -71,7 +71,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_ezobai"
+        app:srcCompat="@drawable/zukan_list_sort_type_ezobai"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_ezobai"
         android:adjustViewBounds="true"
@@ -80,7 +80,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_obahununi"
+        app:srcCompat="@drawable/zukan_list_sort_type_obahununi"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_obahununi"
         android:adjustViewBounds="true"
@@ -89,7 +89,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_kazika"
+        app:srcCompat="@drawable/zukan_list_sort_type_kazika"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_kazika"
         android:adjustViewBounds="true"
@@ -98,7 +98,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_katakutiiwasi"
+        app:srcCompat="@drawable/zukan_list_sort_type_katakutiiwasi"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_katakutiiwasi"
         android:adjustViewBounds="true"
@@ -107,7 +107,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_karei"
+        app:srcCompat="@drawable/zukan_list_sort_type_karei"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_karei"
         android:adjustViewBounds="true"
@@ -116,7 +116,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_gangiei"
+        app:srcCompat="@drawable/zukan_list_sort_type_gangiei"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_gangiei"
         android:adjustViewBounds="true"
@@ -125,7 +125,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_kyuriuo"
+        app:srcCompat="@drawable/zukan_list_sort_type_kyuriuo"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_kyuriuo"
         android:adjustViewBounds="true"
@@ -134,7 +134,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_kurigani"
+        app:srcCompat="@drawable/zukan_list_sort_type_kurigani"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_kurigani"
         android:adjustViewBounds="true"
@@ -143,7 +143,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_kemusikazika"
+        app:srcCompat="@drawable/zukan_list_sort_type_kemusikazika"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_kemusikazika"
         android:adjustViewBounds="true"
@@ -152,7 +152,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_koi"
+        app:srcCompat="@drawable/zukan_list_sort_type_koi"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_koi"
         android:adjustViewBounds="true"
@@ -161,7 +161,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_konbu"
+        app:srcCompat="@drawable/zukan_list_sort_type_konbu"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_konbu"
         android:adjustViewBounds="true"
@@ -170,7 +170,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_sake"
+        app:srcCompat="@drawable/zukan_list_sort_type_sake"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_sake"
         android:adjustViewBounds="true"
@@ -179,7 +179,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_saba"
+        app:srcCompat="@drawable/zukan_list_sort_type_saba"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_saba"
         android:adjustViewBounds="true"
@@ -188,7 +188,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_sanma"
+        app:srcCompat="@drawable/zukan_list_sort_type_sanma"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_sanma"
         android:adjustViewBounds="true"
@@ -197,7 +197,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_sikakunamako"
+        app:srcCompat="@drawable/zukan_list_sort_type_sikakunamako"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_sikakunamako"
         android:adjustViewBounds="true"
@@ -206,7 +206,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_sirauo"
+        app:srcCompat="@drawable/zukan_list_sort_type_sirauo"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_sirauo"
         android:adjustViewBounds="true"
@@ -215,7 +215,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_tauegazi"
+        app:srcCompat="@drawable/zukan_list_sort_type_tauegazi"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_tauegazi"
         android:adjustViewBounds="true"
@@ -224,7 +224,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_tara"
+        app:srcCompat="@drawable/zukan_list_sort_type_tara"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_tara"
         android:adjustViewBounds="true"
@@ -233,7 +233,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_tarabaebi"
+        app:srcCompat="@drawable/zukan_list_sort_type_tarabaebi"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_tarabaebi"
         android:adjustViewBounds="true"
@@ -242,7 +242,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_dangouo"
+        app:srcCompat="@drawable/zukan_list_sort_type_dangouo"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_dangouo"
         android:adjustViewBounds="true"
@@ -251,7 +251,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_tokubire"
+        app:srcCompat="@drawable/zukan_list_sort_type_tokubire"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_tokubire"
         android:adjustViewBounds="true"
@@ -260,7 +260,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_dojou"
+        app:srcCompat="@drawable/zukan_list_sort_type_dojou"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_dojou"
         android:adjustViewBounds="true"
@@ -269,7 +269,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_nisin"
+        app:srcCompat="@drawable/zukan_list_sort_type_nisin"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_nisin"
         android:adjustViewBounds="true"
@@ -278,7 +278,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_nikkougai"
+        app:srcCompat="@drawable/zukan_list_sort_type_nikkougai"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_nikkougai"
         android:adjustViewBounds="true"
@@ -287,7 +287,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_bakagai"
+        app:srcCompat="@drawable/zukan_list_sort_type_bakagai"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_bakagai"
         android:adjustViewBounds="true"
@@ -296,7 +296,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_hatahata"
+        app:srcCompat="@drawable/zukan_list_sort_type_hatahata"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_hatahata"
         android:adjustViewBounds="true"
@@ -305,7 +305,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_hirame"
+        app:srcCompat="@drawable/zukan_list_sort_type_hirame"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_hirame"
         android:adjustViewBounds="true"
@@ -314,7 +314,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_husakagago"
+        app:srcCompat="@drawable/zukan_list_sort_type_husakagago"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_husakagago"
         android:adjustViewBounds="true"
@@ -323,7 +323,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_madako"
+        app:srcCompat="@drawable/zukan_list_sort_type_madako"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_madako"
         android:adjustViewBounds="true"
@@ -332,7 +332,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_maboya"
+        app:srcCompat="@drawable/zukan_list_sort_type_maboya"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_maboya"
         android:adjustViewBounds="true"
@@ -341,7 +341,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_mimigai"
+        app:srcCompat="@drawable/zukan_list_sort_type_mimigai"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_mimigai"
         android:adjustViewBounds="true"
@@ -350,7 +350,7 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_type_yariika"
+        app:srcCompat="@drawable/zukan_list_sort_type_yariika"
         android:background="@null"
         android:id="@+id/fragment_zukan_list_sort_type_yariika"
         android:adjustViewBounds="true"

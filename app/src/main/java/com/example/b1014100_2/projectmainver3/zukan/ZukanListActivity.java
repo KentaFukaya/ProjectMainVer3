@@ -19,7 +19,7 @@ import com.example.b1014100_2.projectmainver3.R;
 
 import java.util.ArrayList;
 
-public class ZukanListActivity extends AppCompatActivity {
+public class ZukanListActivity extends AppCompatActivity implements ZukanListSortFragmentListener{
 
     //QuizSQLiteOpenHelperで使う
     private static Context ctx;
@@ -34,11 +34,12 @@ public class ZukanListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Log.d("test listactivity", "onCreate: ");
         //QuizSQLiteOpenHelperで使う
         ctx = this;
         //図鑑を全て表示にする
-        zukans = ZukanDatabase.getZukanAll();
+//        zukans = ZukanDatabase.getZukanAll();
+        zukans = ZukanDatabase.getZukanSyllabary("あ");
 
         setContentView(R.layout.activity_zukan_list);
         setViews();
@@ -102,6 +103,15 @@ public class ZukanListActivity extends AppCompatActivity {
                 openSortDrawer(new ZukanListSortSeasonFragment());
             }
         });
+
+        //ソートクリアボタン
+        findViewById(R.id.zukan_list_sort_clear).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                zukans = ZukanDatabase.getZukanAll();
+                viewPager.getAdapter().notifyDataSetChanged();
+            }
+        });
     }
 
     private void openSortDrawer(Fragment newFragment){
@@ -118,4 +128,25 @@ public class ZukanListActivity extends AppCompatActivity {
     public static Context getContext() {
         return ctx;
     }
+
+    public void setViewPager(int index){
+        //Fragmentから呼ばれる
+        //ページのフラグメントを全て削除し再セット
+        ViewPager pager = (ViewPager)findViewById(R.id.zukan_list_viewpager);
+       // adapter.destroyAllItem(viewPager);
+        //adapter.notifyDataSetChanged();
+        pager.setAdapter(adapter);
+        pager.setCurrentItem(index);
+    }
+
+    //fragmentからのリスナーを受け取る
+    @Override
+    public void onZukanListSortFragmentChange() {
+
+        viewPager.getAdapter().notifyDataSetChanged();
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.zukan_list_drawer_layout);
+        drawer.closeDrawer(GravityCompat.END);
+    }
 }
+

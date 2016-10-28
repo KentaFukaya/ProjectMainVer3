@@ -23,7 +23,7 @@ public class ZukanListFragment extends Fragment {
 
     static final int RESULT_SUBACTIVITY = 1000;
 
-    int i;//for
+    int i;//forで使うために
 
     int zukanImgViewResId[] = {
             R.id.zukan_list_image_view1, R.id.zukan_list_image_view2, R.id.zukan_list_image_view3, R.id.zukan_list_image_view4,
@@ -68,6 +68,9 @@ public class ZukanListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        for(int i = 0; i < 8; i++){
+           // Log.d("ZukanList", "onZukanListoncreateview: " + zukans.get(i).printall());
+        }
         View view = inflater.inflate(R.layout.fragment_zukan_list, null);
         setViews(view);
 
@@ -78,6 +81,7 @@ public class ZukanListFragment extends Fragment {
         for (i = 0; i < 8; i++) {
             if (fishIds[i] != 0) {
                 final int fishId = fishIds[i]-1;
+                Log.d("zukanalistfragment", "setViews: "+zukans.get(fishId).printall());
                 ImageView image = (ImageView) view.findViewById(zukanImgViewResId[i]);
                 //文字列から画像のdrawableのIDを取得する
                 int imageId = getResources().getIdentifier(zukans.get(fishId).getImageName(), "drawable", getActivity().getPackageName());
@@ -95,28 +99,5 @@ public class ZukanListFragment extends Fragment {
                 });
             }
         }
-
-
-
-        //1個目のコンテンツセット
-//        if(fishIds[0] != 0) {
-//            ImageButton image1 = (ImageButton) view.findViewById(R.id.zukan1 + i);
-//            //ボタンを表示
-//            image1.setVisibility(View.VISIBLE);
-//            //文字列から画像のdrawableのIDを取得する
-//            int imageId1 = getResources().getIdentifier(zukans.get(fishIds[0] - 1).getImageName(), "drawable", getActivity().getPackageName());
-//            //画像をImageViewにセットする
-//            image1.setImageResource(imageId1);
-//            image1.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Log.d("Test", getActivity() + "onClick: Zukanid = " + fishIds[0]);
-//                    Intent intent = new Intent(getActivity(), ZukanDetailActivity.class); //図鑑アクティビティにに飛ぶ処理
-//                    intent.putExtra("id", fishIds[0]);
-//                    getActivity().startActivityForResult(intent, RESULT_SUBACTIVITY);
-////                startActivity(intent);
-//                }
-//            });
-//        }
     }
 }

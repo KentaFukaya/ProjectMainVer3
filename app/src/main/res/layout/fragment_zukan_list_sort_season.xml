@@ -8,36 +8,36 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_season_spring"
+        app:srcCompat="@drawable/zukan_list_sort_season_spring"
         android:background="@null"
-        android:id="@+id/fragment_zukan_list_sort_season_spring"
+        android:id="@+id/zukan_list_sort_season_spring"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter" />
 
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_season_summer"
+        app:srcCompat="@drawable/zukan_list_sort_season_summer"
         android:background="@null"
-        android:id="@+id/fragment_zukan_list_sort_season_summer"
+        android:id="@+id/zukan_list_sort_season_summer"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter" />
 
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_season_fall"
+        app:srcCompat="@drawable/zukan_list_sort_season_fall"
         android:background="@null"
-        android:id="@+id/fragment_zukan_list_sort_season_fall"
+        android:id="@+id/zukan_list_sort_season_fall"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter" />
 
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_season_winter"
+        app:srcCompat="@drawable/zukan_list_sort_season_winter"
         android:background="@null"
-        android:id="@+id/fragment_zukan_list_sort_season_winter"
+        android:id="@+id/zukan_list_sort_season_winter"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter" />
 

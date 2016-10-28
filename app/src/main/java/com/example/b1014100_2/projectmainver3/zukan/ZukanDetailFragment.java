@@ -25,6 +25,7 @@ public class ZukanDetailFragment extends Fragment {
 //private ArrayList<Zukan> zukans = ZukanDatabase.getZukan(null, null, "春");
     private ArrayList<Zukan> zukans = ZukanActivity.zukans;
 //    private ArrayList<Zukan> zukans = Zukan.zukanCrate();
+    private Zukan zukan;
 
     public static ZukanDetailFragment newInstance(int fishId) {
         //page数をBundleに詰める
@@ -44,25 +45,10 @@ public class ZukanDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final int fishId = getArguments().getInt("id");
+        zukan = ZukanDatabase.getZukanId(fishId);
 
         View view = inflater.inflate(R.layout.fragment_detail_zukan, null);
 //        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.fragment_zukan);
-
-        //右左bottonのクリックリスナー
-//        Button leftAllow = (Button) getActivity().findViewById(R.id.zukan_detail_left);
-//        leftAllow.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                moveViewPager(-1);
-//            }
-//        });
-//        Button rightAllow = (Button) getActivity().findViewById(R.id.zukan_detail_right);
-//        rightAllow.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                moveViewPager(1);
-//            }
-//        });
 
         // MainActivity へ戻るボタン
         ImageButton backButton = (ImageButton) view.findViewById(R.id.ZukanDetail_back);
@@ -74,7 +60,6 @@ public class ZukanDetailFragment extends Fragment {
                 intent.putExtra("currentPage", fishId / 4);
                 getActivity().setResult(RESULT_OK, intent);
                 getActivity().finish();
-//                Log.d("","return");
             }
         });
 
