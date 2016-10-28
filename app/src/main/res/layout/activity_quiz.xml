@@ -27,7 +27,7 @@
     <Button
         android:layout_width="100dp"
         android:layout_height="48dp"
-        android:background="@drawable/quiz_return"
+        android:background="@drawable/quiz_return_button"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:id="@+id/main_return_button" />

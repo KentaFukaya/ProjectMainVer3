@@ -36,6 +36,7 @@ public class QuizActivity extends AppCompatActivity{
 
         // 図鑑から魚の id か何かを取得し、対応するクイズを表示
         setQuiz(1);
+//        QuizSQLiteOpenFromAssets helper = new QuizSQLiteOpenFromAssets()
 
         //アニメーションセット
         setAnime();
