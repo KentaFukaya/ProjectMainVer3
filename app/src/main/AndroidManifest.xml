@@ -48,7 +48,9 @@
 
         <activity android:name=".zukan.ZukanActivity" />
         <activity android:name=".zukan.ZukanDetailActivity"></activity>
-        <activity android:name=".quiz.QuizActivity"></activity>
+        <activity android:name=".quiz.QuizActivity"
+            android:theme="@style/Theme.Design.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

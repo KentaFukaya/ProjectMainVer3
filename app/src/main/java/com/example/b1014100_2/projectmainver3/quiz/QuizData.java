@@ -21,50 +21,46 @@ public class QuizData {
         return "答えは・・・「" + answer + "」だよ";
     }
 
-    protected static String getComment(){
-        return "解説:\n" + comment;
-    }
-
     // i番目のクイズデータを取得
     protected static void set(int i){
         // 1番　アイナメ
         if(i == 1){
             name = "アイナメ";
             imageId = R.drawable.ainame_1;
-            question = "アイナメは、体長30センチ以上になると「ビールビン」と呼ばれます。では、40センチ以上になると、何と呼ばれるでしょう？";
+            question = "30センチ以上のアイナメはビールビンと呼ばれますが、40センチ以上は？";
             choices[0] = "イッショウビン";
             choices[1] = "ギュウニュウビン";
             choices[2] = "ペットボトル";
             answer = choices[0];
-            comment = "アイナメは、関東の釣り師の間で30センチを超えるとビールビン（ビール瓶）、40センチ以上になるとイッショウビン（一升瓶）と呼ばれています。";
+            comment = "アイナメは、関東の釣り師の間では、30センチを超えるとビール瓶、40センチ以上になると一升瓶と呼ばれているよ。";
         }
         // 2番　アカガレイ
         if(i == 2){
             name = "アカガレイ";
             imageId = 0;
-            question = "問題文";
-            choices[0] = "";
-            choices[1] = "";
-            choices[2] = "";
+            question = "アカガレイの寿命は何年かな？";
+            choices[0] = "13年";
+            choices[1] = "15年";
+            choices[2] = "17年";
             answer = choices[0];
-            comment = "解説";
+            comment = "アカガレイの寿命は15年！体長は、1歳で10センチ、3歳で20センチ、6歳で30センチと成長していくよ。";
         }
         // 3番　アメマス
         if(i == 3){
             name = "アメマス";
             imageId = 0;
-            question = "問題文";
-            choices[0] = "";
-            choices[1] = "";
-            choices[2] = "";
-            answer = choices[0];
-            comment = "解説";
+            question = "海で釣れるアメマスを特に何と呼ぶかな？";
+            choices[0] = "海マス";
+            choices[1] = "海アメ";
+            choices[2] = "海アマ";
+            answer = choices[1];
+            comment = "海で釣れるアメマスは、「海アメ」と呼ばれることもあるよ。";
         }
         // 4番　アユ
         if(i == 4){
             name = "アユ";
             imageId = 0;
-            question = "問題文";
+            question = "アユは、生まれてすぐに川から海に下っていくんだ。そのときの半透明で細長いアユは、何と呼ばれているかな？";
             choices[0] = "";
             choices[1] = "";
             choices[2] = "";
@@ -75,11 +71,11 @@ public class QuizData {
         if(i == 5){
             name = "イカナゴ";
             imageId = 0;
-            question = "問題文";
-            choices[0] = "";
-            choices[1] = "";
+            question = "イカナゴの名前の由来はどれでしょう？";
+            choices[0] = "イカの子供だから";
+            choices[1] = "何の子供かわからないから";
             choices[2] = "";
-            answer = choices[0];
+            answer = choices[1];
             comment = "解説";
         }
         // 6番　イシガレイ
@@ -108,10 +104,10 @@ public class QuizData {
         if(i == 8){
             name = "ウバガイ";
             imageId = 0;
-            question = "問題文";
-            choices[0] = "";
-            choices[1] = "";
-            choices[2] = "";
+            question = "ウバガイは、「ウバガイ」の他によく呼ばれる名前があるんだ。それはどれかな？";
+            choices[0] = "ホッキガイ";
+            choices[1] = "ハッキガイ";
+            choices[2] = "フッキガイ";
             answer = choices[0];
             comment = "解説";
         }
