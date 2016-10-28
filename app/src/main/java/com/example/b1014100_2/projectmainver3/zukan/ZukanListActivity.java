@@ -21,6 +21,11 @@ import java.util.ArrayList;
 
 public class ZukanListActivity extends AppCompatActivity {
 
+    //QuizSQLiteOpenHelperで使う
+    private static Context ctx;
+    //表示する図鑑データ
+    public static ArrayList<Zukan> zukans;
+
     ViewPager viewPager;
     ZukanListFragmentPagerAdapter adapter;
 
@@ -29,6 +34,12 @@ public class ZukanListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //QuizSQLiteOpenHelperで使う
+        ctx = this;
+        //図鑑を全て表示にする
+        zukans = ZukanDatabase.getZukanAll();
+
         setContentView(R.layout.activity_zukan_list);
         setViews();
         setButton();
@@ -51,12 +62,13 @@ public class ZukanListActivity extends AppCompatActivity {
     }
 
     private void setButton(){
+
+        //戻るボタン
         ImageButton buttonList = (ImageButton) findViewById(R.id.zukan_list_back_button);
         buttonList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplication(), ZukanDetailActivity.class);
-                startActivity( intent );
+                finish();
             }
         });
 
@@ -102,4 +114,8 @@ public class ZukanListActivity extends AppCompatActivity {
         drawer.openDrawer(GravityCompat.END);
     }
 
+    //QuizSQLiteOpenHelperで使う
+    public static Context getContext() {
+        return ctx;
+    }
 }

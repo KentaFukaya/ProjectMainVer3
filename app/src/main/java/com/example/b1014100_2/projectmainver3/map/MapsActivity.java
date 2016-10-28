@@ -76,7 +76,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         toQuizbutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public  void onClick(View v){
-                Intent intent = new Intent(MapsActivity.this, ZukanListActivity.class); //ダイビングアクティビティに飛ぶ処理
+                Intent intent = new Intent(getApplication(), ZukanListActivity.class); //ダイビングアクティビティに飛ぶ処理
                 startActivity(intent);
             }
         });

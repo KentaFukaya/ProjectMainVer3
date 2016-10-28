@@ -25,7 +25,7 @@ public class ZukanFragment extends Fragment {
 
 //    private ArrayList<Zukan> zukans = ZukanDatabase.getZukanAll();
 //    private ArrayList<Zukan> zukans = ZukanDatabase.getZukan(null, null, "春");
-    private ArrayList<Zukan> zukans = ZukanActivity.zukans;
+    private ArrayList<Zukan> zukans = ZukanListActivity.zukans;
 //    private ArrayList<Zukan> zukans = Zukan.zukanCrate();
     int i;
 

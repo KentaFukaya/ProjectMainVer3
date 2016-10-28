@@ -108,7 +108,7 @@ public class ZukanDatabase {
     public static ArrayList<Zukan> getZukanAll() {
         ArrayList<Zukan> zukans = new ArrayList<>();
 
-        ZukanSQLiteOpenFromAssets helper = new ZukanSQLiteOpenFromAssets(ZukanActivity.getContext(), DB_NAME, null, DB_VERSION);
+        ZukanSQLiteOpenFromAssets helper = new ZukanSQLiteOpenFromAssets(ZukanListActivity.getContext(), DB_NAME, null, DB_VERSION);
         SQLiteDatabase db = helper.getReadableDatabase();
 
         Cursor c = db.query(TABLE_NAME, FROM, null, null, null, null, ORDER_BY);//queryの実行
@@ -120,8 +120,8 @@ public class ZukanDatabase {
             zukan.setName(c.getString(1));
             zukan.setContent(c.getString(2));
             zukan.setLength(c.getInt(3));
-            zukan.setType(c.getString(4));
-            zukan.setSyllabary(c.getString(5));
+            zukan.setSyllabary(c.getString(4));
+            zukan.setType(c.getString(5));
             zukan.setSeason_spring(c.getInt(6));
             zukan.setSeason_summer(c.getInt(7));
             zukan.setSeason_fall(c.getInt(8));

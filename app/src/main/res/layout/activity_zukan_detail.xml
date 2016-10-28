@@ -61,7 +61,7 @@
         android:layout_width="115dp"
         android:layout_height="35dp"
         android:textColor="@android:color/black"
-        android:textSize="30sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:text="100cm"
@@ -71,7 +71,7 @@
         android:layout_toRightOf="@+id/zukan_detail_fish_ka"
         android:layout_marginLeft="35dp"
         android:textColor="@android:color/black"
-        android:textSize="30sp"
+        android:textSize="24sp"
         android:layout_width="90dp" />
 
 </RelativeLayout>

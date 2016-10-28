@@ -20,7 +20,7 @@ public class ZukanActivity extends AppCompatActivity {
     //QuizSQLiteOpenHelperで使う
     private static Context ctx;
     //表示する図鑑データ
-    static ArrayList<Zukan> zukans;
+    public static ArrayList<Zukan> zukans;
 
     ViewPager viewPager;
     ZukanFragmentPagerAdapter adapter;
