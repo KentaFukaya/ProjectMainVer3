@@ -17,8 +17,7 @@ import static com.example.b1014100_2.projectmainver3.zukan.ZukanSQLiteOpenHelper
  */
 public class ZukanDatabase {
     private static SQLiteDatabase mDb;
-//    private static String[] FROM = {"_id", "name", "content", "length", "season", "image_name"};
-    private static String[] FROM = {"_id", "name", "content", "type", "length", "season", "image_name"};
+    private static String[] FROM = {"_id", "name", "content", "length", "syllabary", "type", "season_spring", "season_summer", "season_fall", "season_winter", "image_name"};
     private static String ORDER_BY = "_id" + " ASC";//並べる順
 
     /*
@@ -109,9 +108,6 @@ public class ZukanDatabase {
     public static ArrayList<Zukan> getZukanAll() {
         ArrayList<Zukan> zukans = new ArrayList<>();
 
-        //ZukanSQLiteOpenHelper helper = new ZukanSQLiteOpenHelper(ZukanActivity.getContext());
-        //mDb = helper.getReadableDatabase();
-
         ZukanSQLiteOpenFromAssets helper = new ZukanSQLiteOpenFromAssets(ZukanActivity.getContext(), DB_NAME, null, DB_VERSION);
         SQLiteDatabase db = helper.getReadableDatabase();
 
@@ -119,13 +115,19 @@ public class ZukanDatabase {
 
         while (c.moveToNext()) {
             Zukan zukan = new Zukan();
+
             zukan.setId(c.getInt(0));
             zukan.setName(c.getString(1));
             zukan.setContent(c.getString(2));
-            zukan.setType(c.getString(3));
-            zukan.setLength(c.getInt(4));
-            zukan.setSeason(c.getString(5));
-            zukan.setImageName(c.getString(6));
+            zukan.setLength(c.getInt(3));
+            zukan.setType(c.getString(4));
+            zukan.setSyllabary(c.getString(5));
+            zukan.setSeason_spring(c.getInt(6));
+            zukan.setSeason_summer(c.getInt(7));
+            zukan.setSeason_fall(c.getInt(8));
+            zukan.setSeason_winter(c.getInt(9));
+            zukan.setImageName(c.getString(10));
+
             zukans.add(zukan);
         }
         c.close();
@@ -134,6 +136,7 @@ public class ZukanDatabase {
         return zukans;
     }
 
+    /*
     // Fromassets
     public static ArrayList<Zukan> getZukanSeason(String season) {
         ArrayList<Zukan> zukans = new ArrayList<>();
@@ -163,8 +166,10 @@ public class ZukanDatabase {
 
         return zukans;
     }
+    */
 
 
+    /*
     // Fromassets テスト
     public static ArrayList<Zukan> getZukan(String syllabary, String type, String season) {
         ArrayList<Zukan> zukans = new ArrayList<>();
@@ -194,6 +199,7 @@ public class ZukanDatabase {
 
         return zukans;
     }
+    */
 
     private static String getSelection(String syllabary, String type, String season){
         String sqlSelection = "";
@@ -223,62 +229,5 @@ public class ZukanDatabase {
         }
 
         return sqlSelection;
-    }
-}
-
-class createWhere{
-    private String sqlSelection;
-    private String[] sqlSelectionArgs;
-
-    public String getSqlSelection() {
-        return sqlSelection;
-    }
-    public void setSqlSelection(String sqlSelection) {
-        this.sqlSelection = sqlSelection;
-    }
-    public String[] getSqlSelectionArgs() {
-        return sqlSelectionArgs;
-    }
-    public void setSqlSelectionArgs(String[] sqlSelectionArgs) {
-        this.sqlSelectionArgs = sqlSelectionArgs;
-    }
-
-    public createWhere(String syllabary, String type, String season) {
-        int argsSize = 0;
-        if(syllabary != null) argsSize++;
-        if(type != null) argsSize++;
-        if(season != null) argsSize++;
-
-        sqlSelectionArgs = new String[argsSize];
-
-        ArrayList<String> args = new ArrayList<>();
-        boolean sqlFrag = false;
-
-        //50音順
-        if(syllabary != null){
-            this.sqlSelection = this.sqlSelection + "syllabary = ?";
-            args.add(syllabary);
-            sqlFrag = true;
-        }
-
-        //種類
-        if(type != null){
-            if(sqlFrag == true){
-                this.sqlSelection = this.sqlSelection + " and ";
-            }
-            this.sqlSelection = this.sqlSelection + "type = ?";
-            args.add(type);
-            sqlFrag = true;
-        }
-
-        //季節
-        if(season != null){
-            if(sqlFrag == true){
-                this.sqlSelection = this.sqlSelection + " and ";
-            }
-            this.sqlSelection = this.sqlSelection + "season = ?";
-            args.add(season);
-        }
-
     }
 }

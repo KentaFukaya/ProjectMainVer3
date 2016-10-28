@@ -91,7 +91,7 @@ public class ZukanActivity extends AppCompatActivity {
         buttonSpring.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                zukans = ZukanDatabase.getZukan(null, null, "春");
+//                zukans = ZukanDatabase.getZukan(null, null, "春");
 
                 currentPage = 0;
                 setViews(currentPage);
@@ -102,7 +102,7 @@ public class ZukanActivity extends AppCompatActivity {
         buttonReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                zukans = ZukanDatabase.getZukan(null, null, null);
+//                zukans = ZukanDatabase.getZukan(null, null, null);
                 currentPage = 0;
                 setViews(currentPage);
             }

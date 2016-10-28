@@ -105,85 +105,85 @@ public class ZukanFragment extends Fragment {
 
 
         //1個目のコンテンツセット
-        if(fishIds[0] != 0) {
-            ImageButton image1 = (ImageButton) view.findViewById(R.id.zukan1 + i);
-            //ボタンを表示
-            image1.setVisibility(View.VISIBLE);
-            //文字列から画像のdrawableのIDを取得する
-            int imageId1 = getResources().getIdentifier(zukans.get(fishIds[0] - 1).getImageName(), "drawable", getActivity().getPackageName());
-            //画像をImageViewにセットする
-            image1.setImageResource(imageId1);
-            image1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.d("Test", getActivity() + "onClick: Zukanid = " + fishIds[0]);
-                    Intent intent = new Intent(getActivity(), ZukanDetailActivity.class); //図鑑アクティビティにに飛ぶ処理
-                    intent.putExtra("id", fishIds[0]);
-                    getActivity().startActivityForResult(intent, RESULT_SUBACTIVITY);
-//                startActivity(intent);
-                }
-            });
-        }
+//        if(fishIds[0] != 0) {
+//            ImageButton image1 = (ImageButton) view.findViewById(R.id.zukan1 + i);
+//            //ボタンを表示
+//            image1.setVisibility(View.VISIBLE);
+//            //文字列から画像のdrawableのIDを取得する
+//            int imageId1 = getResources().getIdentifier(zukans.get(fishIds[0] - 1).getImageName(), "drawable", getActivity().getPackageName());
+//            //画像をImageViewにセットする
+//            image1.setImageResource(imageId1);
+//            image1.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Log.d("Test", getActivity() + "onClick: Zukanid = " + fishIds[0]);
+//                    Intent intent = new Intent(getActivity(), ZukanDetailActivity.class); //図鑑アクティビティにに飛ぶ処理
+//                    intent.putExtra("id", fishIds[0]);
+//                    getActivity().startActivityForResult(intent, RESULT_SUBACTIVITY);
+////                startActivity(intent);
+//                }
+//            });
+//        }
 
         //2個目のコンテンツセット
-        if(fishIds[1] != 0) {
-            ImageButton image2 = (ImageButton) view.findViewById(R.id.zukan2);
-            image2.setVisibility(View.VISIBLE);
-            //文字列から画像のdrawableのIDを取得する
-            int imageId2 = getResources().getIdentifier(zukans.get(fishIds[1]-1).getImageName(), "drawable", getActivity().getPackageName());
-            //画像をImageViewにセットする
-            image2.setImageResource(imageId2);
-            image2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.d("Test", "onClick: Zukanid = " + fishIds[1]);
-                    Intent intent = new Intent(getActivity(), ZukanDetailActivity.class); //図鑑アクティビティにに飛ぶ処理
-                    intent.putExtra("id", fishIds[1]);
-                    getActivity().startActivityForResult(intent, 1000);
-//                startActivity(intent);
-                }
-            });
-        }
-
-        //3個目のコンテンツセット
-        if(fishIds[2] != 0) {
-            ImageButton image3 = (ImageButton) view.findViewById(R.id.zukan3);
-            image3.setVisibility(View.VISIBLE);
-            //文字列から画像のdrawableのIDを取得する
-            int imageId3 = getResources().getIdentifier(zukans.get(fishIds[2]-1).getImageName(), "drawable", getActivity().getPackageName());
-            //画像をImageViewにセットする
-            image3.setImageResource(imageId3);
-            image3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.d("Test", "onClick: Zukanid = " + fishIds[2]);
-                    Intent intent = new Intent(getActivity(), ZukanDetailActivity.class); //図鑑アクティビティにに飛ぶ処理
-                    intent.putExtra("id", fishIds[2]);
-                    getActivity().startActivityForResult(intent, 1000);
-//                startActivity(intent);
-                }
-            });
-        }
-
-        //4個目のコンテンツセット
-        if(fishIds[3] != 0) {
-            ImageButton image4 = (ImageButton) view.findViewById(R.id.zukan4);
-            image4.setVisibility(View.VISIBLE);
-            //文字列から画像のdrawableのIDを取得する
-            int imageId4 = getResources().getIdentifier(zukans.get(fishIds[3]-1).getImageName(), "drawable", getActivity().getPackageName());
-            //画像をImageViewにセットする
-            image4.setImageResource(imageId4);
-            image4.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.d("Test", "onClick: Zukanid = " + fishIds[3]);
-                    Intent intent = new Intent(getActivity(), ZukanDetailActivity.class); //図鑑アクティビティにに飛ぶ処理
-                    intent.putExtra("id", fishIds[3]);
-                    getActivity().startActivityForResult(intent, 1000);
-//                startActivity(intent);
-                }
-            });
-        }
+//        if(fishIds[1] != 0) {
+//            ImageButton image2 = (ImageButton) view.findViewById(R.id.zukan2);
+//            image2.setVisibility(View.VISIBLE);
+//            //文字列から画像のdrawableのIDを取得する
+//            int imageId2 = getResources().getIdentifier(zukans.get(fishIds[1]-1).getImageName(), "drawable", getActivity().getPackageName());
+//            //画像をImageViewにセットする
+//            image2.setImageResource(imageId2);
+//            image2.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Log.d("Test", "onClick: Zukanid = " + fishIds[1]);
+//                    Intent intent = new Intent(getActivity(), ZukanDetailActivity.class); //図鑑アクティビティにに飛ぶ処理
+//                    intent.putExtra("id", fishIds[1]);
+//                    getActivity().startActivityForResult(intent, 1000);
+////                startActivity(intent);
+//                }
+//            });
+//        }
+//
+//        //3個目のコンテンツセット
+//        if(fishIds[2] != 0) {
+//            ImageButton image3 = (ImageButton) view.findViewById(R.id.zukan3);
+//            image3.setVisibility(View.VISIBLE);
+//            //文字列から画像のdrawableのIDを取得する
+//            int imageId3 = getResources().getIdentifier(zukans.get(fishIds[2]-1).getImageName(), "drawable", getActivity().getPackageName());
+//            //画像をImageViewにセットする
+//            image3.setImageResource(imageId3);
+//            image3.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Log.d("Test", "onClick: Zukanid = " + fishIds[2]);
+//                    Intent intent = new Intent(getActivity(), ZukanDetailActivity.class); //図鑑アクティビティにに飛ぶ処理
+//                    intent.putExtra("id", fishIds[2]);
+//                    getActivity().startActivityForResult(intent, 1000);
+////                startActivity(intent);
+//                }
+//            });
+//        }
+//
+//        //4個目のコンテンツセット
+//        if(fishIds[3] != 0) {
+//            ImageButton image4 = (ImageButton) view.findViewById(R.id.zukan4);
+//            image4.setVisibility(View.VISIBLE);
+//            //文字列から画像のdrawableのIDを取得する
+//            int imageId4 = getResources().getIdentifier(zukans.get(fishIds[3]-1).getImageName(), "drawable", getActivity().getPackageName());
+//            //画像をImageViewにセットする
+//            image4.setImageResource(imageId4);
+//            image4.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Log.d("Test", "onClick: Zukanid = " + fishIds[3]);
+//                    Intent intent = new Intent(getActivity(), ZukanDetailActivity.class); //図鑑アクティビティにに飛ぶ処理
+//                    intent.putExtra("id", fishIds[3]);
+//                    getActivity().startActivityForResult(intent, 1000);
+////                startActivity(intent);
+//                }
+//            });
+//        }
 
         return view;
     }

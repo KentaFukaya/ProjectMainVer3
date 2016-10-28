@@ -10,46 +10,26 @@ public class Zukan {
     private int id;
     private String name;
     private String content;
-    private String type;
     private int length;
-    private String season;
+    private String syllabary;
+    private String type;
+    private int season_spring;
+    private int season_summer;
+    private int season_fall;
+    private int season_winter;
     private String imageName;
 
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
     public String getContent() {
         return content;
     }
     public void setContent(String content) {
         this.content = content;
     }
-    public String getType() {
-        return type;
+    public int getId() {
+        return id;
     }
-    public void setType(String type) {
-        this.type = type;
-    }
-    public int getLength() {
-        return length;
-    }
-    public void setLength(int length) {
-        this.length = length;
-    }
-    public String getSeason() {
-        return season;
-    }
-    public void setSeason(String season) {
-        this.season = season;
+    public void setId(int id) {
+        this.id = id;
     }
     public String getImageName() {
         return imageName;
@@ -57,20 +37,73 @@ public class Zukan {
     public void setImageName(String imageName) {
         this.imageName = imageName;
     }
+    public int getLength() {
+        return length;
+    }
+    public void setLength(int length) {
+        this.length = length;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public int getSeason_fall() {
+        return season_fall;
+    }
+    public void setSeason_fall(int season_fall) {
+        this.season_fall = season_fall;
+    }
+    public int getSeason_spring() {
+        return season_spring;
+    }
+    public void setSeason_spring(int season_spring) {
+        this.season_spring = season_spring;
+    }
+    public int getSeason_summer() {
+        return season_summer;
+    }
+    public void setSeason_summer(int season_summer) {
+        this.season_summer = season_summer;
+    }
+    public int getSeason_winter() {
+        return season_winter;
+    }
+    public void setSeason_winter(int season_winter) {
+        this.season_winter = season_winter;
+    }
+    public String getSyllabary() {
+        return syllabary;
+    }
+    public void setSyllabary(String syllabary) {
+        this.syllabary = syllabary;
+    }
+    public String getType() {
+        return type;
+    }
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public Zukan() {
     }
 
-    public Zukan(int id, String name, String content, String type, int length, String season, String imageName) {
-        this.id = id;
-        this.name = name;
+    public Zukan(String content, int id, String imageName, int length, String name, int season_fall, int season_spring, int season_summer, int season_winter, String syllabary, String type) {
         this.content = content;
-        this.type = type;
-        this.length = length;
-        this.season = season;
+        this.id = id;
         this.imageName = imageName;
+        this.length = length;
+        this.name = name;
+        this.season_fall = season_fall;
+        this.season_spring = season_spring;
+        this.season_summer = season_summer;
+        this.season_winter = season_winter;
+        this.syllabary = syllabary;
+        this.type = type;
     }
 
+    /* no use
     public static ArrayList<Zukan> zukanCrate(){
 
         ArrayList<Zukan> zukans = new ArrayList<Zukan>();
@@ -84,10 +117,11 @@ public class Zukan {
 
         return zukans;
     }
+    */
 
     public String printall(){
         String allcontents;
-        allcontents = getId() + " " + getName() + " " + getContent() + " " + getType() + " " + getLength() + " " + getSeason() + " " + getImageName();
+        allcontents = getId() + " " + getName() + " " + getContent() + " " + getType() + " " + getLength() + " " + getImageName();
         return allcontents;
     }
 }
