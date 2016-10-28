@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cast_intro_overlay_button_background_color">
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_ainame"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_ainame"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_akaika"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_akaika"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_anago"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_anago"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_ayu"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_ayu"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_ikanago"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_ikanago"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_itabogaki"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_itabogaki"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_itayagai"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_itayagai"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_ezobai"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_ezobai"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_obahununi"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_obahununi"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_kazika"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_kazika"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_katakutiiwasi"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_katakutiiwasi"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_karei"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_karei"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_gangiei"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_gangiei"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_kyuriuo"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_kyuriuo"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_kurigani"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_kurigani"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_kemusikazika"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_kemusikazika"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_koi"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_koi"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_konbu"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_konbu"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_sake"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_sake"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_saba"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_saba"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_sanma"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_sanma"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_sikakunamako"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_sikakunamako"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_sirauo"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_sirauo"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_tauegazi"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_tauegazi"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_tara"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_tara"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_tarabaebi"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_tarabaebi"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_dangouo"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_dangouo"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_tokubire"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_tokubire"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_dojou"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_dojou"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_nisin"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_nisin"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_nikkougai"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_nikkougai"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_bakagai"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_bakagai"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_hatahata"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_hatahata"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_hirame"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_hirame"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_husakagago"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_husakagago"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_madako"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_madako"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_maboya"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_maboya"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_mimigai"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_mimigai"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fragment_zukan_list_sort_type_yariika"
+        android:background="@null"
+        android:id="@+id/fragment_zukan_list_sort_type_yariika"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+</LinearLayout>
