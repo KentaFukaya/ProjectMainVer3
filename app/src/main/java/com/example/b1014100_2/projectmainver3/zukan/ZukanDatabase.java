@@ -25,89 +25,7 @@ public class ZukanDatabase {
     public final static int SEASON_FALL = 2;
     public final static int SEASON_WINTER = 3;
 
-    /*
-    // データベースに登録する。
-    public static void setQuizData(QuizDetail quizDetail) {
-        ZukanSQLiteOpenHelper helper = new ZukanSQLiteOpenHelper(QuizActivity.getContext());
-        mDb = helper.getWritableDatabase();
-        //Cursor c = mDb.query(ZukanSQLiteOpenHelper.TABLE_NAME, FROM, null, null, null, null, ORDER_BY);//queryの実行
-        if(!c.moveToPosition(quizDetail.getId())) {
 
-            // ContentValuesにデータを格納
-            ContentValues values = new ContentValues();
-            // カラム名に値を渡す
-            values.put("_id", quizDetail.getId());
-            values.put("ImageUrl", quizDetail.getImageUrl());
-            values.put("fishId", quizDetail.getFishId());
-            values.put("question", quizDetail.getQuestion());
-            values.put("choice1", quizDetail.getChoices()[0]);
-            values.put("choice2", quizDetail.getChoices()[1]);
-            values.put("choice3", quizDetail.getChoices()[2]);
-            try {
-                // データの挿入
-                //mDb.insert(ZukanSQLiteOpenHelper.TABLE_NAME, null, values);
-            } finally {
-                mDb.close();
-            }
-        }
-        mDb.close();
-        c.close();
-    }
-    */
-
-    /*
-    // データベース上のすべてのdataをQuizDetailsで返す。
-    public static ArrayList<QuizDetail> getQuizDetailsAll() {
-        ArrayList<QuizDetail> quizDetails = new ArrayList<>();
-
-        ZukanSQLiteOpenHelper helper = new ZukanSQLiteOpenHelper(QuizActivity.getContext());
-        mDb = helper.getReadableDatabase();
-        //Cursor c = mDb.query(ZukanSQLiteOpenHelper.TABLE_NAME, FROM, null, null, null, null, ORDER_BY);//queryの実行
-
-        while (c.moveToNext()) {
-            QuizDetail quizDetail = new QuizDetail();
-            quizDetail.setId(c.getInt(0));
-            quizDetail.setImageUrl(c.getInt(1));
-            quizDetail.setFishId(c.getInt(2));
-            quizDetail.setQuestion(c.getString(3));
-            quizDetail.setChoices(new String[]{c.getString(4), c.getString(5), c.getString(6)});
-            //選択肢をシャッフルする
-            quizDetail.shuffleChoices();
-            quizDetails.add(quizDetail);
-        }
-        c.close();
-        mDb.close();
-
-        return quizDetails;
-    }
-    */
-
-    /*
-    // データベース上の指定fishIdのdataをQuizDetailsで返す。
-    public static ArrayList<QuizDetail> getQuizDetails(int fishId) {
-        ArrayList<QuizDetail> quizDetails = new ArrayList<>();
-
-        ZukanSQLiteOpenHelper helper = new ZukanSQLiteOpenHelper(QuizActivity.getContext());
-        mDb = helper.getReadableDatabase();
-        //Cursor c = mDb.query(ZukanSQLiteOpenHelper.TABLE_NAME, FROM, "fishId = ?", new String[]{ "" + fishId }, null, null, ORDER_BY);//queryの実行
-
-        while (c.moveToNext()) {
-            QuizDetail quizDetail = new QuizDetail();
-            quizDetail.setId(c.getInt(0));
-            quizDetail.setImageUrl(c.getInt(1));
-            quizDetail.setFishId(c.getInt(2));
-            quizDetail.setQuestion(c.getString(3));
-            quizDetail.setChoices(new String[]{c.getString(4), c.getString(5), c.getString(6)});
-            //選択肢をシャッフルする
-            quizDetail.shuffleChoices();
-            quizDetails.add(quizDetail);
-        }
-        c.close();
-        mDb.close();
-
-        return quizDetails;
-    }
-    */
 
     // Fromassets
     public static ArrayList<Zukan> getZukanAll() {
@@ -228,7 +146,8 @@ public class ZukanDatabase {
         ZukanSQLiteOpenFromAssets helper = new ZukanSQLiteOpenFromAssets(ZukanListActivity.getContext(), DB_NAME, null,DB_VERSION);
         SQLiteDatabase db = helper.getReadableDatabase();
 
-        Cursor c = db.query(TABLE_NAME, FROM, "syllabary = ?", new String[]{ syllabary }, null, null, ORDER_BY);//queryの実行
+//        Cursor c = db.query(TABLE_NAME, FROM, "syllabary = ?", new String[]{ syllabary }, null, null, ORDER_BY);//queryの実行
+        Cursor c = db.query(true, TABLE_NAME, FROM, "syllabary = ?", new String[]{ syllabary }, null, null, ORDER_BY, null);
 
         while (c.moveToNext()) {
             Zukan zukan = new Zukan();
@@ -283,6 +202,23 @@ public class ZukanDatabase {
         db.close();
 
         return zukans;
+    }
+
+    public static ArrayList<String> getZukanListSortTypeRomajis() {
+        ArrayList<String> types = new ArrayList<>();
+
+        ZukanSQLiteOpenFromAssets helper = new ZukanSQLiteOpenFromAssets(ZukanListActivity.getContext(), DB_NAME, null,DB_VERSION);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        Cursor c = db.query(true ,TABLE_NAME, new String[]{ "type_romaji" }, null, null, null, null, null, null);//queryの実行
+
+        while (c.moveToNext()) {
+            types.add(c.getString(0));
+        }
+        c.close();
+        db.close();
+
+        return types;
     }
 
     /*
