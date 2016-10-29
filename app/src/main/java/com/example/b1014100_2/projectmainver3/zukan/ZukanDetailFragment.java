@@ -45,7 +45,7 @@ public class ZukanDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final int fishId = getArguments().getInt("id");
-        zukan = ZukanDatabase.getZukanId(fishId);
+        zukan = new ZukanDatabase(getActivity()) .getZukanId(fishId);
 
         View view = inflater.inflate(R.layout.fragment_detail_zukan, null);
 //        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.fragment_zukan);

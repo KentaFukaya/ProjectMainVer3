@@ -15,7 +15,7 @@ public enum ZukanListSortEvent {
     SORT_SEASON_SPRING {
         @Override
         public void apply(Activity activity) {
-            ZukanListActivity.zukans = ZukanDatabase.getZukanSeason(ZukanDatabase.SEASON_SPRING);
+            ZukanListActivity.zukans = new ZukanDatabase(activity).getZukanSeason(ZukanDatabase.SEASON_SPRING);
         }
     },
     SORT_SEASON_SUMMER {

@@ -57,14 +57,21 @@ public class ZukanListSortTypeFragment extends Fragment {
 
     private void setButtons(){
         setSearchId();
-        for(int i = 0; i < searchIds.size(); i++){
+        final ArrayList<String> type_romajis = ZukanListActivity.type_romajis;
+        for (int i = 0; i < type_romajis.size(); i++){
+            Log.d("typeromajis", "setButtons: "+ "zukan_list_sort_type_"+type_romajis.get(i));
+        }
+
+        String resViewName;
+        for(int i = 0; i < type_romajis.size(); i++){
             final int index = i;
-            int viewId = getActivity().getResources().getIdentifier(searchIds.get(index).getIdName(), "id", getActivity().getPackageName());
+            resViewName = "zukan_list_sort_type_" + type_romajis.get(index);
+            int viewId = getActivity().getResources().getIdentifier(resViewName, "id", getActivity().getPackageName());
+            Log.d("viewId", "setButtons: " + "viewId: "+viewId+" resViewName: "+resViewName);
             getActivity().findViewById(viewId).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("zukanlistsorttype", "onclick: " + searchIds.get(index).getIdName() + " " + searchIds.get(index).getSearchName());
-                    ZukanListActivity.zukans = ZukanDatabase.getZukanType(searchIds.get(index).getSearchName());
+                    ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanType(type_romajis.get(index));
                     for (int i = 0; i < ZukanListActivity.zukans.size(); i++){
                         Log.d("zukanlistsorttype", "onClick: " + ZukanListActivity.zukans.get(i).printall());
                     }

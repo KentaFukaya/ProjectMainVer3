@@ -1,6 +1,7 @@
 package com.example.b1014100_2.projectmainver3.zukan;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -20,18 +21,22 @@ public class ZukanDatabase {
     private static String[] FROM = {"_id", "name", "content", "length", "syllabary", "type", "season_spring", "season_summer", "season_fall", "season_winter", "image_name"};
     private static String ORDER_BY = "_id" + " ASC";//並べる順
 
+    private Context context;
+
     public final static int SEASON_SPRING = 0;
     public final static int SEASON_SUMMER = 1;
     public final static int SEASON_FALL = 2;
     public final static int SEASON_WINTER = 3;
 
-
+    public ZukanDatabase(Context context) {
+            this.context = context;
+    }
 
     // Fromassets
-    public static ArrayList<Zukan> getZukanAll() {
+    public ArrayList<Zukan> getZukanAll() {
         ArrayList<Zukan> zukans = new ArrayList<>();
 
-        ZukanSQLiteOpenFromAssets helper = new ZukanSQLiteOpenFromAssets(ZukanListActivity.getContext(), DB_NAME, null, DB_VERSION);
+        ZukanSQLiteOpenFromAssets helper = new ZukanSQLiteOpenFromAssets(context, DB_NAME, null, DB_VERSION);
         SQLiteDatabase db = helper.getReadableDatabase();
 
         Cursor c = db.query(TABLE_NAME, FROM, null, null, null, null, ORDER_BY);//queryの実行
@@ -60,10 +65,10 @@ public class ZukanDatabase {
     }
 
     //id
-    public static Zukan getZukanId(int id) {
+    public Zukan getZukanId(int id) {
         Zukan zukan = new Zukan();
 
-        ZukanSQLiteOpenFromAssets helper = new ZukanSQLiteOpenFromAssets(ZukanActivity.getContext(), DB_NAME, null,DB_VERSION);
+        ZukanSQLiteOpenFromAssets helper = new ZukanSQLiteOpenFromAssets(context, DB_NAME, null,DB_VERSION);
         SQLiteDatabase db = helper.getReadableDatabase();
 
         Cursor c = db.query(TABLE_NAME, FROM, "_id = ?", new String[]{ String.valueOf(id) }, null, null, ORDER_BY);//queryの実行
@@ -88,10 +93,10 @@ public class ZukanDatabase {
     }
 
 
-    public static ArrayList<Zukan> getZukanSeason(int season) {
+    public ArrayList<Zukan> getZukanSeason(int season) {
         ArrayList<Zukan> zukans = new ArrayList<>();
 
-        ZukanSQLiteOpenFromAssets helper = new ZukanSQLiteOpenFromAssets(ZukanListActivity.getContext(), DB_NAME, null,DB_VERSION);
+        ZukanSQLiteOpenFromAssets helper = new ZukanSQLiteOpenFromAssets(context, DB_NAME, null,DB_VERSION);
         SQLiteDatabase db = helper.getReadableDatabase();
 
         String seasonWhere = "season_spring";
@@ -140,10 +145,10 @@ public class ZukanDatabase {
     }
 
     //syllabary
-    public static ArrayList<Zukan> getZukanSyllabary(String syllabary) {
+    public ArrayList<Zukan> getZukanSyllabary(String syllabary) {
         ArrayList<Zukan> zukans = new ArrayList<>();
 
-        ZukanSQLiteOpenFromAssets helper = new ZukanSQLiteOpenFromAssets(ZukanListActivity.getContext(), DB_NAME, null,DB_VERSION);
+        ZukanSQLiteOpenFromAssets helper = new ZukanSQLiteOpenFromAssets(context, DB_NAME, null,DB_VERSION);
         SQLiteDatabase db = helper.getReadableDatabase();
 
 //        Cursor c = db.query(TABLE_NAME, FROM, "syllabary = ?", new String[]{ syllabary }, null, null, ORDER_BY);//queryの実行
@@ -173,13 +178,13 @@ public class ZukanDatabase {
     }
 
     //type
-    public static ArrayList<Zukan> getZukanType(String type) {
+    public ArrayList<Zukan> getZukanType(String type) {
         ArrayList<Zukan> zukans = new ArrayList<>();
 
-        ZukanSQLiteOpenFromAssets helper = new ZukanSQLiteOpenFromAssets(ZukanListActivity.getContext(), DB_NAME, null,DB_VERSION);
+        ZukanSQLiteOpenFromAssets helper = new ZukanSQLiteOpenFromAssets(context, DB_NAME, null,DB_VERSION);
         SQLiteDatabase db = helper.getReadableDatabase();
 
-        Cursor c = db.query(TABLE_NAME, FROM, "type = ?", new String[]{ type }, null, null, ORDER_BY);//queryの実行
+        Cursor c = db.query(TABLE_NAME, FROM, "type_romaji = ?", new String[]{ type }, null, null, ORDER_BY);//queryの実行
 
         while (c.moveToNext()) {
             Zukan zukan = new Zukan();
@@ -204,10 +209,10 @@ public class ZukanDatabase {
         return zukans;
     }
 
-    public static ArrayList<String> getZukanListSortTypeRomajis() {
+    public ArrayList<String> getZukanListSortTypeRomajis() {
         ArrayList<String> types = new ArrayList<>();
 
-        ZukanSQLiteOpenFromAssets helper = new ZukanSQLiteOpenFromAssets(ZukanListActivity.getContext(), DB_NAME, null,DB_VERSION);
+        ZukanSQLiteOpenFromAssets helper = new ZukanSQLiteOpenFromAssets(context, DB_NAME, null,DB_VERSION);
         SQLiteDatabase db = helper.getReadableDatabase();
 
         Cursor c = db.query(true ,TABLE_NAME, new String[]{ "type_romaji" }, null, null, null, null, null, null);//queryの実行

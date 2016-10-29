@@ -56,7 +56,7 @@ public class ZukanListSortSeasonFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    ZukanListActivity.zukans = ZukanDatabase.getZukanSeason(ZukanDatabase.SEASON_SPRING);
+                    ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSeason(ZukanDatabase.SEASON_SPRING);
                     // Activityにイベント通知
                     listener.onZukanListSortFragmentChange();
                 }
@@ -68,7 +68,7 @@ public class ZukanListSortSeasonFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    ZukanListActivity.zukans = ZukanDatabase.getZukanSeason(ZukanDatabase.SEASON_SUMMER);
+                    ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSeason(ZukanDatabase.SEASON_SUMMER);
                     // Activityにイベント通知
                     listener.onZukanListSortFragmentChange();
                 }
@@ -80,7 +80,7 @@ public class ZukanListSortSeasonFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    ZukanListActivity.zukans = ZukanDatabase.getZukanSeason(ZukanDatabase.SEASON_FALL);
+                    ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSeason(ZukanDatabase.SEASON_FALL);
                     // Activityにイベント通知
                     listener.onZukanListSortFragmentChange();
                 }
@@ -92,7 +92,7 @@ public class ZukanListSortSeasonFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    ZukanListActivity.zukans = ZukanDatabase.getZukanSeason(ZukanDatabase.SEASON_WINTER);
+                    ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSeason(ZukanDatabase.SEASON_WINTER);
                     // Activityにイベント通知
                     listener.onZukanListSortFragmentChange();
                 }

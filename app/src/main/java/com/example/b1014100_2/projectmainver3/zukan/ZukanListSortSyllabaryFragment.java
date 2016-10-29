@@ -56,7 +56,7 @@ public class ZukanListSortSyllabaryFragment extends Fragment {
         getActivity().findViewById(R.id.zukan_list_sort_syllabary_a).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ZukanListActivity.zukans = ZukanDatabase.getZukanSyllabary("あ");
+                ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSyllabary("あ");
                 if (listener != null) listener.onZukanListSortFragmentChange();
             }
         });
@@ -64,7 +64,7 @@ public class ZukanListSortSyllabaryFragment extends Fragment {
         getActivity().findViewById(R.id.zukan_list_sort_syllabary_ka).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ZukanListActivity.zukans = ZukanDatabase.getZukanSyllabary("か");
+                ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSyllabary("か");
                 if (listener != null) listener.onZukanListSortFragmentChange();
             }
         });
@@ -72,7 +72,7 @@ public class ZukanListSortSyllabaryFragment extends Fragment {
         getActivity().findViewById(R.id.zukan_list_sort_syllabary_sa).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ZukanListActivity.zukans = ZukanDatabase.getZukanSyllabary("さ");
+                ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSyllabary("さ");
                 if (listener != null) listener.onZukanListSortFragmentChange();
             }
         });
@@ -80,7 +80,7 @@ public class ZukanListSortSyllabaryFragment extends Fragment {
         getActivity().findViewById(R.id.zukan_list_sort_syllabary_ta).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ZukanListActivity.zukans = ZukanDatabase.getZukanSyllabary("た");
+                ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSyllabary("た");
                 if (listener != null) listener.onZukanListSortFragmentChange();
             }
         });
@@ -88,7 +88,7 @@ public class ZukanListSortSyllabaryFragment extends Fragment {
         getActivity().findViewById(R.id.zukan_list_sort_syllabary_na).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ZukanListActivity.zukans = ZukanDatabase.getZukanSyllabary("な");
+                ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSyllabary("な");
                 if (listener != null) listener.onZukanListSortFragmentChange();
             }
         });
@@ -96,7 +96,7 @@ public class ZukanListSortSyllabaryFragment extends Fragment {
         getActivity().findViewById(R.id.zukan_list_sort_syllabary_ha).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ZukanListActivity.zukans = ZukanDatabase.getZukanSyllabary("は");
+                ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSyllabary("は");
                 if (listener != null) listener.onZukanListSortFragmentChange();
             }
         });
@@ -104,7 +104,7 @@ public class ZukanListSortSyllabaryFragment extends Fragment {
         getActivity().findViewById(R.id.zukan_list_sort_syllabary_ma).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ZukanListActivity.zukans = ZukanDatabase.getZukanSyllabary("ま");
+                ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSyllabary("ま");
                 if (listener != null) listener.onZukanListSortFragmentChange();
             }
         });
@@ -112,7 +112,7 @@ public class ZukanListSortSyllabaryFragment extends Fragment {
         getActivity().findViewById(R.id.zukan_list_sort_syllabary_ya).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ZukanListActivity.zukans = ZukanDatabase.getZukanSyllabary("や");
+                ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSyllabary("や");
                 if (listener != null) listener.onZukanListSortFragmentChange();
             }
         });
@@ -120,7 +120,7 @@ public class ZukanListSortSyllabaryFragment extends Fragment {
         getActivity().findViewById(R.id.zukan_list_sort_syllabary_ra).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ZukanListActivity.zukans = ZukanDatabase.getZukanSyllabary("ら");
+                ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSyllabary("ら");
                 if (listener != null) listener.onZukanListSortFragmentChange();
             }
         });
@@ -128,7 +128,7 @@ public class ZukanListSortSyllabaryFragment extends Fragment {
         getActivity().findViewById(R.id.zukan_list_sort_syllabary_wa).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ZukanListActivity.zukans = ZukanDatabase.getZukanSyllabary("わ");
+                ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSyllabary("わ");
                 if (listener != null) listener.onZukanListSortFragmentChange();
             }
         });
