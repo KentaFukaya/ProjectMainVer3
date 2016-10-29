@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.b1014100_2.projectmainver3.R;
 
@@ -57,6 +58,8 @@ public class ZukanListSortSeasonFragment extends Fragment {
             public void onClick(View v) {
                 if (listener != null) {
                     ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSeason(ZukanDatabase.SEASON_SPRING);
+                    ImageView imageView = ((ImageView) getActivity().findViewById(R.id.zukan_list_sort_unselected));
+                    imageView.setImageResource(R.drawable.zukan_list_sort_season_spring_sorted);
                     // Activityにイベント通知
                     listener.onZukanListSortFragmentChange();
                 }
@@ -69,6 +72,8 @@ public class ZukanListSortSeasonFragment extends Fragment {
             public void onClick(View v) {
                 if (listener != null) {
                     ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSeason(ZukanDatabase.SEASON_SUMMER);
+                    ImageView imageView = ((ImageView) getActivity().findViewById(R.id.zukan_list_sort_unselected));
+                    imageView.setImageResource(R.drawable.zukan_list_sort_season_summer_sorted);
                     // Activityにイベント通知
                     listener.onZukanListSortFragmentChange();
                 }
@@ -81,6 +86,8 @@ public class ZukanListSortSeasonFragment extends Fragment {
             public void onClick(View v) {
                 if (listener != null) {
                     ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSeason(ZukanDatabase.SEASON_FALL);
+                    ImageView imageView = ((ImageView) getActivity().findViewById(R.id.zukan_list_sort_unselected));
+                    imageView.setImageResource(R.drawable.zukan_list_sort_season_fall_sorted);
                     // Activityにイベント通知
                     listener.onZukanListSortFragmentChange();
                 }
@@ -93,6 +100,8 @@ public class ZukanListSortSeasonFragment extends Fragment {
             public void onClick(View v) {
                 if (listener != null) {
                     ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSeason(ZukanDatabase.SEASON_WINTER);
+                    ImageView imageView = ((ImageView) getActivity().findViewById(R.id.zukan_list_sort_unselected));
+                    imageView.setImageResource(R.drawable.zukan_list_sort_season_winter_sorted);
                     // Activityにイベント通知
                     listener.onZukanListSortFragmentChange();
                 }

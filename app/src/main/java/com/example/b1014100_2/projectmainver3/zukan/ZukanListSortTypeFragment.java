@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.b1014100_2.projectmainver3.R;
 
@@ -20,7 +21,6 @@ import java.util.ArrayList;
 public class ZukanListSortTypeFragment extends Fragment {
 
     private ZukanListSortFragmentListener listener = null;
-    private ArrayList<ZukanListSearchId> searchIds;
 
     private int i;
 
@@ -55,54 +55,27 @@ public class ZukanListSortTypeFragment extends Fragment {
         setButtons();
     }
 
-    private void setButtons(){
-        setSearchId();
+    private void setButtons() {
         final ArrayList<String> type_romajis = ZukanListActivity.type_romajis;
-        for (int i = 0; i < type_romajis.size(); i++){
-            Log.d("typeromajis", "setButtons: "+ "zukan_list_sort_type_"+type_romajis.get(i));
+        for (int i = 0; i < type_romajis.size(); i++) {
+            Log.d("typeromajis", "setButtons: " + "zukan_list_sort_type_" + type_romajis.get(i));
         }
 
-        String resViewName;
-        for(int i = 0; i < type_romajis.size(); i++){
+        for (int i = 0; i < type_romajis.size(); i++) {
             final int index = i;
-            resViewName = "zukan_list_sort_type_" + type_romajis.get(index);
+            final String resViewName = "zukan_list_sort_type_" + type_romajis.get(index);
             int viewId = getActivity().getResources().getIdentifier(resViewName, "id", getActivity().getPackageName());
-            Log.d("viewId", "setButtons: " + "viewId: "+viewId+" resViewName: "+resViewName);
+            Log.d("viewId", "setButtons: " + "viewId: " + viewId + " resViewName: " + resViewName);
             getActivity().findViewById(viewId).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanType(type_romajis.get(index));
-                    for (int i = 0; i < ZukanListActivity.zukans.size(); i++){
-                        Log.d("zukanlistsorttype", "onClick: " + ZukanListActivity.zukans.get(i).printall());
-                    }
+                    int viewId = getActivity().getResources().getIdentifier(resViewName, "drawable", getActivity().getPackageName());
+                    ((ImageView) getActivity().findViewById(R.id.zukan_list_sort_unselected)).setImageResource(viewId);
                     if (listener != null) listener.onZukanListSortFragmentChange();
                 }
             });
         }
 
-    }
-
-    private void setSearchId(){
-        searchIds = new ArrayList<>();
-        searchIds.add(new ZukanListSearchId("zukan_list_sort_type_ainame", "アイナメ科"));
-        searchIds.add(new ZukanListSearchId("zukan_list_sort_type_akaika", "アカイカ科"));
-    }
-}
-
-class ZukanListSearchId {
-    private String idName;
-    private String searchName;
-
-    public ZukanListSearchId(String idName, String searchName) {
-        this.idName = idName;
-        this.searchName = searchName;
-    }
-
-    public String getIdName() {
-        return idName;
-    }
-
-    public String getSearchName() {
-        return searchName;
     }
 }

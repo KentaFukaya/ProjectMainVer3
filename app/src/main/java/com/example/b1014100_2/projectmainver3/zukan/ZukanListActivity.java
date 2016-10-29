@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.example.b1014100_2.projectmainver3.R;
 
@@ -111,6 +112,8 @@ public class ZukanListActivity extends AppCompatActivity implements ZukanListSor
             public void onClick(View v) {
                 clearZukans();
                 viewPager.getAdapter().notifyDataSetChanged();
+                viewPager.setCurrentItem(0);
+                ((ImageView) findViewById(R.id.zukan_list_sort_unselected)).setImageResource(R.drawable.zukan_list_sort_unselected);
             }
         });
     }
@@ -139,6 +142,7 @@ public class ZukanListActivity extends AppCompatActivity implements ZukanListSor
     public void onZukanListSortFragmentChange() {
 
         viewPager.getAdapter().notifyDataSetChanged();
+        viewPager.setCurrentItem(0);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.zukan_list_drawer_layout);
         drawer.closeDrawer(GravityCompat.END);
