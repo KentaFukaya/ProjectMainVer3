@@ -1,23 +1,40 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-    <include
+    android:layout_height="match_parent">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
         android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/map_to_quiz_button"
+            android:text="quiz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/map_getinfo" />
+
+        <Button
+            android:text="getinfo"
+            android:layout_width="wrap_content"
+            android:id="@+id/map_getinfo"
+            android:layout_height="wrap_content" />
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            layout="@layout/framgent_maps" />
+
+    </RelativeLayout>
+
+    <!-- Side navigation drawer UI -->
+    <ListView
+        android:id="@+id/navList"
+        android:layout_width="200dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        layout="@layout/framgent_maps" />
-    <Button
-        android:text="quiz"
-        android:layout_width="179dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/map_to_quiz_button" />
-    <Button
-        android:text="getinfo"
-        android:layout_width="179dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/map_getinfo"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
-</RelativeLayout>
+        android:layout_gravity="right"
+        android:background="#ffeeeeee" />
+
+</android.support.v4.widget.DrawerLayout>

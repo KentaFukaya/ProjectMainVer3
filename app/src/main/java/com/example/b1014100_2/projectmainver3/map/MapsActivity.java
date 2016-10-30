@@ -6,13 +6,19 @@ import android.graphics.Movie;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.b1014100_2.projectmainver3.DesiginPattern.Iterator;
 import com.example.b1014100_2.projectmainver3.HomeActivity;
@@ -50,6 +56,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private AggregateMapLocation aggregateMapLocation = new AggregateMapLocation();
     private AggregateMapArea aggregateMapArea = new AggregateMapArea();
     private ArrayList<Marker> Markers = new ArrayList<>();
+
+    private ListView mDrawerList;
+    private ArrayAdapter<String> mAdapter;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -60,9 +69,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-       //viewの上書き
-        //View view = this.getLayoutInflater().inflate(R.layout.activity_maps_on, null);
-        //addContentView(view, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,ViewGroup.LayoutParams.FILL_PARENT));
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -71,24 +77,46 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
+        /*-------------------slide menu-------------------*/
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (ListView) findViewById(R.id.navList);
+
+        String[] osArray = {"Android", "iOS", "Windows", "OS X", "Linux"};
+        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
+        mDrawerList.setAdapter(mAdapter);
+
         /*---------------------------clicklistner--------------------------------------*/
+
         Button toQuizbutton = (Button) findViewById(R.id.map_to_quiz_button);
-        toQuizbutton.setOnClickListener(new View.OnClickListener(){
+        toQuizbutton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public  void onClick(View v){
+            public void onClick(View v) {
                 Intent intent = new Intent(getApplication(), ZukanListActivity.class); //ダイビングアクティビティに飛ぶ処理
                 startActivity(intent);
             }
         });
+
         Button InfoButton = (Button) findViewById(R.id.map_getinfo);
-        InfoButton.setOnClickListener(new View.OnClickListener(){
+        InfoButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public  void onClick(View v){
+            public void onClick(View v) {
                 Log.d("TEST Map", mMap.getCameraPosition().toString());
+                drawer.openDrawer(Gravity.RIGHT);
+            }
+        });
+        
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                ListView listView = (ListView) parent;
+                // クリックされたアイテムを取得します
+                String item = (String) listView.getItemAtPosition(position);
+                Toast.makeText(MapsActivity.this, item, Toast.LENGTH_LONG).show();
+                drawer.closeDrawer(Gravity.RIGHT);
             }
         });
     }
-
 
     /**
      * Manipulates the map once available.
@@ -116,11 +144,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Intent intent;
                 int clicked_id = aggregateMapLocation.getIdbyName(marker.getTitle());
                 int clicked_check360 = aggregateMapLocation.getMapLocationAt(clicked_id).getCheck360();
-                Log.d("Map", "onMarkerClick:id =" + clicked_id + ", Name :" + marker.getTitle()+
-                        ", Check360 : "+clicked_check360);
-                if(clicked_check360 == 1) {//start 360movie activity
-                   intent = new Intent(getApplication(), MovieActivity.class);
-                }else{//start normal movie activity
+                Log.d("Map", "onMarkerClick:id =" + clicked_id + ", Name :" + marker.getTitle() +
+                        ", Check360 : " + clicked_check360);
+                if (clicked_check360 == 1) {//start 360movie activity
+                    intent = new Intent(getApplication(), MovieActivity.class);
+                } else {//start normal movie activity
                     intent = new Intent(getApplication(), NormalMovieActivity.class);
                 }
                 intent.putExtra("id", clicked_id);
@@ -146,8 +174,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 double xcor = Double.parseDouble(st.nextToken());
                 double ycor = Double.parseDouble(st.nextToken());
                 float zoom = Float.parseFloat(st.nextToken());
-                aggregateMapArea.appendMapArea(new MapArea(id, name, xcor, ycor,zoom));
-                Log.d("ReadCsv", "read location"+id+","+name+","+xcor+","+ycor);
+                aggregateMapArea.appendMapArea(new MapArea(id, name, xcor, ycor, zoom));
+                Log.d("ReadCsv", "read location" + id + "," + name + "," + xcor + "," + ycor);
             }
             bufferReader.close();
         } catch (IOException e) {
@@ -173,7 +201,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 double xcor = Double.parseDouble(st.nextToken());
                 double ycor = Double.parseDouble(st.nextToken());
                 int check360 = Integer.parseInt(st.nextToken());
-                aggregateMapLocation.appendMapLocation(new MapLocation(id,area_id, name, xcor, ycor,check360));
+                aggregateMapLocation.appendMapLocation(new MapLocation(id, area_id, name, xcor, ycor, check360));
                 // Log.d("ReadCsv", "read location"+id+","+name+","+xcor+","+ycor);
             }
             bufferReader.close();
@@ -187,41 +215,42 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         while (it.hasNext()) {
             final MapLocation mapLocation = (MapLocation) it.next();
             //get lats
-            LatLng lat =new LatLng(mapLocation.getXcor(), mapLocation.getYcor());
+            LatLng lat = new LatLng(mapLocation.getXcor(), mapLocation.getYcor());
             //add_maerker
-            if(mapLocation.getCheck360() == 1)//set red marker
+            if (mapLocation.getCheck360() == 1)//set red marker
                 Markers.add(mMap.addMarker(new MarkerOptions().position(lat).title(mapLocation.getName())));
             else//set blue marker
                 Markers.add(mMap.addMarker(new MarkerOptions().position(lat).title(mapLocation.getName()).
-                    icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))));//add color change
+                        icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))));//add color change
             mMap.setInfoWindowAdapter(new InfoWindowAdapter() {
                 @Override
                 public View getInfoContents(Marker marker) {
-                 // TODO Auto-generated method stub
-                   return null;
-                    }
+                    // TODO Auto-generated method stub
+                    return null;
+                }
+
                 @Override
                 public View getInfoWindow(Marker marker) {
                     // TODO Auto-generated method stub
                     View view;
                     int clicked_id = aggregateMapLocation.getIdbyName(marker.getTitle());
-                    if(aggregateMapLocation.getMapLocationAt(clicked_id).getCheck360() == 1)
-                         view = getLayoutInflater().inflate(R.layout.info_window3d, null);
+                    if (aggregateMapLocation.getMapLocationAt(clicked_id).getCheck360() == 1)
+                        view = getLayoutInflater().inflate(R.layout.info_window3d, null);
                     else
-                         view = getLayoutInflater().inflate(R.layout.info_window2d, null);
+                        view = getLayoutInflater().inflate(R.layout.info_window2d, null);
 
                     // タイトル設定
-                    TextView title = (TextView)view.findViewById(R.id.info_title);
+                    TextView title = (TextView) view.findViewById(R.id.info_title);
                     title.setText(marker.getTitle());
                     return view;
-                    }
-                });
+                }
+            });
             //set zoom
             mMap.moveCamera(CameraUpdateFactory.zoomTo(12));
             //change view postion
             double x = aggregateMapLocation.getMapLocationAt(6).getXcor();
             double y = aggregateMapLocation.getMapLocationAt(6).getYcor();
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(x,y))
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(x, y))
             );
         }
     }
