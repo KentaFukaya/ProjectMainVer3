@@ -8,23 +8,23 @@ import com.example.b1014100_2.projectmainver3.DesiginPattern.Iterator;
  */
 
 public class MapAreasIterator implements Iterator {
-    private AggregateMapLocation aggregateMapLocation;
+    private AggregateMapArea aggregateMapArea;
     private int index;
 
-    public MapAreasIterator(AggregateMapLocation aggregateMapLocation){
-        this.aggregateMapLocation = aggregateMapLocation;
+    public MapAreasIterator(AggregateMapArea aggregateMapArea){
+        this.aggregateMapArea = aggregateMapArea;
         this.index  = 0;
     }
     public boolean hasNext(){
-     if(index < aggregateMapLocation.getLength()){
+     if(index < aggregateMapArea.getLength()){
          return true;
      }else{
          return false;
      }
     }
     public Object next(){
-        MapLocation mapLocation = aggregateMapLocation.getMapLocationAt(index);
+        MapArea mapArea = aggregateMapArea.getMapAreaAt(index);
         index++;
-        return mapLocation;
+        return mapArea;
     }
 }

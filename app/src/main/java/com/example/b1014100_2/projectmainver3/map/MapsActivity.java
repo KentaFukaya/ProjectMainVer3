@@ -48,14 +48,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private AggregateMapLocation aggregateMapLocation = new AggregateMapLocation();
-    private ArrayList<LatLng> lats = new ArrayList<>();
+    private AggregateMapArea aggregateMapArea = new AggregateMapArea();
     private ArrayList<Marker> Markers = new ArrayList<>();
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +70,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-        //clicklistner
+
+        /*---------------------------clicklistner--------------------------------------*/
         Button toQuizbutton = (Button) findViewById(R.id.map_to_quiz_button);
         toQuizbutton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -80,8 +80,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 startActivity(intent);
             }
         });
-        /*-----------------------------------------------------------------*/
-        //test
         Button InfoButton = (Button) findViewById(R.id.map_getinfo);
         InfoButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -106,6 +104,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         mMap.setMapType(4);
         ReadLocaitonCsv();
+        ReadAreaCsv();
         setMarker();
         //remove polyline
         Polyline polyline = this.mMap.addPolyline(new PolylineOptions());
@@ -130,6 +129,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
+    public void ReadAreaCsv() {
+        // AssetManagerの呼び出し
+        AssetManager assetManager = getResources().getAssets();
+        try {
+            // CSVファイルの読み込み
+            InputStream is = assetManager.open("area.csv");
+            InputStreamReader inputStreamReader = new InputStreamReader(is);
+            BufferedReader bufferReader = new BufferedReader(inputStreamReader);
+            String line = "";
+            while ((line = bufferReader.readLine()) != null) {
+                // 各行が","で区切られていて4つの項目があるとす
+                StringTokenizer st = new StringTokenizer(line, ",");
+                int id = Integer.parseInt(st.nextToken());
+                String name = st.nextToken();
+                double xcor = Double.parseDouble(st.nextToken());
+                double ycor = Double.parseDouble(st.nextToken());
+                float zoom = Float.parseFloat(st.nextToken());
+                aggregateMapArea.appendMapArea(new MapArea(id, name, xcor, ycor,zoom));
+                Log.d("ReadCsv", "read location"+id+","+name+","+xcor+","+ycor);
+            }
+            bufferReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void ReadLocaitonCsv() {
         // AssetManagerの呼び出し
         AssetManager assetManager = getResources().getAssets();
@@ -143,11 +168,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // 各行が","で区切られていて4つの項目があるとす
                 StringTokenizer st = new StringTokenizer(line, ",");
                 int id = Integer.parseInt(st.nextToken());
+                int area_id = Integer.parseInt(st.nextToken());
                 String name = st.nextToken();
                 double xcor = Double.parseDouble(st.nextToken());
                 double ycor = Double.parseDouble(st.nextToken());
                 int check360 = Integer.parseInt(st.nextToken());
-                aggregateMapLocation.appendMapLocation(new MapLocation(id, name, xcor, ycor,check360));
+                aggregateMapLocation.appendMapLocation(new MapLocation(id,area_id, name, xcor, ycor,check360));
                 // Log.d("ReadCsv", "read location"+id+","+name+","+xcor+","+ycor);
             }
             bufferReader.close();
@@ -161,12 +187,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         while (it.hasNext()) {
             final MapLocation mapLocation = (MapLocation) it.next();
             //get lats
-            lats.add(new LatLng(mapLocation.getXcor(), mapLocation.getYcor()));
+            LatLng lat =new LatLng(mapLocation.getXcor(), mapLocation.getYcor());
             //add_maerker
             if(mapLocation.getCheck360() == 1)//set red marker
-                Markers.add(mMap.addMarker(new MarkerOptions().position(lats.get(mapLocation.getId())).title(mapLocation.getName())));
+                Markers.add(mMap.addMarker(new MarkerOptions().position(lat).title(mapLocation.getName())));
             else//set blue marker
-                Markers.add(mMap.addMarker(new MarkerOptions().position(lats.get(mapLocation.getId())).title(mapLocation.getName()).
+                Markers.add(mMap.addMarker(new MarkerOptions().position(lat).title(mapLocation.getName()).
                     icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))));//add color change
             mMap.setInfoWindowAdapter(new InfoWindowAdapter() {
                 @Override

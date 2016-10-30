@@ -8,13 +8,13 @@ public class MapArea {
     private int id;
     private String name;
     private double xcor,ycor;
-    private int check360;
-    public MapArea(int id, String name, double xcor, double ycor, int check360){
+    private float zoom;
+    public MapArea(int id, String name, double xcor, double ycor, float zoom){
         this.id = id;
         this.name = name;
         this.xcor = xcor;
         this.ycor = ycor;
-        this.check360 = check360;
+        this.zoom = zoom;
     }
 
     /*getter*/
@@ -30,7 +30,7 @@ public class MapArea {
     public double getYcor(){
         return ycor;
     }
-    public int cgetCheck360() {return check360;}
+    public float getZoom() {return zoom;}
 
     /*setter*/
     public void setId(int id) {
@@ -45,6 +45,6 @@ public class MapArea {
     public void setYcor(double ycor) {
         this.ycor = ycor;
     }
-    public void setCheck360(int check360) {this.check360 = check360;}
+    public void setZoom(float zoom) {this.zoom = zoom;}
 
 }
