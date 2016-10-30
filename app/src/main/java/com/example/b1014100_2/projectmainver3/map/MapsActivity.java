@@ -48,6 +48,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -58,7 +59,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ArrayList<Marker> Markers = new ArrayList<>();
 
     private ListView mDrawerList;
-    private ArrayAdapter<String> mAdapter;
+    private MapListViewAdapter mAdapter;
+    int c_Area = -1, c_Location = -1;
+    Marker c_marker = null;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -76,16 +79,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-
-        /*-------------------slide menu-------------------*/
+        /*---------------------------  read csv  ---------------------------*/
+        ReadLocaitonCsv();
+        ReadAreaCsv();
+        /*--------------------------- slide menu ---------------------------*/
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.navList);
-
-        String[] osArray = {"Android", "iOS", "Windows", "OS X", "Linux"};
-        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
-        mDrawerList.setAdapter(mAdapter);
-
-        /*---------------------------clicklistner--------------------------------------*/
+        setMenu();
+        /*---------------------------clicklistner---------------------------*/
 
         Button toQuizbutton = (Button) findViewById(R.id.map_to_quiz_button);
         toQuizbutton.setOnClickListener(new View.OnClickListener() {
@@ -104,16 +105,42 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 drawer.openDrawer(Gravity.RIGHT);
             }
         });
-        
+
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+                drawer.closeDrawer(Gravity.RIGHT);
                 ListView listView = (ListView) parent;
                 // クリックされたアイテムを取得します
-                String item = (String) listView.getItemAtPosition(position);
-                Toast.makeText(MapsActivity.this, item, Toast.LENGTH_LONG).show();
-                drawer.closeDrawer(Gravity.RIGHT);
+                MapData item = (MapData) listView.getItemAtPosition(position);
+                //Toast.makeText(MapsActivity.this, item.getName(), Toast.LENGTH_LONG).show();
+                /*-----------------------check clicked----------------------------*/
+                if(item.getArea_id() == c_Area){
+                    if(item.getLocation_id() == -1){//area double clicked
+                        c_Area = -1;
+                        c_Location = -1;
+                    }else if(item.getLocation_id() == c_Location){//location double clicked
+                        c_Area = item.getArea_id();
+                        c_Location = -1;
+                    }else{//location single clicked
+                        c_Area = item.getArea_id();
+                        c_Location = item.getLocation_id();
+                    }
+                }else {
+                    c_Area = item.getArea_id();
+                    c_Location = item.getLocation_id();
+                }
+                /*----------------check infowindow--------------------------*/
+                if (item.getLocation_id() != -1) {//choice infowindo
+                    c_marker = Markers.get(aggregateMapLocation.getIdbyName(item.getName()));
+                    c_marker.showInfoWindow();
+                }
+                if (c_marker != null) {//hide infowindow
+                    if (c_Location == -1 && c_marker.isInfoWindowShown())
+                        c_marker.hideInfoWindow();
+                }
+                setMenu();
             }
         });
     }
@@ -131,12 +158,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMapType(4);
-        ReadLocaitonCsv();
-        ReadAreaCsv();
+
         setMarker();
         //remove polyline
         Polyline polyline = this.mMap.addPolyline(new PolylineOptions());
         polyline.remove();
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                int id = aggregateMapLocation.getIdbyName(marker.getTitle());
+                c_Area = aggregateMapLocation.getMapLocationAt(id).getArea_id();
+                c_Location = getC_loaction(aggregateMapLocation.getMapLocationAt(id).getName());
+                setMenu();
+                return false;
+            }
+        });
 
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
@@ -240,8 +276,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         view = getLayoutInflater().inflate(R.layout.info_window2d, null);
 
                     // タイトル設定
-                    TextView title = (TextView) view.findViewById(R.id.info_title);
-                    title.setText(marker.getTitle());
+//                    TextView title = (TextView) view.findViewById(R.id.info_title);
+//                    title.setText(marker.getTitle());
                     return view;
                 }
             });
@@ -253,6 +289,43 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(x, y))
             );
         }
+    }
+
+    public void setMenu() {
+        int i = 0;
+        ArrayList<MapData> MapDatas = new ArrayList<>();
+        Iterator it_area = (Iterator) aggregateMapArea.Iterator();
+        while (it_area.hasNext()) {
+            Log.d("TEST", "setMenu: i=" + i + ", c_area = " + c_Area + ", c_location=" + c_Location);
+            MapDatas.add(new MapData(i++, (MapArea) it_area.next()));
+            if (c_Area != -1 && c_Area == i - 1) {
+                int n = 0;
+                Iterator it_Location = (Iterator) aggregateMapLocation.Iterator();
+                while (it_Location.hasNext()) {
+                    MapLocation mapLocation = (MapLocation) it_Location.next();
+                    if (mapLocation.getArea_id() == c_Area)
+                        MapDatas.add(new MapData(i + n, n++, mapLocation));
+                }
+                i += n - 1;
+            }
+        }
+        mAdapter = new MapListViewAdapter(this, MapDatas,c_Area,c_Location);
+        mDrawerList.setAdapter(mAdapter);
+    }
+
+    public int getC_loaction(String name){
+        int n = 0;
+        Iterator it_Location = aggregateMapLocation.Iterator();
+        while (it_Location.hasNext()) {
+            MapLocation mapLocation = (MapLocation) it_Location.next();
+            if (mapLocation.getArea_id() == c_Area){
+                if(mapLocation.getName().equals(name))
+                    return n;
+                n++;
+            }
+
+        }
+        return  -1;
     }
 
     /**
