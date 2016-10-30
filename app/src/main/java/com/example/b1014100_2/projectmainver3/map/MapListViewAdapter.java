@@ -19,11 +19,12 @@ import java.util.ArrayList;
 
 public class MapListViewAdapter extends ArrayAdapter<MapData> {
     LayoutInflater mInflater;
-    int area,location;
-    public MapListViewAdapter(Context context, ArrayList MapDates,int area,int loacrion) {
-        super(context,0,MapDates);
+    int area, location;
+
+    public MapListViewAdapter(Context context, ArrayList MapDates, int area, int loacrion) {
+        super(context, 0, MapDates);
         mInflater = LayoutInflater.from(context);
-        this.area  =area;
+        this.area = area;
         this.location = loacrion;
     }
 
@@ -32,19 +33,19 @@ public class MapListViewAdapter extends ArrayAdapter<MapData> {
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.activity_maps_list, parent, false);
         }
-            MapData md  =  getItem(position);
-        if(md.getLocation_id() == -1) {//Area
+        MapData md = getItem(position);
+        if (md.getLocation_id() == -1) {//Area
             convertView = mInflater.inflate(R.layout.activity_maps_list_area, parent, false);
-                convertView.setBackgroundColor(Color.GREEN);
-                setClickColor(convertView,md);
-        }else {//location
+            convertView.setBackgroundColor(Color.GREEN);
+            setClickColor(convertView, md);
+        } else {//location
             convertView = mInflater.inflate(R.layout.activity_maps_list_location, parent, false);
-            if(md.getCheck360() == 1){//360movei
-                    convertView.setBackgroundColor(Color.RED);
-                    setClickColor(convertView,md);
-            }else{//nomarmovie
+            if (md.getCheck360() == 1) {//360movei
+                convertView.setBackgroundColor(Color.RED);
+                setClickColor(convertView, md);
+            } else {//nomarmovie
                 convertView.setBackgroundColor(Color.BLUE);
-                setClickColor(convertView,md);
+                setClickColor(convertView, md);
             }
         }
         TextView tv = (TextView) convertView.findViewById(R.id.contents);
@@ -52,16 +53,16 @@ public class MapListViewAdapter extends ArrayAdapter<MapData> {
         return convertView;
     }
 
-    public void setClickColor(View view,MapData mapData){
-        if(mapData.getArea_id() == area)
-        if(mapData.getLocation_id() == -1){// Clicked && Area
-            view.setBackgroundColor(Color.BLACK);
-        }else if(mapData.getLocation_id() == location){//clicked && location
-            if(mapData.getCheck360() == 1) {//360movei
+    public void setClickColor(View view, MapData mapData) {
+        if (mapData.getArea_id() == area)
+            if (mapData.getLocation_id() == -1) {// Clicked && Area
                 view.setBackgroundColor(Color.BLACK);
-            }else{//nomal movie
-                view.setBackgroundColor(Color.BLACK);
+            } else if (mapData.getLocation_id() == location) {//clicked && location
+                if (mapData.getCheck360() == 1) {//360movei
+                    view.setBackgroundColor(Color.BLACK);
+                } else {//nomal movie
+                    view.setBackgroundColor(Color.BLACK);
+                }
             }
-        }
     }
 }

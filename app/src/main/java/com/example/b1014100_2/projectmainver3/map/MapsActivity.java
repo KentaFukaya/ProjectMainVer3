@@ -289,7 +289,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             });
         }
-        setCamera();
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(firstXcor, firstYcor), firstZoom));
     }
 
     public void setCamera() {
@@ -310,8 +310,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             n_ycor = mapLocation.getYcor();
             n_zoom = o_zoom;
         }
-        Log.d("TEST", "setCamera: xcor ="+n_xcor+", ycor ="+n_ycor+", n_zoom="+n_zoom);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(n_xcor, n_ycor), n_zoom));
+        Log.d("TEST", "setCamera: xcor =" + n_xcor + ", ycor =" + n_ycor + ", n_zoom=" + n_zoom);
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(n_xcor, n_ycor), n_zoom), 1500, null);
         o_xcor = n_xcor;
         o_ycor = n_ycor;
         o_zoom = n_zoom;

@@ -14,43 +14,48 @@ public class AggregateMapLocation implements Aggregate {
     private ArrayList<MapLocation> MapLocations;
     private int last = 0;
 
-    public AggregateMapLocation(){
+    public AggregateMapLocation() {
         MapLocations = new ArrayList<MapLocation>();
     }
+
     public int getLength() {
         return last;
     }
+
     /*get maplocation by id*/
-    public MapLocation getMapLocationAt(int id){
+    public MapLocation getMapLocationAt(int id) {
         return MapLocations.get(id);
     }
+
     /*add maplocation*/
-    public void appendMapLocation(MapLocation mapLocation){
+    public void appendMapLocation(MapLocation mapLocation) {
         this.MapLocations.add(mapLocation);
         last++;
     }
 
-    public int getIdbyName(String name){
+    public int getIdbyName(String name) {
         Iterator it = this.Iterator();
-        while (it.hasNext()){
-            MapLocation mp = (MapLocation)it.next();
-            if(mp.getName().equals(name)) return mp.getId();
+        while (it.hasNext()) {
+            MapLocation mp = (MapLocation) it.next();
+            if (mp.getName().equals(name)) return mp.getId();
         }
-    return -1;
+        return -1;
     }
-    public MapLocation getMapLocation(int area_id,int count){
+
+    public MapLocation getMapLocation(int area_id, int count) {
         int n = 0;
         Iterator it = this.Iterator();
-        while (it.hasNext()){
-            MapLocation mp = (MapLocation)it.next();
-            if(mp.getArea_id()== area_id){
-                if(n == count) return mp;
+        while (it.hasNext()) {
+            MapLocation mp = (MapLocation) it.next();
+            if (mp.getArea_id() == area_id) {
+                if (n == count) return mp;
                 n++;
             }
         }
         return null;
     }
-    public Iterator Iterator(){
+
+    public Iterator Iterator() {
         return new MapLocationsIterator(this);
     }
 }

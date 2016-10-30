@@ -15,32 +15,35 @@ public class AggregateMapArea implements Aggregate {
     private ArrayList<MapArea> MapAreas;
     private int last = 0;
 
-    public AggregateMapArea(){
+    public AggregateMapArea() {
         MapAreas = new ArrayList<MapArea>();
     }
+
     public int getLength() {
         return last;
     }
+
     /*get maplocation by id*/
-    public MapArea getMapAreaAt(int id){
+    public MapArea getMapAreaAt(int id) {
         return MapAreas.get(id);
     }
+
     /*add maplocation*/
-    public void appendMapArea(MapArea mapArea){
+    public void appendMapArea(MapArea mapArea) {
         this.MapAreas.add(mapArea);
         last++;
     }
 
-    public int getIdbyName(String name){
+    public int getIdbyName(String name) {
         Iterator it = this.Iterator();
-        while (it.hasNext()){
+        while (it.hasNext()) {
             MapArea mapArea = (MapArea) it.next();
-            if(mapArea.getName().equals(name)) return mapArea.getId();
+            if (mapArea.getName().equals(name)) return mapArea.getId();
         }
-    return -1;
+        return -1;
     }
 
-    public Iterator Iterator(){
+    public Iterator Iterator() {
         return new MapAreasIterator(this);
     }
 }

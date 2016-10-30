@@ -11,18 +11,20 @@ public class MapAreasIterator implements Iterator {
     private AggregateMapArea aggregateMapArea;
     private int index;
 
-    public MapAreasIterator(AggregateMapArea aggregateMapArea){
+    public MapAreasIterator(AggregateMapArea aggregateMapArea) {
         this.aggregateMapArea = aggregateMapArea;
-        this.index  = 0;
+        this.index = 0;
     }
-    public boolean hasNext(){
-     if(index < aggregateMapArea.getLength()){
-         return true;
-     }else{
-         return false;
-     }
+
+    public boolean hasNext() {
+        if (index < aggregateMapArea.getLength()) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    public Object next(){
+
+    public Object next() {
         MapArea mapArea = aggregateMapArea.getMapAreaAt(index);
         index++;
         return mapArea;
