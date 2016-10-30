@@ -62,6 +62,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private MapListViewAdapter mAdapter;
     int c_Area = -1, c_Location = -1;
     Marker c_marker = null;
+
+    final double firstXcor = 32.713744363054765, firstYcor = 135.45937590301037;
+    final float firstZoom = 4;
+    double o_xcor = 32.713744363054765, o_ycor = 135.45937590301037;
+    float o_zoom = 4;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -116,21 +121,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 MapData item = (MapData) listView.getItemAtPosition(position);
                 //Toast.makeText(MapsActivity.this, item.getName(), Toast.LENGTH_LONG).show();
                 /*-----------------------check clicked----------------------------*/
-                if(item.getArea_id() == c_Area){
-                    if(item.getLocation_id() == -1){//area double clicked
+                if (item.getArea_id() == c_Area) {
+                    if (item.getLocation_id() == -1) {//area double clicked
                         c_Area = -1;
                         c_Location = -1;
-                    }else if(item.getLocation_id() == c_Location){//location double clicked
+                    } else if (item.getLocation_id() == c_Location) {//location double clicked
                         c_Area = item.getArea_id();
                         c_Location = -1;
-                    }else{//location single clicked
+                    } else {//location single clicked
                         c_Area = item.getArea_id();
                         c_Location = item.getLocation_id();
                     }
-                }else {
+                } else {
                     c_Area = item.getArea_id();
                     c_Location = item.getLocation_id();
                 }
+
+                setCamera();
                 /*----------------check infowindow--------------------------*/
                 if (item.getLocation_id() != -1) {//choice infowindo
                     c_marker = Markers.get(aggregateMapLocation.getIdbyName(item.getName()));
@@ -211,7 +218,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 double ycor = Double.parseDouble(st.nextToken());
                 float zoom = Float.parseFloat(st.nextToken());
                 aggregateMapArea.appendMapArea(new MapArea(id, name, xcor, ycor, zoom));
-                Log.d("ReadCsv", "read location" + id + "," + name + "," + xcor + "," + ycor);
+                //Log.d("ReadCsv", "read location" + id + "," + name + "," + xcor + "," + ycor);
             }
             bufferReader.close();
         } catch (IOException e) {
@@ -281,14 +288,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     return view;
                 }
             });
-            //set zoom
-            mMap.moveCamera(CameraUpdateFactory.zoomTo(12));
-            //change view postion
-            double x = aggregateMapLocation.getMapLocationAt(6).getXcor();
-            double y = aggregateMapLocation.getMapLocationAt(6).getYcor();
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(x, y))
-            );
         }
+        setCamera();
+    }
+
+    public void setCamera() {
+        double n_xcor, n_ycor;
+        float n_zoom;
+        if (c_Area == -1 && c_Location == -1) { //init
+            n_xcor = firstXcor;
+            n_ycor = firstYcor;
+            n_zoom = firstZoom;
+        } else if (c_Area != -1 && c_Location == -1) {//area clicked
+            MapArea mapArea = aggregateMapArea.getMapAreaAt(c_Area);
+            n_xcor = mapArea.getXcor();
+            n_ycor = mapArea.getYcor();
+            n_zoom = mapArea.getZoom();
+        } else {
+            MapLocation mapLocation = aggregateMapLocation.getMapLocation(c_Area, c_Location);
+            n_xcor = mapLocation.getXcor();
+            n_ycor = mapLocation.getYcor();
+            n_zoom = o_zoom;
+        }
+        Log.d("TEST", "setCamera: xcor ="+n_xcor+", ycor ="+n_ycor+", n_zoom="+n_zoom);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(n_xcor, n_ycor), n_zoom));
+        o_xcor = n_xcor;
+        o_ycor = n_ycor;
+        o_zoom = n_zoom;
     }
 
     public void setMenu() {
@@ -309,23 +335,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 i += n - 1;
             }
         }
-        mAdapter = new MapListViewAdapter(this, MapDatas,c_Area,c_Location);
+        mAdapter = new MapListViewAdapter(this, MapDatas, c_Area, c_Location);
         mDrawerList.setAdapter(mAdapter);
     }
 
-    public int getC_loaction(String name){
+    public int getC_loaction(String name) {
         int n = 0;
         Iterator it_Location = aggregateMapLocation.Iterator();
         while (it_Location.hasNext()) {
             MapLocation mapLocation = (MapLocation) it_Location.next();
-            if (mapLocation.getArea_id() == c_Area){
-                if(mapLocation.getName().equals(name))
+            if (mapLocation.getArea_id() == c_Area) {
+                if (mapLocation.getName().equals(name))
                     return n;
                 n++;
             }
-
         }
-        return  -1;
+        return -1;
     }
 
     /**

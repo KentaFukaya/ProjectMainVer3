@@ -38,7 +38,18 @@ public class AggregateMapLocation implements Aggregate {
         }
     return -1;
     }
-
+    public MapLocation getMapLocation(int area_id,int count){
+        int n = 0;
+        Iterator it = this.Iterator();
+        while (it.hasNext()){
+            MapLocation mp = (MapLocation)it.next();
+            if(mp.getArea_id()== area_id){
+                if(n == count) return mp;
+                n++;
+            }
+        }
+        return null;
+    }
     public Iterator Iterator(){
         return new MapLocationsIterator(this);
     }
