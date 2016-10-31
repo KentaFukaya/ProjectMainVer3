@@ -16,17 +16,15 @@
     android:background="@drawable/zukan_list_background">
 
     <ImageButton
-        app:srcCompat="@drawable/zukan_list_back_button"
         android:id="@+id/zukan_list_back_button"
-        android:background="@null"
+        android:background="@drawable/zukan_list_back_button_color"
         android:adjustViewBounds="true"
         android:scaleType="fitStart"
         android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:contentDescription=""
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="15dp" />
+        android:layout_marginBottom="15dp"
+        android:layout_height="44dp" />
 
     <ImageButton
         android:layout_height="wrap_content"
@@ -97,7 +95,7 @@
         android:layout_marginBottom="10dp"
         android:layout_toLeftOf="@+id/zukan_list_sort_clear"
         android:layout_below="@+id/zukan_list_back_button"
-        android:background="@drawable/zukan_list_list">
+        android:background="@drawable/zukan_list_list_all">
     </android.support.v4.view.ViewPager>
 
     </RelativeLayout>

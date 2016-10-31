@@ -6,15 +6,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.b1014100_2.projectmainver3.R;
@@ -29,8 +25,8 @@ public class ZukanListFragment extends Fragment {
     int i;//forで使うために
 
     int zukanImgViewResId[] = {
-            R.id.zukan_list_image_view1, R.id.zukan_list_image_view2, R.id.zukan_list_image_view3, R.id.zukan_list_image_view4,
-            R.id.zukan_list_image_view5, R.id.zukan_list_image_view6, R.id.zukan_list_image_view7, R.id.zukan_list_image_view8};
+            R.id.zukan_list_fish_image1, R.id.zukan_list_fish_image2, R.id.zukan_list_fish_image3, R.id.zukan_list_fish_image4,
+            R.id.zukan_list_fish_image5, R.id.zukan_list_fish_image6, R.id.zukan_list_fish_image7, R.id.zukan_list_fish_image8};
     int zukanFishNameViewResId[] = {
             R.id.zukan_list_fish_name1, R.id.zukan_list_fish_name2, R.id.zukan_list_fish_name3, R.id.zukan_list_fish_name4,
             R.id.zukan_list_fish_name5, R.id.zukan_list_fish_name6, R.id.zukan_list_fish_name7, R.id.zukan_list_fish_name8};
@@ -74,10 +70,11 @@ public class ZukanListFragment extends Fragment {
         for(int i = 0; i < 8; i++){
            // Log.d("ZukanList", "onZukanListoncreateview: " + zukans.get(i).printall());
         }
+//        View view = inflater.inflate(R.layout.fragment_zukan_list, null);
         View view = inflater.inflate(R.layout.fragment_zukan_list, null);
         setViews(view);
 
-        return view;
+         return view;
     }
 
     private void setViews(View view) {

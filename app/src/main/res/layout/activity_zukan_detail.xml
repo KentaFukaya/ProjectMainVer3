@@ -5,16 +5,14 @@
     android:id="@+id/activity_zukan_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.b1014100_2.projectmainver3.zukan.ZukanDetailActivity"
-    android:background="@drawable/zukan_detail_background">
+    tools:context="com.example.b1014100_2.projectmainver3.zukan.ZukanDetailActivity">
 
-    <ImageButton
-        android:layout_width="140dp"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/zukan_list_back_button"
-        android:id="@+id/zukan_detail_back_button"
+        app:srcCompat="@drawable/zukan_detail_background_up"
+        android:id="@+id/imageView6"
         android:adjustViewBounds="true"
-        android:background="@null"
         android:scaleType="fitStart" />
 
     <ImageView
@@ -27,18 +25,9 @@
         android:layout_width="230dp"
         android:layout_height="140dp"
         android:background="@android:color/holo_orange_dark"
-        android:scaleType="fitXY" />
-
-    <ImageButton
-        app:srcCompat="@drawable/zukan_detail_quiz_button"
-        android:id="@+id/zukan_detail_quiz_button"
-        android:background="@null"
-        android:scaleType="fitStart"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_width="96dp" />
+        android:scaleType="fitXY"
+        android:layout_marginBottom="10dp"
+        android:layout_alignBottom="@+id/imageView6" />
 
     <TextView
         android:text="カツオ"
@@ -49,11 +38,10 @@
         android:layout_marginLeft="65dp"
         android:layout_marginTop="6dp"
         android:textColor="@android:color/black"
-        android:textSize="50sp"
+        android:textSize="45sp"
         android:layout_height="55dp" />
 
     <TextView
-        android:text="スズキ科"
         android:id="@+id/zukan_detail_fish_ka"
         android:layout_alignStart="@+id/zukan_detail_fish_name"
         android:layout_below="@+id/zukan_detail_fish_name"
@@ -64,7 +52,6 @@
         android:textSize="18sp" />
 
     <TextView
-        android:text="100cm"
         android:layout_height="35dp"
         android:id="@+id/zukan_detail_fish_length"
         android:layout_alignTop="@+id/zukan_detail_fish_ka"
@@ -73,5 +60,81 @@
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:layout_width="90dp" />
+
+    <ImageButton
+        android:layout_width="140dp"
+        android:layout_height="44dp"
+        android:id="@+id/zukan_detail_back_button"
+        android:adjustViewBounds="true"
+        android:background="@drawable/zukan_list_back_button_color"
+        android:scaleType="fitStart"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:id="@+id/zukan_detail_quiz_button"
+        android:background="@drawable/zukan_detail_quiz_button_color"
+        android:scaleType="fitStart"
+        android:layout_height="44dp"
+        android:adjustViewBounds="true"
+        android:layout_width="140dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/zukan_detail_image"
+        android:layout_below="@+id/zukan_detail_fish_name"
+        android:layout_above="@+id/imageView2"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="15dp">
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textView2"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="25dp"
+            android:textSize="20sp"
+            android:textColor="@android:color/black" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/zukan_detail_ruler"
+            android:id="@+id/imageView5"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="13dp"
+            android:layout_marginStart="10dp"
+            android:scaleType="fitCenter"
+            android:layout_gravity="bottom" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textView3"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="25dp"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/zukan_detail_background_down"
+        android:id="@+id/imageView2"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/imageView6"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY" />
+
 
 </RelativeLayout>

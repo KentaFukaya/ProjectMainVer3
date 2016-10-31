@@ -2,247 +2,197 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/zukan_list_list">
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    tools:context=".zukan.ZukanListActivity">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="33dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="40dp">
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/zukan_list_item1"
+        app:layout_heightPercent="50%"
+        app:layout_widthPercent="25%"
+        android:padding="@dimen/fragment_zukan_list_item_padding">
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <ImageView
+            android:id="@+id/zukan_list_fish_image1"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="false"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_margin="2dp"
-            android:paddingTop="6dp">
+            app:layout_heightPercent="@dimen/fragment_zukan_list_fish_image_heightPercent"
+            android:layout_height="@dimen/fragment_zukan_detail_item_padding" />
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:padding="@dimen/fragment_zukan_detail_item_padding"
-                android:layout_weight="1"
-                android:id="@+id/zukan_list_item1">
-
-                <ImageView
-                    app:srcCompat="@drawable/zukan_detail_image_sample"
-                    android:id="@+id/zukan_list_image_view1"
-                    android:adjustViewBounds="true"
-                    android:layout_width="wrap_content"
-                    android:scaleType="fitXY"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2" />
-
-                <TextView
-                    android:text="TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/zukan_list_fish_name1"
-                    android:layout_weight="1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:padding="@dimen/fragment_zukan_detail_item_padding"
-                android:layout_weight="1"
-                android:id="@+id/zukan_list_item2">
-
-                <ImageView
-                    app:srcCompat="@drawable/zukan_detail_image_sample"
-                    android:id="@+id/zukan_list_image_view2"
-                    android:adjustViewBounds="true"
-                    android:layout_width="wrap_content"
-                    android:scaleType="fitXY"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2" />
-
-                <TextView
-                    android:text="TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/zukan_list_fish_name2"
-                    android:layout_weight="1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:padding="@dimen/fragment_zukan_detail_item_padding"
-                android:layout_weight="1"
-                android:id="@+id/zukan_list_item3">
-
-                <ImageView
-                    app:srcCompat="@drawable/zukan_detail_image_sample"
-                    android:id="@+id/zukan_list_image_view3"
-                    android:adjustViewBounds="true"
-                    android:layout_width="wrap_content"
-                    android:scaleType="fitXY"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2" />
-
-                <TextView
-                    android:text="TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/zukan_list_fish_name3"
-                    android:layout_weight="1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:padding="@dimen/fragment_zukan_detail_item_padding"
-                android:layout_weight="1"
-                android:id="@+id/zukan_list_item4">
-
-                <ImageView
-                    app:srcCompat="@drawable/zukan_detail_image_sample"
-                    android:id="@+id/zukan_list_image_view4"
-                    android:adjustViewBounds="true"
-                    android:layout_width="wrap_content"
-                    android:scaleType="fitXY"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2" />
-
-                <TextView
-                    android:text="TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/zukan_list_fish_name4"
-                    android:layout_weight="1" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_margin="2dp"
-            android:paddingTop="6dp">
+            android:layout_height="wrap_content"
+            android:id="@+id/zukan_list_fish_name1"
+            app:layout_heightPercent="@dimen/fragment_zukan_list_fish_name_heightPercent"
+            android:layout_below="@+id/zukan_list_fish_image1" />
+    </android.support.percent.PercentRelativeLayout>
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:padding="@dimen/fragment_zukan_detail_item_padding"
-                android:layout_weight="1"
-                android:id="@+id/zukan_list_item5">
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/zukan_list_item2"
+        app:layout_widthPercent="25%"
+        app:layout_heightPercent="50%"
+        android:layout_toRightOf="@+id/zukan_list_item1"
+        android:padding="@dimen/fragment_zukan_list_item_padding">
 
-                <ImageView
-                    app:srcCompat="@drawable/zukan_detail_image_sample"
-                    android:id="@+id/zukan_list_image_view5"
-                    android:adjustViewBounds="true"
-                    android:layout_width="wrap_content"
-                    android:scaleType="fitXY"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2" />
+        <ImageView
+            android:id="@+id/zukan_list_fish_image2"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="false"
+            app:layout_heightPercent="@dimen/fragment_zukan_list_fish_image_heightPercent"
+            android:layout_width="match_parent" />
 
-                <TextView
-                    android:text="TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/zukan_list_fish_name5"
-                    android:layout_weight="1" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/zukan_list_fish_name2"
+            app:layout_heightPercent="@dimen/fragment_zukan_list_fish_name_heightPercent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true" />
+    </android.support.percent.PercentRelativeLayout>
 
-            </LinearLayout>
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/zukan_list_item3"
+        app:layout_widthPercent="25%"
+        app:layout_heightPercent="50%"
+        android:layout_toRightOf="@+id/zukan_list_item2"
+        android:padding="@dimen/fragment_zukan_list_item_padding">
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:padding="@dimen/fragment_zukan_detail_item_padding"
-                android:layout_weight="1"
-                android:id="@+id/zukan_list_item6">
+        <ImageView
+            android:id="@+id/zukan_list_fish_image3"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="false"
+            app:layout_heightPercent="@dimen/fragment_zukan_list_fish_image_heightPercent"
+            android:layout_width="match_parent" />
 
-                <ImageView
-                    app:srcCompat="@drawable/zukan_detail_image_sample"
-                    android:id="@+id/zukan_list_image_view6"
-                    android:adjustViewBounds="true"
-                    android:layout_width="wrap_content"
-                    android:scaleType="fitXY"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/zukan_list_fish_name3"
+            app:layout_heightPercent="@dimen/fragment_zukan_list_fish_name_heightPercent"
+            android:layout_below="@+id/zukan_list_fish_image3" />
+    </android.support.percent.PercentRelativeLayout>
 
-                <TextView
-                    android:text="TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/zukan_list_fish_name6"
-                    android:layout_weight="1" />
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/zukan_list_item4"
+        app:layout_widthPercent="25%"
+        app:layout_heightPercent="50%"
+        android:layout_toRightOf="@+id/zukan_list_item3"
+        android:padding="@dimen/fragment_zukan_list_item_padding">
 
-            </LinearLayout>
+        <ImageView
+            android:id="@+id/zukan_list_fish_image4"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="false"
+            app:layout_heightPercent="@dimen/fragment_zukan_list_fish_image_heightPercent"
+            android:layout_width="match_parent" />
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:padding="@dimen/fragment_zukan_detail_item_padding"
-                android:layout_weight="1"
-                android:id="@+id/zukan_list_item7">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/zukan_list_fish_name4"
+            app:layout_heightPercent="@dimen/fragment_zukan_list_fish_name_heightPercent"
+            android:layout_below="@+id/zukan_list_fish_image4"/>
+    </android.support.percent.PercentRelativeLayout>
 
-                <ImageView
-                    app:srcCompat="@drawable/zukan_detail_image_sample"
-                    android:id="@+id/zukan_list_image_view7"
-                    android:adjustViewBounds="true"
-                    android:layout_width="wrap_content"
-                    android:scaleType="fitXY"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2" />
+    <android.support.percent.PercentRelativeLayout
+        app:layout_heightPercent="50%"
+        app:layout_marginTopPercent="50%"
+        app:layout_widthPercent="25%"
+        android:id="@+id/zukan_list_item5"
+        android:padding="@dimen/fragment_zukan_list_item_padding">
 
-                <TextView
-                    android:text="TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/zukan_list_fish_name7"
-                    android:layout_weight="1" />
+        <ImageView
+            android:id="@+id/zukan_list_fish_image5"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="false"
+            app:layout_heightPercent="@dimen/fragment_zukan_list_fish_image_heightPercent"
+            android:layout_width="match_parent" />
 
-            </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/zukan_list_fish_name5"
+            app:layout_heightPercent="@dimen/fragment_zukan_list_fish_name_heightPercent"
+            android:layout_below="@+id/zukan_list_fish_image5"/>
+    </android.support.percent.PercentRelativeLayout>
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:padding="@dimen/fragment_zukan_detail_item_padding"
-                android:layout_weight="1"
-                android:id="@+id/zukan_list_item8">
+    <android.support.percent.PercentRelativeLayout
+        app:layout_heightPercent="50%"
+        app:layout_marginTopPercent="50%"
+        app:layout_widthPercent="25%"
+        android:id="@+id/zukan_list_item6"
+        android:layout_toRightOf="@+id/zukan_list_item5"
+        android:padding="@dimen/fragment_zukan_list_item_padding">
 
-                <ImageView
-                    app:srcCompat="@drawable/zukan_detail_image_sample"
-                    android:id="@+id/zukan_list_image_view8"
-                    android:adjustViewBounds="true"
-                    android:layout_width="wrap_content"
-                    android:scaleType="fitXY"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2" />
+        <ImageView
+            android:id="@+id/zukan_list_fish_image6"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="false"
+            app:layout_heightPercent="@dimen/fragment_zukan_list_fish_image_heightPercent"
+            android:layout_width="match_parent" />
 
-                <TextView
-                    android:text="TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/zukan_list_fish_name8"
-                    android:layout_weight="1" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/zukan_list_fish_name6"
+            app:layout_heightPercent="@dimen/fragment_zukan_list_fish_name_heightPercent"
+            android:layout_below="@+id/zukan_list_fish_image6" />
+    </android.support.percent.PercentRelativeLayout>
 
-            </LinearLayout>
+    <android.support.percent.PercentRelativeLayout
+        app:layout_heightPercent="50%"
+        app:layout_marginTopPercent="50%"
+        app:layout_widthPercent="25%"
+        android:id="@+id/zukan_list_item7"
+        android:layout_toRightOf="@+id/zukan_list_item6"
+        android:padding="@dimen/fragment_zukan_list_item_padding">
 
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/zukan_list_fish_image7"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="false"
+            app:layout_heightPercent="@dimen/fragment_zukan_list_fish_image_heightPercent"
+            android:layout_width="match_parent" />
 
-    </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/zukan_list_fish_name7"
+            app:layout_heightPercent="@dimen/fragment_zukan_list_fish_name_heightPercent"
+            android:layout_below="@+id/zukan_list_fish_image7" />
+    </android.support.percent.PercentRelativeLayout>
+
+    <android.support.percent.PercentRelativeLayout
+        app:layout_heightPercent="50%"
+        app:layout_marginTopPercent="50%"
+        app:layout_widthPercent="25%"
+        android:id="@+id/zukan_list_item8"
+        android:layout_toRightOf="@+id/zukan_list_item7"
+        android:padding="@dimen/fragment_zukan_list_item_padding">
+
+        <ImageView
+            android:id="@+id/zukan_list_fish_image8"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="false"
+            app:layout_heightPercent="@dimen/fragment_zukan_list_fish_image_heightPercent"
+            android:layout_width="match_parent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/zukan_list_fish_name8"
+            app:layout_heightPercent="@dimen/fragment_zukan_list_fish_name_heightPercent"
+            android:layout_below="@+id/zukan_list_fish_image8" />
+    </android.support.percent.PercentRelativeLayout>
+
+
+</android.support.percent.PercentRelativeLayout>
 </RelativeLayout>

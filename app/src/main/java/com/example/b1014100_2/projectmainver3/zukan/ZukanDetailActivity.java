@@ -47,15 +47,26 @@ public class ZukanDetailActivity extends AppCompatActivity {
         //魚の名前セット
         ((TextView) findViewById(R.id.zukan_detail_fish_name)).setText(zukan.getName());
         //魚の種類セット
-        ((TextView) findViewById(R.id.zukan_detail_fish_ka)).setText(zukan.getType());
+        ((TextView) findViewById(R.id.textView2)).setText(zukan.getType());
+//        ((TextView) findViewById(R.id.zukan_detail_fish_ka)).setText(zukan.getType());
         //魚の大きさセット
-        ((TextView) findViewById(R.id.zukan_detail_fish_length)).setText(zukan.getLength() + "cm");
+//        ((TextView) findViewById(R.id.zukan_detail_fish_length)).setText(zukan.getLength() + "cm");
+        ((TextView) findViewById(R.id.textView3)).setText(zukan.getLength() + "cm");
     }
 
     private void setButton() {
         //戻るボタン
         ImageButton buttonList = (ImageButton) findViewById(R.id.zukan_detail_back_button);
         buttonList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        //戻るボタン
+        ImageButton buttonListd = (ImageButton) findViewById(R.id.zukan_detail_quiz_button);
+        buttonListd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

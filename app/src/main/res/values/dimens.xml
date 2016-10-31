@@ -5,5 +5,9 @@
 
     <dimen name="activity_zukan_sort_button_width">49dp</dimen>
     <dimen name="activity_zukan_sort_button_margin_bottom">17dp</dimen>
-    <dimen name="fragment_zukan_detail_item_padding">8dp</dimen>
+    <dimen name="fragment_zukan_detail_item_padding">0dp</dimen>
+    <dimen name="fragment_zukan_list_item_padding">8dp</dimen>
+    <item name="fragment_zukan_list_fish_image_heightPercent" type="dimen">80%</item>
+    <item name="fragment_zukan_list_fish_name_heightPercent" type="dimen">20%</item>
+
 </resources>

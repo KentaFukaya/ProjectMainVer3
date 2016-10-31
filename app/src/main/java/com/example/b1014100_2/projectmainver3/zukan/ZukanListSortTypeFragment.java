@@ -70,7 +70,7 @@ public class ZukanListSortTypeFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanType(type_romajis.get(index));
-                    int viewId = getActivity().getResources().getIdentifier(resViewName, "drawable", getActivity().getPackageName());
+                    int viewId = getActivity().getResources().getIdentifier(resViewName + "_sorted", "drawable", getActivity().getPackageName());
                     ((ImageView) getActivity().findViewById(R.id.zukan_list_sort_unselected)).setImageResource(viewId);
                     if (listener != null) listener.onZukanListSortFragmentChange();
                 }
