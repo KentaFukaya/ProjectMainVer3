@@ -37,10 +37,7 @@ public class MapListViewAdapter extends ArrayAdapter<MapData> {
             if (md.getLocation_id() == -1) {//Area
 
                 if(position != 0)
-                    if(md.getName().length() == 3)
-                        convertView = mInflater.inflate(R.layout.activity_maps_list_area3, parent, false);
-                    else
-                        convertView = mInflater.inflate(R.layout.activity_maps_list_area2, parent, false);
+                        convertView = mInflater.inflate(R.layout.activity_maps_list_area, parent, false);
                 else
                     convertView = mInflater.inflate(R.layout.activity_maps_list_area_first, parent, false);
 
