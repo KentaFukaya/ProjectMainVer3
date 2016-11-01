@@ -6,13 +6,19 @@ import android.graphics.Movie;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.b1014100_2.projectmainver3.DesiginPattern.Iterator;
 import com.example.b1014100_2.projectmainver3.HomeActivity;
@@ -42,28 +48,35 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private AggregateMapLocation aggregateMapLocation = new AggregateMapLocation();
-    private ArrayList<LatLng> lats = new ArrayList<>();
+    private AggregateMapArea aggregateMapArea = new AggregateMapArea();
     private ArrayList<Marker> Markers = new ArrayList<>();
+
+    private ListView mDrawerList;
+    private MapListViewAdapter mAdapter;
+    int c_Area = -1, c_Location = -1;
+    Marker c_marker = null;
+
+    final double firstXcor = 32.713744363054765, firstYcor = 135.45937590301037;
+    final float firstZoom = 4;
+    double o_xcor = 32.713744363054765, o_ycor = 135.45937590301037;
+    float o_zoom = 4;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-       //viewの上書き
-        View view = this.getLayoutInflater().inflate(R.layout.activity_maps_on, null);
-        addContentView(view, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,ViewGroup.LayoutParams.FILL_PARENT));
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -71,17 +84,73 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-        //clicklistner
+        /*---------------------------  read csv  ---------------------------*/
+        ReadLocaitonCsv();
+        ReadAreaCsv();
+        /*--------------------------- slide menu ---------------------------*/
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (ListView) findViewById(R.id.navList);
+        setMenu();
+        /*---------------------------clicklistner---------------------------*/
+
         Button toQuizbutton = (Button) findViewById(R.id.map_to_quiz_button);
-        toQuizbutton.setOnClickListener(new View.OnClickListener(){
+        toQuizbutton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public  void onClick(View v){
+            public void onClick(View v) {
                 Intent intent = new Intent(getApplication(), ZukanListActivity.class); //ダイビングアクティビティに飛ぶ処理
                 startActivity(intent);
             }
         });
-    }
 
+        Button InfoButton = (Button) findViewById(R.id.map_getinfo);
+        InfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("TEST Map", mMap.getCameraPosition().toString());
+                drawer.openDrawer(Gravity.RIGHT);
+            }
+        });
+
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                drawer.closeDrawer(Gravity.RIGHT);
+                ListView listView = (ListView) parent;
+                // クリックされたアイテムを取得します
+                MapData item = (MapData) listView.getItemAtPosition(position);
+                //Toast.makeText(MapsActivity.this, item.getName(), Toast.LENGTH_LONG).show();
+                /*-----------------------check clicked----------------------------*/
+                if (item.getArea_id() == c_Area) {
+                    if (item.getLocation_id() == -1) {//area double clicked
+                        c_Area = -1;
+                        c_Location = -1;
+                    } else if (item.getLocation_id() == c_Location) {//location double clicked
+                        c_Area = item.getArea_id();
+                        c_Location = -1;
+                    } else {//location single clicked
+                        c_Area = item.getArea_id();
+                        c_Location = item.getLocation_id();
+                    }
+                } else {
+                    c_Area = item.getArea_id();
+                    c_Location = item.getLocation_id();
+                }
+
+                setCamera();
+                /*----------------check infowindow--------------------------*/
+                if (item.getLocation_id() != -1) {//choice infowindo
+                    c_marker = Markers.get(aggregateMapLocation.getIdbyName(item.getName()));
+                    c_marker.showInfoWindow();
+                }
+                if (c_marker != null) {//hide infowindow
+                    if (c_Location == -1 && c_marker.isInfoWindowShown())
+                        c_marker.hideInfoWindow();
+                }
+                setMenu();
+            }
+        });
+    }
 
     /**
      * Manipulates the map once available.
@@ -96,11 +165,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMapType(4);
-        ReadLocaitonCsv();
+
         setMarker();
         //remove polyline
         Polyline polyline = this.mMap.addPolyline(new PolylineOptions());
         polyline.remove();
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                int id = aggregateMapLocation.getIdbyName(marker.getTitle());
+                c_Area = aggregateMapLocation.getMapLocationAt(id).getArea_id();
+                c_Location = getC_loaction(aggregateMapLocation.getMapLocationAt(id).getName());
+                setMenu();
+                return false;
+            }
+        });
 
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
@@ -108,17 +187,43 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Intent intent;
                 int clicked_id = aggregateMapLocation.getIdbyName(marker.getTitle());
                 int clicked_check360 = aggregateMapLocation.getMapLocationAt(clicked_id).getCheck360();
-                Log.d("Map", "onMarkerClick:id =" + clicked_id + ", Name :" + marker.getTitle()+
-                        ", Check360 : "+clicked_check360);
-                if(clicked_check360 == 1) {//start 360movie activity
-                   intent = new Intent(getApplication(), MovieActivity.class);
-                }else{//start normal movie activity
+                Log.d("Map", "onMarkerClick:id =" + clicked_id + ", Name :" + marker.getTitle() +
+                        ", Check360 : " + clicked_check360);
+                if (clicked_check360 == 1) {//start 360movie activity
+                    intent = new Intent(getApplication(), MovieActivity.class);
+                } else {//start normal movie activity
                     intent = new Intent(getApplication(), NormalMovieActivity.class);
                 }
                 intent.putExtra("id", clicked_id);
                 startActivity(intent);
             }
         });
+    }
+
+    public void ReadAreaCsv() {
+        // AssetManagerの呼び出し
+        AssetManager assetManager = getResources().getAssets();
+        try {
+            // CSVファイルの読み込み
+            InputStream is = assetManager.open("area.csv");
+            InputStreamReader inputStreamReader = new InputStreamReader(is);
+            BufferedReader bufferReader = new BufferedReader(inputStreamReader);
+            String line = "";
+            while ((line = bufferReader.readLine()) != null) {
+                // 各行が","で区切られていて4つの項目があるとす
+                StringTokenizer st = new StringTokenizer(line, ",");
+                int id = Integer.parseInt(st.nextToken());
+                String name = st.nextToken();
+                double xcor = Double.parseDouble(st.nextToken());
+                double ycor = Double.parseDouble(st.nextToken());
+                float zoom = Float.parseFloat(st.nextToken());
+                aggregateMapArea.appendMapArea(new MapArea(id, name, xcor, ycor, zoom));
+                //Log.d("ReadCsv", "read location" + id + "," + name + "," + xcor + "," + ycor);
+            }
+            bufferReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void ReadLocaitonCsv() {
@@ -134,11 +239,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // 各行が","で区切られていて4つの項目があるとす
                 StringTokenizer st = new StringTokenizer(line, ",");
                 int id = Integer.parseInt(st.nextToken());
+                int area_id = Integer.parseInt(st.nextToken());
                 String name = st.nextToken();
                 double xcor = Double.parseDouble(st.nextToken());
                 double ycor = Double.parseDouble(st.nextToken());
                 int check360 = Integer.parseInt(st.nextToken());
-                aggregateMapLocation.appendMapLocation(new MapLocation(id, name, xcor, ycor,check360));
+                aggregateMapLocation.appendMapLocation(new MapLocation(id, area_id, name, xcor, ycor, check360));
                 // Log.d("ReadCsv", "read location"+id+","+name+","+xcor+","+ycor);
             }
             bufferReader.close();
@@ -148,38 +254,103 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void setMarker() {
-        //set zoom
-        mMap.moveCamera(CameraUpdateFactory.zoomTo(12));
         Iterator it = aggregateMapLocation.Iterator();
         while (it.hasNext()) {
-            MapLocation mapLocation = (MapLocation) it.next();
+            final MapLocation mapLocation = (MapLocation) it.next();
             //get lats
-            lats.add(new LatLng(mapLocation.getXcor(), mapLocation.getYcor()));
+            LatLng lat = new LatLng(mapLocation.getXcor(), mapLocation.getYcor());
             //add_maerker
-            if(mapLocation.getCheck360() == 1)//set red marker
-                Markers.add(mMap.addMarker(new MarkerOptions().position(lats.get(mapLocation.getId())).title(mapLocation.getName())));
+            if (mapLocation.getCheck360() == 1)//set red marker
+                Markers.add(mMap.addMarker(new MarkerOptions().position(lat).title(mapLocation.getName())));
             else//set blue marker
-                Markers.add(mMap.addMarker(new MarkerOptions().position(lats.get(mapLocation.getId())).title(mapLocation.getName()).
-                    icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))));//add color change
+                Markers.add(mMap.addMarker(new MarkerOptions().position(lat).title(mapLocation.getName()).
+                        icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))));//add color change
             mMap.setInfoWindowAdapter(new InfoWindowAdapter() {
                 @Override
                 public View getInfoContents(Marker marker) {
-                 // TODO Auto-generated method stub
-                   return null;
-                    }
+                    // TODO Auto-generated method stub
+                    return null;
+                }
+
                 @Override
                 public View getInfoWindow(Marker marker) {
                     // TODO Auto-generated method stub
-                    View view = getLayoutInflater().inflate(R.layout.info_window, null);
+                    View view;
+                    int clicked_id = aggregateMapLocation.getIdbyName(marker.getTitle());
+                    if (aggregateMapLocation.getMapLocationAt(clicked_id).getCheck360() == 1)
+                        view = getLayoutInflater().inflate(R.layout.info_window3d, null);
+                    else
+                        view = getLayoutInflater().inflate(R.layout.info_window2d, null);
+
                     // タイトル設定
-                    TextView title = (TextView)view.findViewById(R.id.info_title);
-                    title.setText(marker.getTitle());
+//                    TextView title = (TextView) view.findViewById(R.id.info_title);
+//                    title.setText(marker.getTitle());
                     return view;
-                    }
-                });
-            //change cmaera
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(mapLocation.getXcor(), mapLocation.getYcor())));
+                }
+            });
         }
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(firstXcor, firstYcor), firstZoom));
+    }
+
+    public void setCamera() {
+        double n_xcor, n_ycor;
+        float n_zoom;
+        if (c_Area == -1 && c_Location == -1) { //init
+            n_xcor = firstXcor;
+            n_ycor = firstYcor;
+            n_zoom = firstZoom;
+        } else if (c_Area != -1 && c_Location == -1) {//area clicked
+            MapArea mapArea = aggregateMapArea.getMapAreaAt(c_Area);
+            n_xcor = mapArea.getXcor();
+            n_ycor = mapArea.getYcor();
+            n_zoom = mapArea.getZoom();
+        } else {
+            MapLocation mapLocation = aggregateMapLocation.getMapLocation(c_Area, c_Location);
+            n_xcor = mapLocation.getXcor();
+            n_ycor = mapLocation.getYcor();
+            n_zoom = o_zoom;
+        }
+        //Log.d("TEST", "setCamera: xcor =" + n_xcor + ", ycor =" + n_ycor + ", n_zoom=" + n_zoom);
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(n_xcor, n_ycor), n_zoom), 1500, null);
+        o_xcor = n_xcor;
+        o_ycor = n_ycor;
+        o_zoom = n_zoom;
+    }
+
+    public void setMenu() {
+        int i = 0;
+        ArrayList<MapData> MapDatas = new ArrayList<>();
+        Iterator it_area = (Iterator) aggregateMapArea.Iterator();
+        while (it_area.hasNext()) {
+            Log.d("TEST", "setMenu: i=" + i + ", c_area = " + c_Area + ", c_location=" + c_Location);
+            MapDatas.add(new MapData(i++, (MapArea) it_area.next()));
+            if (c_Area != -1 && c_Area == i - 1) {
+                int n = 0;
+                Iterator it_Location = (Iterator) aggregateMapLocation.Iterator();
+                while (it_Location.hasNext()) {
+                    MapLocation mapLocation = (MapLocation) it_Location.next();
+                    if (mapLocation.getArea_id() == c_Area)
+                        MapDatas.add(new MapData(i + n, n++, mapLocation));
+                }
+                i += n - 1;
+            }
+        }
+        mAdapter = new MapListViewAdapter(this, MapDatas, c_Area, c_Location);
+        mDrawerList.setAdapter(mAdapter);
+    }
+
+    public int getC_loaction(String name) {
+        int n = 0;
+        Iterator it_Location = aggregateMapLocation.Iterator();
+        while (it_Location.hasNext()) {
+            MapLocation mapLocation = (MapLocation) it_Location.next();
+            if (mapLocation.getArea_id() == c_Area) {
+                if (mapLocation.getName().equals(name))
+                    return n;
+                n++;
+            }
+        }
+        return -1;
     }
 
     /**

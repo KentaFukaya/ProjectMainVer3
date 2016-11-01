@@ -11,18 +11,20 @@ public class MapLocationsIterator implements Iterator {
     private AggregateMapLocation aggregateMapLocation;
     private int index;
 
-    public MapLocationsIterator(AggregateMapLocation aggregateMapLocation){
+    public MapLocationsIterator(AggregateMapLocation aggregateMapLocation) {
         this.aggregateMapLocation = aggregateMapLocation;
-        this.index  = 0;
+        this.index = 0;
     }
-    public boolean hasNext(){
-     if(index < aggregateMapLocation.getLength()){
-         return true;
-     }else{
-         return false;
-     }
+
+    public boolean hasNext() {
+        if (index < aggregateMapLocation.getLength()) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    public Object next(){
+
+    public Object next() {
         MapLocation mapLocation = aggregateMapLocation.getMapLocationAt(index);
         index++;
         return mapLocation;

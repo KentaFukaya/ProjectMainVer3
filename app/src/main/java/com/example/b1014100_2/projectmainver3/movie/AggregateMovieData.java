@@ -14,23 +14,26 @@ public class AggregateMovieData implements Aggregate {
     private ArrayList<MovieData> MovieDatas;
     private int last = 0;
 
-    public AggregateMovieData(){
+    public AggregateMovieData() {
         MovieDatas = new ArrayList<MovieData>();
     }
+
     public int getLength() {
         return last;
     }
+
     /*get maplocation by id*/
-    public MovieData getMovieDataAt(int id){
+    public MovieData getMovieDataAt(int id) {
         return MovieDatas.get(id);
     }
+
     /*add maplocation*/
-    public void appendMovieData(MovieData movieData){
+    public void appendMovieData(MovieData movieData) {
         this.MovieDatas.add(movieData);
         last++;
     }
 
-    public Iterator Iterator(){
+    public Iterator Iterator() {
         return new MovieDataIterator(this);
     }
 

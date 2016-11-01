@@ -11,19 +11,21 @@ public class MovieDataIterator implements Iterator {
     private AggregateMovieData aggregateMovieData;
     private int index;
 
-    public MovieDataIterator(AggregateMovieData aggregateMovieData){
+    public MovieDataIterator(AggregateMovieData aggregateMovieData) {
         this.aggregateMovieData = aggregateMovieData;
-        this.index  = 0;
+        this.index = 0;
     }
-    public boolean hasNext(){
-        if(index < aggregateMovieData.getLength()){
+
+    public boolean hasNext() {
+        if (index < aggregateMovieData.getLength()) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    public Object next(){
-        MovieData movieData  = aggregateMovieData.getMovieDataAt(index);
+
+    public Object next() {
+        MovieData movieData = aggregateMovieData.getMovieDataAt(index);
         index++;
         return movieData;
     }
