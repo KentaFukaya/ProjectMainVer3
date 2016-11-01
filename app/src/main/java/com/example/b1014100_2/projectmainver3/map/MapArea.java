@@ -4,29 +4,23 @@ package com.example.b1014100_2.projectmainver3.map;
  * Created by b1014100_2 on 2016/09/30.
  */
 
-public class MapLocation {
+public class MapArea {
     private int id;
-    private int area_id;
     private String name;
     private double xcor, ycor;
-    private int check360;
+    private float zoom;
 
-    public MapLocation(int id, int area_id, String name, double xcor, double ycor, int check360) {
+    public MapArea(int id, String name, double xcor, double ycor, float zoom) {
         this.id = id;
-        this.area_id = area_id;
         this.name = name;
         this.xcor = xcor;
         this.ycor = ycor;
-        this.check360 = check360;
+        this.zoom = zoom;
     }
 
     /*getter*/
     public int getId() {
         return id;
-    }
-
-    public int getArea_id() {
-        return area_id;
     }
 
     public String getName() {
@@ -41,17 +35,13 @@ public class MapLocation {
         return ycor;
     }
 
-    public int getCheck360() {
-        return check360;
+    public float getZoom() {
+        return zoom;
     }
 
     /*setter*/
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setArea_id(int area_id) {
-        this.area_id = area_id;
     }
 
     public void setName(String name) {
@@ -66,8 +56,8 @@ public class MapLocation {
         this.ycor = ycor;
     }
 
-    public void setCheck360(int check360) {
-        this.check360 = check360;
+    public void setZoom(float zoom) {
+        this.zoom = zoom;
     }
 
 }

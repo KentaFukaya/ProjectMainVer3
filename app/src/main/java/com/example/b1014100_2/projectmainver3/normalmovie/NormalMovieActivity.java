@@ -34,8 +34,9 @@ public class NormalMovieActivity extends Activity {
     int id;
     String moviename;
     VideoView Vv;
-    Button nMovieback,nMoviereplay;
+    Button nMovieback, nMoviereplay;
     RelativeLayout nMoviebg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +45,7 @@ public class NormalMovieActivity extends Activity {
         setContentView(R.layout.activity_normal_movie);
 
         Vv = (VideoView) findViewById(R.id.videoView);
-        nMoviebg = (RelativeLayout)findViewById(R.id.n_movie_bg);
+        nMoviebg = (RelativeLayout) findViewById(R.id.n_movie_bg);
         nMovieback = (Button) findViewById(R.id.n_movie_backbutton);
         nMoviereplay = (Button) findViewById(R.id.n_movie_replaybutton);
         setReplayView(false);
@@ -56,7 +57,7 @@ public class NormalMovieActivity extends Activity {
 
         //select movie name at random
         ReadMovieCsv();
-        Log.d("TEST", "onCreate: id = "+id+", MovieName is  "+ movieDatas.getMovieDataAt(id).getMovieName()+",random = "+Random(id));
+        Log.d("TEST", "onCreate: id = " + id + ", MovieName is  " + movieDatas.getMovieDataAt(id).getMovieName() + ",random = " + Random(id));
         moviename = movieDatas.getMovieDataAt(id).getMovieName();
         SaveMovieCsv();
 
@@ -68,27 +69,25 @@ public class NormalMovieActivity extends Activity {
         Vv.start();
 
         //movie finish listener
-        Vv.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
-        {
-            public void onCompletion(MediaPlayer mp)
-            {
+        Vv.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            public void onCompletion(MediaPlayer mp) {
                 Log.d("MoviePlayer:test", "moive FInfished");
                 setReplayView(true);
             }
         });
 
         //button click listenre
-        nMovieback.setOnClickListener(new View.OnClickListener(){
+        nMovieback.setOnClickListener(new View.OnClickListener() {
             @Override
-            public  void onClick(View v){
+            public void onClick(View v) {
                 finish();//backto mapActivity
             }
         });
-        nMoviereplay.setOnClickListener(new View.OnClickListener(){
+        nMoviereplay.setOnClickListener(new View.OnClickListener() {
             @Override
-            public  void onClick(View v){
+            public void onClick(View v) {
                 Intent intent = new Intent(NormalMovieActivity.this, NormalMovieActivity.class); //ダイビングアクティビティに飛ぶ処理
-                intent.putExtra("id",id);
+                intent.putExtra("id", id);
                 startActivity(intent);
                 finish();
             }
@@ -112,15 +111,15 @@ public class NormalMovieActivity extends Activity {
                 int id = Integer.parseInt(st.nextToken());
                 int max = Integer.parseInt(st.nextToken());
                 String name = st.nextToken();
-                name = name.substring(0,name.length()-4);//deleate .mp4
-                movieDatas.appendMovieData(new MovieData(id,max,name));
+                name = name.substring(0, name.length() - 4);//deleate .mp4
+                movieDatas.appendMovieData(new MovieData(id, max, name));
                 //Log.d("ReadMovieCsv", "id = "+id +", max = "+max+", name ="+name);
             }
             bufferReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        try{
+        try {
             String openFileName = "watch.csv";
             FileInputStream input = this.openFileInput(openFileName);
             InputStreamReader inputStreamReader = new InputStreamReader(input);
@@ -130,10 +129,10 @@ public class NormalMovieActivity extends Activity {
             while ((line = bufferReader.readLine()) != null) {
                 // 各行が","で区切られていて4つの項目があるとす
                 StringTokenizer st = new StringTokenizer(line, ",");
-                int  s = 0;
+                int s = 0;
                 i = Integer.parseInt(st.nextToken());
-                while(st.hasMoreTokens() && s < movieDatas.getMovieDataAt(i).getMax()){
-                    if(Integer.parseInt(st.nextToken()) != 0)
+                while (st.hasMoreTokens() && s < movieDatas.getMovieDataAt(i).getMax()) {
+                    if (Integer.parseInt(st.nextToken()) != 0)
                         movieDatas.getMovieDataAt(i).setWatchbynumber(s);
                     // Log.d("TEST", "ReadMovieCsv: id = "+i+",s ="+s+",watch = "+movieDatas.getMovieDataAt(i).getWatch(s));
                     s++;
@@ -143,21 +142,21 @@ public class NormalMovieActivity extends Activity {
             bufferReader.close();
             // ストリームを閉じる
             input.close();
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void SaveMovieCsv(){
+    public void SaveMovieCsv() {
         String FileName = "watch.csv";
         try {
             // 書き込み先のストリームを開く
             FileOutputStream output = this.openFileOutput(FileName, MODE_PRIVATE);
 
             Iterator it = movieDatas.Iterator();
-            while(it.hasNext()){
+            while (it.hasNext()) {
                 MovieData md = (MovieData) it.next();
-                Log.d("test", "SaveMovieCsv: id = "+md.getId()+", watch ="+md.getWatchtoString() );
+                Log.d("test", "SaveMovieCsv: id = " + md.getId() + ", watch =" + md.getWatchtoString());
                 output.write(md.getWatchtoString().getBytes());
                 output.write("\n".getBytes());
             }
@@ -168,27 +167,27 @@ public class NormalMovieActivity extends Activity {
         }
     }
 
-    public int Random(int id){
+    public int Random(int id) {
         //現在の秒数を取得
         Date rowdate = new Date();
         String date[] = rowdate.toString().split(" ");
         int min = Integer.parseInt(date[3].substring(6, 8));
         //watchフラグが立っていないものを選ぶ
         MovieData md = movieDatas.getMovieDataAt(id);
-        while(md.checkWatch(min % md.getMax()))
+        while (md.checkWatch(min % md.getMax()))
             min++;
         md.setWatchbynumber(min % md.getMax());
         //Log.d("TEST", "Random: id="+id+",return ="+min%md.getMax());
-        return min%md.getMax();
+        return min % md.getMax();
     }
 
-    public void setReplayView(boolean visible){
-        if(visible){
+    public void setReplayView(boolean visible) {
+        if (visible) {
             nMoviereplay.setVisibility(View.VISIBLE);
             nMoviereplay.setVisibility(View.VISIBLE);
             nMoviebg.setVisibility(View.VISIBLE);
             Vv.setVisibility(View.INVISIBLE);
-        }else{
+        } else {
             nMoviereplay.setVisibility(View.INVISIBLE);
             nMoviereplay.setVisibility(View.INVISIBLE);
             nMoviebg.setVisibility(View.INVISIBLE);
