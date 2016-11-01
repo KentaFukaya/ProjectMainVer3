@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/quiz_background"
+    android:id="@+id/quiz_layout">
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:background="@drawable/quiz_return_button"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/quiz_return_button2" />
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/quiz_kokuban"
+        android:layout_toEndOf="@+id/quiz_return_button2"
+        android:layout_below="@+id/quiz_return_button2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="正解"
+            android:textSize="48dp"
+            android:textColor="#ffffff"
+            android:id="@+id/quiz_correct"
+            android:layout_marginTop="45dp"
+            android:layout_marginStart="60dp"/>
+
+        <ImageView
+            android:layout_width="380dp"
+            android:layout_height="80dp"
+            android:src="@drawable/quiz_shitasen"
+            android:layout_alignBottom="@+id/quiz_correct"
+            android:layout_marginBottom="-40dp"
+            android:layout_alignStart="@+id/quiz_correct"
+            android:layout_marginStart="-15dp"/>
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:srcCompat="@drawable/quiz_hanamaru"
+            android:id="@+id/quiz_maru_batsu"
+            android:layout_alignBottom="@+id/quiz_correct"
+            android:layout_toEndOf="@id/quiz_correct"
+            android:layout_marginLeft="-10dp"
+            android:layout_alignTop="@+id/quiz_correct" />
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            app:srcCompat="@drawable/quiz_oshiete_ika_sensei"
+            android:layout_alignBottom="@+id/quiz_correct"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="30dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="解答"
+            android:textSize="16dp"
+            android:textColor="#ffffff"
+            android:id="@+id/quiz_answer"
+            android:layout_alignBottom="@+id/quiz_correct"
+            android:layout_marginBottom="-45dp"
+            android:layout_alignStart="@+id/quiz_correct" />
+
+        <TextView
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:text="解説："
+            android:textSize="16dp"
+            android:textColor="#ffffff"
+            android:id="@+id/quiz_kaisetu"
+            android:layout_alignBottom="@+id/quiz_answer"
+            android:layout_marginBottom="-30dp"
+            android:layout_alignStart="@+id/quiz_correct"/>
+
+        <TextView
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:text="解説内容ああああああああああああああああああああああああああああああああああああああああああああああああああああああああ"
+            android:textSize="16dp"
+            android:textColor="#ffffff"
+            android:id="@+id/quiz_comment"
+            android:layout_alignTop="@+id/quiz_kaisetu"
+            android:layout_alignStart="@+id/quiz_correct"
+            android:layout_marginStart="50dp"/>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/quiz_date"
+            android:id="@+id/quiz_date"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="70dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="15dp"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        app:srcCompat="@drawable/quiz_ika_happy"
+        android:id="@+id/quiz_ika2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>
