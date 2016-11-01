@@ -136,5 +136,20 @@
         android:adjustViewBounds="true"
         android:scaleType="fitXY" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@+id/imageView2">
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4"
+            android:textSize="18sp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp" />
+    </ScrollView>
+
 
 </RelativeLayout>

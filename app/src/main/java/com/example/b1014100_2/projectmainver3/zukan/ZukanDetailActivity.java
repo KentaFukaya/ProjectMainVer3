@@ -52,6 +52,12 @@ public class ZukanDetailActivity extends AppCompatActivity {
         //魚の大きさセット
 //        ((TextView) findViewById(R.id.zukan_detail_fish_length)).setText(zukan.getLength() + "cm");
         ((TextView) findViewById(R.id.textView3)).setText(zukan.getLength() + "cm");
+        //説明文セット
+        String hoge = zukan.getContent();
+        hoge = hoge.replaceAll("\\\\n", "\n");
+        ((TextView) findViewById(R.id.textView4)).setText(hoge);
+//        ((TextView) findViewById(R.id.textView4)).setText(zukan.getContent());
+
     }
 
     private void setButton() {
