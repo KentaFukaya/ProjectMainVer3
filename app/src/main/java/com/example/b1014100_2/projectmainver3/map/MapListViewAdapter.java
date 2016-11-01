@@ -2,6 +2,7 @@ package com.example.b1014100_2.projectmainver3.map;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,7 @@ public class MapListViewAdapter extends ArrayAdapter<MapData> {
         MapData md = getItem(position);
         if (md.getLocation_id() == -1) {//Area
             convertView = mInflater.inflate(R.layout.activity_maps_list_area, parent, false);
-            convertView.setBackgroundColor(Color.GREEN);
+            //convertView.setBackgroundColor(Color.GREEN);
             setClickColor(convertView, md);
         } else {//location
             convertView = mInflater.inflate(R.layout.activity_maps_list_location, parent, false);
@@ -49,6 +50,7 @@ public class MapListViewAdapter extends ArrayAdapter<MapData> {
             }
         }
         TextView tv = (TextView) convertView.findViewById(R.id.contents);
+        //tv.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "FUJIPOP.TTC"));
         tv.setText(md.getName());
         return convertView;
     }

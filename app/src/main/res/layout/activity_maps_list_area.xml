@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:scaleType="fitXY"
+    android:adjustViewBounds="true"
     android:layout_width="match_parent"
+    android:background="@drawable/map_areabg"
     android:layout_height="100dp"
     android:orientation="vertical">
-    <ImageView
-        android:src="@drawable/ic_media_route_on_00_dark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        />
     <TextView
-        android:text="TextView"
+        android:text="函館"
+        android:textSize="70dp"
+        android:textColor="#0D0D0D"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/contents"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="15dp" />
+        android:layout_marginStart="184dp" />
 </RelativeLayout>
