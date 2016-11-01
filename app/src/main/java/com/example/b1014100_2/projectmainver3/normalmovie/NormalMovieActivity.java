@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.VideoView;
 
@@ -34,8 +36,8 @@ public class NormalMovieActivity extends Activity {
     int id;
     String moviename;
     VideoView Vv;
-    Button nMovieback, nMoviereplay;
-    RelativeLayout nMoviebg;
+    ImageButton nMovieback, nMoviereplay;
+    ImageView nMoviebg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +47,9 @@ public class NormalMovieActivity extends Activity {
         setContentView(R.layout.activity_normal_movie);
 
         Vv = (VideoView) findViewById(R.id.videoView);
-        nMoviebg = (RelativeLayout) findViewById(R.id.n_movie_bg);
-        nMovieback = (Button) findViewById(R.id.n_movie_backbutton);
-        nMoviereplay = (Button) findViewById(R.id.n_movie_replaybutton);
+        nMoviebg = (ImageView) findViewById(R.id.n_movie_bg);
+        nMovieback = (ImageButton) findViewById(R.id.n_movie_backbutton);
+        nMoviereplay = (ImageButton) findViewById(R.id.n_movie_replaybutton);
         setReplayView(false);
 
         //get id from intent
@@ -65,13 +67,13 @@ public class NormalMovieActivity extends Activity {
         int movie_R_Id = getResources().getIdentifier(moviename, "raw", getPackageName());//get R.raw."moviename"
         String path = "android.resource://" + getPackageName() + "/" + movie_R_Id;
         Vv.setVideoURI(Uri.parse(path));
-
         Vv.start();
 
         //movie finish listener
         Vv.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             public void onCompletion(MediaPlayer mp) {
                 Log.d("MoviePlayer:test", "moive FInfished");
+                Vv.seekTo(0);//初期位置に戻す
                 setReplayView(true);
             }
         });
@@ -156,7 +158,7 @@ public class NormalMovieActivity extends Activity {
             Iterator it = movieDatas.Iterator();
             while (it.hasNext()) {
                 MovieData md = (MovieData) it.next();
-                Log.d("test", "SaveMovieCsv: id = " + md.getId() + ", watch =" + md.getWatchtoString());
+                //Log.d("test", "SaveMovieCsv: id = " + md.getId() + ", watch =" + md.getWatchtoString());
                 output.write(md.getWatchtoString().getBytes());
                 output.write("\n".getBytes());
             }
@@ -183,13 +185,14 @@ public class NormalMovieActivity extends Activity {
 
     public void setReplayView(boolean visible) {
         if (visible) {
-            nMoviereplay.setVisibility(View.VISIBLE);
-            nMoviereplay.setVisibility(View.VISIBLE);
-            nMoviebg.setVisibility(View.VISIBLE);
             Vv.setVisibility(View.INVISIBLE);
+            nMoviereplay.setVisibility(View.VISIBLE);
+            nMovieback.setVisibility(View.VISIBLE);
+            nMoviebg.setVisibility(View.VISIBLE);
+            Vv.setVisibility(View.VISIBLE);
         } else {
             nMoviereplay.setVisibility(View.INVISIBLE);
-            nMoviereplay.setVisibility(View.INVISIBLE);
+            nMovieback.setVisibility(View.INVISIBLE);
             nMoviebg.setVisibility(View.INVISIBLE);
             Vv.setVisibility(View.VISIBLE);
         }

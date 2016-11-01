@@ -7,36 +7,47 @@
     tools:context="com.example.b1014100_2.projectmainver3.normalmovie.NormalMovieActivity">
 
     <VideoView
+        android:id="@+id/videoView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:id="@+id/videoView" />
+        android:layout_alignParentStart="true" />
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <ImageView
         android:id="@+id/n_movie_bg"
-        android:background="@color/colorAccent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.example.b1014100_2.moviesample.MainActivity">
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="43dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/movie_redive_haikei" />
 
-        <Button
-            android:text="back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/n_movie_backbutton"
-            android:layout_alignStart="@+id/n_movie_backbutton"
-            android:layout_marginTop="68dp"
-            android:id="@+id/n_movie_replaybutton" />
+    <ImageButton
+        android:id="@+id/n_movie_replaybutton"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/n_movie_bg"
+        android:layout_alignStart="@+id/n_movie_bg"
+        android:layout_marginBottom="41dp"
+        android:layout_marginStart="47dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/movie_redive_moguru" />
 
-        <Button
-            android:text="replay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:id="@+id/n_movie_backbutton"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="50dp" />
-    </RelativeLayout>
+    <ImageButton
+        android:id="@+id/n_movie_backbutton"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/n_movie_replaybutton"
+        android:layout_toEndOf="@+id/n_movie_replaybutton"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/movie_redive_yametoku" />
+
 </RelativeLayout>
+
+
