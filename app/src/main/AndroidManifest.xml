@@ -54,11 +54,13 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".zukan.ZukanActivity" />
-        <activity android:name=".zukan.ZukanDetailActivity" />
-        <activity android:name=".quiz.QuizActivity" />
-        <activity
-            android:name=".normalmovie.NormalMovieActivity"
-            android:screenOrientation="landscape" />
+        <activity android:name=".zukan.ZukanDetailActivity"></activity>
+        <activity android:name=".quiz.QuizActivity"
+            android:theme="@style/Theme.Design.NoActionBar">
+        </activity>
+        <activity android:name=".normalmovie.NormalMovieActivity"
+            android:screenOrientation="landscape"
+            ></activity>
         <activity android:name=".zukan.ZukanListActivity"></activity>
     </application>
 
