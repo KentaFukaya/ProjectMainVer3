@@ -341,7 +341,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ArrayList<MapData> MapDatas = new ArrayList<>();
         Iterator it_area = (Iterator) aggregateMapArea.Iterator();
         while (it_area.hasNext()) {
-            Log.d("TEST", "setMenu: i=" + i + ", c_area = " + c_Area + ", c_location=" + c_Location);
+            //Log.d("TEST", "setMenu: i=" + i + ", c_area = " + c_Area + ", c_location=" + c_Location);
             MapDatas.add(new MapData(i++, (MapArea) it_area.next()));
             if (c_Area != -1 && c_Area == i - 1) {
                 int n = 0;

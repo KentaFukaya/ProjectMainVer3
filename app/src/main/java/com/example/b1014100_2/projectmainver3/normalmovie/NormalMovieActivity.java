@@ -67,7 +67,6 @@ public class NormalMovieActivity extends Activity {
         int movie_R_Id = getResources().getIdentifier(moviename, "raw", getPackageName());//get R.raw."moviename"
         path = "android.resource://" + getPackageName() + "/" + movie_R_Id;
         Vv.setVideoURI(Uri.parse(path));
-        Vv.seekTo(400000);
         Vv.start();
 
         //movie finish listener
