@@ -14,17 +14,19 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.example.b1014100_2.projectmainver3.R;
 
 import java.util.ArrayList;
 
-public class ZukanListActivity extends AppCompatActivity {
+public class ZukanListActivity extends AppCompatActivity implements ZukanListSortFragmentListener {
 
     //QuizSQLiteOpenHelperで使う
     private static Context ctx;
     //表示する図鑑データ
     public static ArrayList<Zukan> zukans;
+    public static ArrayList<String> type_romajis;
 
     ViewPager viewPager;
     ZukanListFragmentPagerAdapter adapter;
@@ -34,11 +36,12 @@ public class ZukanListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Log.d("test listactivity", "onCreate: ");
         //QuizSQLiteOpenHelperで使う
         ctx = this;
         //図鑑を全て表示にする
-        zukans = ZukanDatabase.getZukanAll();
+        zukans = new ZukanDatabase(this).getZukanAll();
+        type_romajis = new ZukanDatabase(this).getZukanListSortTypeRomajis();
 
         setContentView(R.layout.activity_zukan_list);
         setViews();
@@ -49,7 +52,7 @@ public class ZukanListActivity extends AppCompatActivity {
 
         FragmentManager manager = getSupportFragmentManager();
         viewPager = (ViewPager) findViewById(R.id.zukan_list_viewpager);
-        if(adapter != null) adapter.notifyDataSetChanged();
+        if (adapter != null) adapter.notifyDataSetChanged();
         adapter = new ZukanListFragmentPagerAdapter(manager);
         viewPager.setAdapter(adapter);
 
@@ -61,7 +64,7 @@ public class ZukanListActivity extends AppCompatActivity {
         ((DrawerLayout) findViewById(R.id.zukan_list_drawer_layout)).setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 
-    private void setButton(){
+    private void setButton() {
 
         //戻るボタン
         ImageButton buttonList = (ImageButton) findViewById(R.id.zukan_list_back_button);
@@ -102,9 +105,20 @@ public class ZukanListActivity extends AppCompatActivity {
                 openSortDrawer(new ZukanListSortSeasonFragment());
             }
         });
+
+        //ソートクリアボタン
+        findViewById(R.id.zukan_list_sort_clear).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearZukans();
+                viewPager.getAdapter().notifyDataSetChanged();
+                viewPager.setCurrentItem(0);
+                ((ImageView) findViewById(R.id.zukan_list_sort_unselected)).setImageResource(R.drawable.zukan_list_sort_unselected);
+            }
+        });
     }
 
-    private void openSortDrawer(Fragment newFragment){
+    private void openSortDrawer(Fragment newFragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.zukan_list_drawer_view, newFragment);
@@ -118,4 +132,20 @@ public class ZukanListActivity extends AppCompatActivity {
     public static Context getContext() {
         return ctx;
     }
+
+    private void clearZukans() {
+        zukans = new ZukanDatabase(this).getZukanAll();
+    }
+
+    //fragmentからのリスナーを受け取る
+    @Override
+    public void onZukanListSortFragmentChange() {
+
+        viewPager.getAdapter().notifyDataSetChanged();
+        viewPager.setCurrentItem(0);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.zukan_list_drawer_layout);
+        drawer.closeDrawer(GravityCompat.END);
+    }
 }
+

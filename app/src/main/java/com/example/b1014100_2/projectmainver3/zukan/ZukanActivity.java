@@ -35,7 +35,7 @@ public class ZukanActivity extends AppCompatActivity {
         //QuizSQLiteOpenHelperで使う
         ctx = this;
         //図鑑を全て表示にする
-        zukans = ZukanDatabase.getZukanAll();
+        zukans = new ZukanDatabase(this).getZukanAll();
 //        zukans = ZukanDatabase.getZukan(null, null, "春");
         setContentView(R.layout.activity_zukan);
         setViews(currentPage);

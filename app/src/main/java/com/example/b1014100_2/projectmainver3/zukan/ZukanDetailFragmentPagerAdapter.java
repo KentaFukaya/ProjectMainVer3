@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 
 /**
- * Created by Allen on 2016/10/07.
+ * Created by 1014159 on 2016/10/07.
  */
 
 public class ZukanDetailFragmentPagerAdapter extends FragmentPagerAdapter{

@@ -9,90 +9,120 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_syllabary_a"
+        app:srcCompat="@drawable/zukan_list_sort_syllabary_a"
         android:background="@null"
-        android:id="@+id/fragment_zukan_list_sort_syllabary_a"
+        android:id="@+id/zukan_list_sort_syllabary_a"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter" />
+        android:scaleType="fitCenter"
+        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
+        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
+        android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_syllabary_ka"
+        app:srcCompat="@drawable/zukan_list_sort_syllabary_ka"
         android:background="@null"
-        android:id="@+id/fragment_zukan_list_sort_syllabary_ka"
+        android:id="@+id/zukan_list_sort_syllabary_ka"
         android:scaleType="fitCenter"
-        android:adjustViewBounds="true" />
+        android:adjustViewBounds="true"
+        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
+        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
+        android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_syllabary_sa"
+        app:srcCompat="@drawable/zukan_list_sort_syllabary_sa"
         android:background="@null"
-        android:id="@+id/fragment_zukan_list_sort_syllabary_sa"
+        android:id="@+id/zukan_list_sort_syllabary_sa"
         android:scaleType="fitCenter"
-        android:adjustViewBounds="true" />
+        android:adjustViewBounds="true"
+        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
+        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
+        android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_syllabary_ta"
+        app:srcCompat="@drawable/zukan_list_sort_syllabary_ta"
         android:background="@null"
-        android:id="@+id/fragment_zukan_list_sort_syllabary_ta"
+        android:id="@+id/zukan_list_sort_syllabary_ta"
         android:scaleType="fitCenter"
-        android:adjustViewBounds="true" />
+        android:adjustViewBounds="true"
+        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
+        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
+        android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_syllabary_na"
+        app:srcCompat="@drawable/zukan_list_sort_syllabary_na"
         android:background="@null"
-        android:id="@+id/fragment_zukan_list_sort_syllabary_na"
+        android:id="@+id/zukan_list_sort_syllabary_na"
         android:scaleType="fitCenter"
-        android:adjustViewBounds="true" />
+        android:adjustViewBounds="true"
+        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
+        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
+        android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_syllabary_ha"
+        app:srcCompat="@drawable/zukan_list_sort_syllabary_ha"
         android:background="@null"
-        android:id="@+id/fragment_zukan_list_sort_syllabary_ha"
+        android:id="@+id/zukan_list_sort_syllabary_ha"
         android:scaleType="fitCenter"
-        android:adjustViewBounds="true" />
+        android:adjustViewBounds="true"
+        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
+        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
+        android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_syllabary_ma"
+        app:srcCompat="@drawable/zukan_list_sort_syllabary_ma"
         android:background="@null"
-        android:id="@+id/fragment_zukan_list_sort_syllabary_ma"
+        android:id="@+id/zukan_list_sort_syllabary_ma"
         android:scaleType="fitCenter"
-        android:adjustViewBounds="true" />
+        android:adjustViewBounds="true"
+        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
+        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
+        android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_syllabary_ya"
+        app:srcCompat="@drawable/zukan_list_sort_syllabary_ya"
         android:background="@null"
-        android:id="@+id/fragment_zukan_list_sort_syllabary_ya"
+        android:id="@+id/zukan_list_sort_syllabary_ya"
         android:scaleType="fitCenter"
-        android:adjustViewBounds="true" />
+        android:adjustViewBounds="true"
+        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
+        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
+        android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_syllabary_ra"
+        app:srcCompat="@drawable/zukan_list_sort_syllabary_ra"
         android:background="@null"
-        android:id="@+id/fragment_zukan_list_sort_syllabary_ra"
+        android:id="@+id/zukan_list_sort_syllabary_ra"
         android:scaleType="fitCenter"
-        android:adjustViewBounds="true" />
+        android:adjustViewBounds="true"
+        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
+        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
+        android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fragment_zukan_list_sort_syllabary_wa"
+        app:srcCompat="@drawable/zukan_list_sort_syllabary_wa"
         android:background="@null"
-        android:id="@+id/fragment_zukan_list_sort_syllabary_wa"
+        android:id="@+id/zukan_list_sort_syllabary_wa"
         android:scaleType="fitCenter"
-        android:adjustViewBounds="true" />
+        android:adjustViewBounds="true"
+        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
+        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
+        android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 </LinearLayout>
