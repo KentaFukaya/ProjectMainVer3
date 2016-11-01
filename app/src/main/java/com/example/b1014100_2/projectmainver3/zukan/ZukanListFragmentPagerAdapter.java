@@ -3,14 +3,19 @@ package com.example.b1014100_2.projectmainver3.zukan;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
 /**
- * Created by Allen on 2016/10/07.
+ * Created by 1014159 on 2016/10/07.
  */
 
-public class ZukanListFragmentPagerAdapter extends FragmentPagerAdapter{
+public class ZukanListFragmentPagerAdapter extends FragmentStatePagerAdapter{
 
     public ZukanListFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -18,6 +23,7 @@ public class ZukanListFragmentPagerAdapter extends FragmentPagerAdapter{
 
     @Override
     public Fragment getItem(int position) {
+        Log.d("TEST", "getItem: ");
         return ZukanListFragment.newInstance(position);
     }
 
@@ -38,5 +44,9 @@ public class ZukanListFragmentPagerAdapter extends FragmentPagerAdapter{
         }else {
             return pageSize / 8 + 1;
         }
+    }
+
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
     }
 }

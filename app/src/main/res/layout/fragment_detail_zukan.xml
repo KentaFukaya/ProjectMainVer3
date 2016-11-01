@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_marginTop="65dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="1">
+
         <ImageButton
             android:background="@null"
             android:layout_width="50dp"
@@ -20,39 +19,44 @@
             android:id="@+id/ZukanDetail_back"
             android:layout_gravity="left"
             app:srcCompat="?android:attr/actionModeCloseDrawable" />
+
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:layout_weight="1"
-            />
+            android:layout_weight="1" />
+
         <ImageButton
             android:background="@null"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/ZukanDetail_quiz"
-            android:layout_gravity="right"
-            />
+            android:layout_gravity="right" />
     </LinearLayout>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="1">
+
         <ImageView
             android:layout_marginLeft="50dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:id="@+id/ZukanDetail_pic" />
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="30dp"
                 android:layout_marginLeft="50dp"
-                android:id="@+id/ZukanDetail_fishName"/>
+                android:id="@+id/ZukanDetail_fishName" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -73,5 +77,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:id="@+id/ZukanDetail_ViewPager"/>
+        android:id="@+id/ZukanDetail_ViewPager" />
 </LinearLayout>

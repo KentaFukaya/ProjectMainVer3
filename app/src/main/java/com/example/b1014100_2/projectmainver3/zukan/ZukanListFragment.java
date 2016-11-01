@@ -1,17 +1,17 @@
 package com.example.b1014100_2.projectmainver3.zukan;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.b1014100_2.projectmainver3.R;
@@ -23,11 +23,11 @@ public class ZukanListFragment extends Fragment {
 
     static final int RESULT_SUBACTIVITY = 1000;
 
-    int i;//for
+    int i;//forで使うために
 
     int zukanImgViewResId[] = {
-            R.id.zukan_list_image_view1, R.id.zukan_list_image_view2, R.id.zukan_list_image_view3, R.id.zukan_list_image_view4,
-            R.id.zukan_list_image_view5, R.id.zukan_list_image_view6, R.id.zukan_list_image_view7, R.id.zukan_list_image_view8};
+            R.id.zukan_list_fish_image1, R.id.zukan_list_fish_image2, R.id.zukan_list_fish_image3, R.id.zukan_list_fish_image4,
+            R.id.zukan_list_fish_image5, R.id.zukan_list_fish_image6, R.id.zukan_list_fish_image7, R.id.zukan_list_fish_image8};
     int zukanFishNameViewResId[] = {
             R.id.zukan_list_fish_name1, R.id.zukan_list_fish_name2, R.id.zukan_list_fish_name3, R.id.zukan_list_fish_name4,
             R.id.zukan_list_fish_name5, R.id.zukan_list_fish_name6, R.id.zukan_list_fish_name7, R.id.zukan_list_fish_name8};
@@ -68,23 +68,32 @@ public class ZukanListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        for(int i = 0; i < 8; i++){
+           // Log.d("ZukanList", "onZukanListoncreateview: " + zukans.get(i).printall());
+        }
+//        View view = inflater.inflate(R.layout.fragment_zukan_list, null);
         View view = inflater.inflate(R.layout.fragment_zukan_list, null);
         setViews(view);
 
-        return view;
+         return view;
     }
 
     private void setViews(View view) {
         for (i = 0; i < 8; i++) {
             if (fishIds[i] != 0) {
                 final int fishId = fishIds[i]-1;
+                Log.d("zukanalistfragment", "setViews: "+zukans.get(fishId).printall());
                 ImageView image = (ImageView) view.findViewById(zukanImgViewResId[i]);
                 //文字列から画像のdrawableのIDを取得する
                 int imageId = getResources().getIdentifier(zukans.get(fishId).getImageName(), "drawable", getActivity().getPackageName());
                 //画像をImageViewにセットする
-                image.setImageResource(imageId);
-                ((TextView) view.findViewById(zukanFishNameViewResId[i])).setText(zukans.get(fishId).getName());
-
+//                image.setImageResource(imageId);
+                image.setImageBitmap(decodeSampledBitmapFromResource(getResources(), imageId, 50, 50));
+                //魚の名前をセット
+                TextView fishNameView = (TextView) view.findViewById(zukanFishNameViewResId[i]);
+                fishNameView.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "FUJIPOP.TTC"));
+                fishNameView.setText(zukans.get(fishId).getName());
+                //図鑑詳細画面に遷移リスナー
                 view.findViewById(zukanListItemResId[i]).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -95,28 +104,43 @@ public class ZukanListFragment extends Fragment {
                 });
             }
         }
+    }
 
+    public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
 
+        if (height > reqHeight || width > reqWidth) {
 
-        //1個目のコンテンツセット
-//        if(fishIds[0] != 0) {
-//            ImageButton image1 = (ImageButton) view.findViewById(R.id.zukan1 + i);
-//            //ボタンを表示
-//            image1.setVisibility(View.VISIBLE);
-//            //文字列から画像のdrawableのIDを取得する
-//            int imageId1 = getResources().getIdentifier(zukans.get(fishIds[0] - 1).getImageName(), "drawable", getActivity().getPackageName());
-//            //画像をImageViewにセットする
-//            image1.setImageResource(imageId1);
-//            image1.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Log.d("Test", getActivity() + "onClick: Zukanid = " + fishIds[0]);
-//                    Intent intent = new Intent(getActivity(), ZukanDetailActivity.class); //図鑑アクティビティにに飛ぶ処理
-//                    intent.putExtra("id", fishIds[0]);
-//                    getActivity().startActivityForResult(intent, RESULT_SUBACTIVITY);
-////                startActivity(intent);
-//                }
-//            });
-//        }
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) > reqHeight
+                    && (halfWidth / inSampleSize) > reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
+    }
+    public Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
+                                                         int reqWidth, int reqHeight) {
+
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(res, resId, options);
+
+        // Calculate inSampleSize
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeResource(res, resId, options);
     }
 }
