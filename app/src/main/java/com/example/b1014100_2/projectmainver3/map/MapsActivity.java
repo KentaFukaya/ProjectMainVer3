@@ -2,7 +2,6 @@ package com.example.b1014100_2.projectmainver3.map;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
-import android.graphics.Movie;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -11,23 +10,15 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.example.b1014100_2.projectmainver3.DesiginPattern.Iterator;
-import com.example.b1014100_2.projectmainver3.HomeActivity;
 import com.example.b1014100_2.projectmainver3.R;
 import com.example.b1014100_2.projectmainver3.movie.MovieActivity;
 import com.example.b1014100_2.projectmainver3.normalmovie.NormalMovieActivity;
-import com.example.b1014100_2.projectmainver3.zukan.ZukanActivity;
 import com.example.b1014100_2.projectmainver3.zukan.ZukanListActivity;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
