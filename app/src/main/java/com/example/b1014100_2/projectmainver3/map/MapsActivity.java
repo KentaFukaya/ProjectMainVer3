@@ -155,7 +155,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     c_Area = item.getArea_id();
                     c_Location = item.getLocation_id();
                 }
-
+                setMenu();
                 setCamera();
                 /*----------------check infowindow--------------------------*/
                 if (item.getLocation_id() != -1) {//choice infowindo
@@ -166,7 +166,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if (c_Location == -1 && c_marker.isInfoWindowShown())
                         c_marker.hideInfoWindow();
                 }
-                setMenu();
             }
         });
     }

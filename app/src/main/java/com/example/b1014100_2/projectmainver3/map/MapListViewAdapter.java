@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class MapListViewAdapter extends ArrayAdapter<MapData> {
     LayoutInflater mInflater;
     int area, location;
-
+    Typeface typeFace = Typeface.createFromAsset(getContext().getAssets(), "FUJIPOP.TTC");
     public MapListViewAdapter(Context context, ArrayList MapDates, int area, int loacrion) {
         super(context, 0, MapDates);
         mInflater = LayoutInflater.from(context);
@@ -32,33 +32,34 @@ public class MapListViewAdapter extends ArrayAdapter<MapData> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.activity_maps_list, parent, false);
-        }
-        MapData md = getItem(position);
-        if (md.getLocation_id() == -1) {//Area
-            convertView = mInflater.inflate(R.layout.activity_maps_list_area, parent, false);
-            //convertView.setBackgroundColor(Color.GREEN);
-            setClickColor(convertView, md);
-        } else {//location
-            convertView = mInflater.inflate(R.layout.activity_maps_list_location, parent, false);
-            if (md.getCheck360() == 1) {//360movei
-                convertView.setBackgroundColor(Color.RED);
-                setClickColor(convertView, md);
-            } else {//nomarmovie
-                convertView.setBackgroundColor(Color.BLUE);
-                setClickColor(convertView, md);
+            TextView tv;
+            MapData md = getItem(position);
+            if (md.getLocation_id() == -1) {//Area
+                convertView = mInflater.inflate(R.layout.activity_maps_list_area, parent, false);
+                tv = (TextView) convertView.findViewById(R.id.map_list_contents);
+                //convertView.setBackgroundColor(Color.GREEN);
+                setClickColor(convertView, md,tv);
+            } else {//location
+                convertView = mInflater.inflate(R.layout.activity_maps_list_location, parent, false);
+                tv = (TextView) convertView.findViewById(R.id.map_list_contents);
+                if (md.getCheck360() == 1) {//360movei
+                    convertView.setBackgroundColor(Color.RED);
+                    setClickColor(convertView, md ,tv);
+                } else {//nomarmovie
+                    convertView.setBackgroundColor(Color.BLUE);
+                    setClickColor(convertView, md,tv);
+                }
             }
+            tv.setTypeface(typeFace);
+            tv.setText(md.getName());
         }
-        TextView tv = (TextView) convertView.findViewById(R.id.contents);
-        //tv.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "FUJIPOP.TTC"));
-        tv.setText(md.getName());
         return convertView;
     }
 
-    public void setClickColor(View view, MapData mapData) {
+    public void setClickColor(View view, MapData mapData, TextView textView) {
         if (mapData.getArea_id() == area)
             if (mapData.getLocation_id() == -1) {// Clicked && Area
-                view.setBackgroundColor(Color.BLACK);
+                textView.setTextColor(Color.argb(187,51,181,229));
             } else if (mapData.getLocation_id() == location) {//clicked && location
                 if (mapData.getCheck360() == 1) {//360movei
                     view.setBackgroundColor(Color.BLACK);
