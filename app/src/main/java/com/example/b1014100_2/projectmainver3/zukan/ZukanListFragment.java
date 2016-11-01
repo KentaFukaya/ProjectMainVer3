@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,10 +67,6 @@ public class ZukanListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        for(int i = 0; i < 8; i++){
-           // Log.d("ZukanList", "onZukanListoncreateview: " + zukans.get(i).printall());
-        }
-//        View view = inflater.inflate(R.layout.fragment_zukan_list, null);
         View view = inflater.inflate(R.layout.fragment_zukan_list, null);
         setViews(view);
 
@@ -84,7 +79,6 @@ public class ZukanListFragment extends Fragment {
         for (i = 0; i < 8; i++) {
             if (fishIds[i] != 0) {
                 final int fishId = fishIds[i]-1;
-                Log.d("zukanalistfragment", "setViews: "+zukans.get(fishId).printall());
                 ImageView image = (ImageView) view.findViewById(zukanImgViewResId[i]);
                 //文字列から画像のdrawableのIDを取得する
                 int imageId = getResources().getIdentifier(zukans.get(fishId).getImageName(), "drawable", getActivity().getPackageName());

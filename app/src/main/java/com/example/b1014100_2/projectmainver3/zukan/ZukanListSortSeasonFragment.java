@@ -5,9 +5,11 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.example.b1014100_2.projectmainver3.R;
@@ -52,60 +54,35 @@ public class ZukanListSortSeasonFragment extends Fragment {
     }
 
     private void setButtons(){
-        //春ソートボタン
-        getActivity().findViewById(R.id.zukan_list_sort_season_spring).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (listener != null) {
-                    ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSeason(ZukanDatabase.SEASON_SPRING);
-                    ImageView imageView = ((ImageView) getActivity().findViewById(R.id.zukan_list_sort_unselected));
-                    imageView.setImageResource(R.drawable.zukan_list_sort_season_spring_sorted);
-                    // Activityにイベント通知
-                    listener.onZukanListSortFragmentChange();
-                }
-            }
-        });
+        final String[] season = {"spring", "summer", "fall", "winter"};
 
-        //夏ソートボタン
-        getActivity().findViewById(R.id.zukan_list_sort_season_summer).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (listener != null) {
-                    ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSeason(ZukanDatabase.SEASON_SUMMER);
-                    ImageView imageView = ((ImageView) getActivity().findViewById(R.id.zukan_list_sort_unselected));
-                    imageView.setImageResource(R.drawable.zukan_list_sort_season_summer_sorted);
-                    // Activityにイベント通知
-                    listener.onZukanListSortFragmentChange();
-                }
-            }
-        });
+        for (int i = 0; i < season.length; i++) {
+            final int index = i;
+            final String resViewName = "zukan_list_sort_season_" + season[index];
+            int viewId = getActivity().getResources().getIdentifier(resViewName, "id", getActivity().getPackageName());
+            final ImageButton imageButton = (ImageButton) getActivity().findViewById(viewId);
+            String selectedImageName = resViewName + "_sorted";
+            final int selectedImageId = getActivity().getResources().getIdentifier(selectedImageName, "drawable", getActivity().getPackageName());
 
-        //秋ソートボタン
-        getActivity().findViewById(R.id.zukan_list_sort_season_fall).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (listener != null) {
-                    ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSeason(ZukanDatabase.SEASON_FALL);
-                    ImageView imageView = ((ImageView) getActivity().findViewById(R.id.zukan_list_sort_unselected));
-                    imageView.setImageResource(R.drawable.zukan_list_sort_season_fall_sorted);
-                    // Activityにイベント通知
-                    listener.onZukanListSortFragmentChange();
-                }
+            //ソート条件になっているとき
+            if(ZukanListActivity.sortType == ZukanListActivity.TYPE_SEASON && i == ZukanListActivity.sortNo && selectedImageId != 0){
+                    imageButton.setImageResource(selectedImageId);
             }
-        });
+            imageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSeason(index);
+                    final int viewId = getActivity().getResources().getIdentifier(resViewName + "_sorted", "drawable", getActivity().getPackageName());
+                    ((ImageView) getActivity().findViewById(R.id.zukan_list_sort_unselected)).setImageResource(viewId);
+                    //ソート条件をセット
+                    ZukanListActivity.sortType = ZukanListActivity.TYPE_SEASON;
+                    ZukanListActivity.sortNo = index;
+                    imageButton.setImageResource(selectedImageId);
+                    //押されたときにActivityに通知
+                    if (listener != null) listener.onZukanListSortFragmentChange();
+                }
+            });
+        }
 
-        //冬ソートボタン
-        getActivity().findViewById(R.id.zukan_list_sort_season_winter).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (listener != null) {
-                    ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSeason(ZukanDatabase.SEASON_WINTER);
-                    ImageView imageView = ((ImageView) getActivity().findViewById(R.id.zukan_list_sort_unselected));
-                    imageView.setImageResource(R.drawable.zukan_list_sort_season_winter_sorted);
-                    // Activityにイベント通知
-                    listener.onZukanListSortFragmentChange();
-                }
-            }
-        });
     }
 }

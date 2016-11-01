@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -62,99 +63,31 @@ public class ZukanListSortSyllabaryFragment extends Fragment {
             final int index = i;
             final String resViewName = "zukan_list_sort_syllabary_" + syllabary[index];
             int viewId = getActivity().getResources().getIdentifier(resViewName, "id", getActivity().getPackageName());
-            Log.d("viewId", "setButtons: " + "viewId: " + viewId + " resViewName: " + resViewName);
-            getActivity().findViewById(viewId).setOnClickListener(new View.OnClickListener() {
+            final ImageButton imageButton = (ImageButton) getActivity().findViewById(viewId);
+            //selected
+            String selectedImageName = resViewName + "_sorted";
+            final int selectedImageId = getActivity().getResources().getIdentifier(selectedImageName, "drawable", getActivity().getPackageName());
+
+            //ソート条件になっているとき
+            if(ZukanListActivity.sortType == ZukanListActivity.TYPE_SYLLABARY && i == ZukanListActivity.sortNo && selectedImageId != 0){
+                    imageButton.setImageResource(selectedImageId);
+            }
+
+            imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSyllabary(syllabary[index]);
                     int viewId = getActivity().getResources().getIdentifier(resViewName + "_sorted", "drawable", getActivity().getPackageName());
                     ((ImageView) getActivity().findViewById(R.id.zukan_list_sort_unselected)).setImageResource(viewId);
+                    //ソート条件をセット
+                    ZukanListActivity.sortType = ZukanListActivity.TYPE_SYLLABARY;
+                    ZukanListActivity.sortNo = index;
+                    imageButton.setImageResource(selectedImageId);
+                    //押されたときにActivityに通知
                     if (listener != null) listener.onZukanListSortFragmentChange();
                 }
             });
         }
 
-
-
-//        //あ　ソート
-//        getActivity().findViewById(R.id.zukan_list_sort_syllabary_a).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSyllabary("あ");
-//                if (listener != null) listener.onZukanListSortFragmentChange();
-//            }
-//        });
-//        //か　ソート
-//        getActivity().findViewById(R.id.zukan_list_sort_syllabary_ka).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSyllabary("か");
-//                if (listener != null) listener.onZukanListSortFragmentChange();
-//            }
-//        });
-//        //さ　ソート
-//        getActivity().findViewById(R.id.zukan_list_sort_syllabary_sa).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSyllabary("さ");
-//                if (listener != null) listener.onZukanListSortFragmentChange();
-//            }
-//        });
-//        //た　ソート
-//        getActivity().findViewById(R.id.zukan_list_sort_syllabary_ta).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSyllabary("た");
-//                if (listener != null) listener.onZukanListSortFragmentChange();
-//            }
-//        });
-//        //な　ソート
-//        getActivity().findViewById(R.id.zukan_list_sort_syllabary_na).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSyllabary("な");
-//                if (listener != null) listener.onZukanListSortFragmentChange();
-//            }
-//        });
-//        //は　ソート
-//        getActivity().findViewById(R.id.zukan_list_sort_syllabary_ha).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSyllabary("は");
-//                if (listener != null) listener.onZukanListSortFragmentChange();
-//            }
-//        });
-//        //ま　ソート
-//        getActivity().findViewById(R.id.zukan_list_sort_syllabary_ma).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSyllabary("ま");
-//                if (listener != null) listener.onZukanListSortFragmentChange();
-//            }
-//        });
-//        //や　ソート
-//        getActivity().findViewById(R.id.zukan_list_sort_syllabary_ya).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSyllabary("や");
-//                if (listener != null) listener.onZukanListSortFragmentChange();
-//            }
-//        });
-//        //ら　ソート
-//        getActivity().findViewById(R.id.zukan_list_sort_syllabary_ra).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSyllabary("ら");
-//                if (listener != null) listener.onZukanListSortFragmentChange();
-//            }
-//        });
-//        //わ　ソート
-//        getActivity().findViewById(R.id.zukan_list_sort_syllabary_wa).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanSyllabary("わ");
-//                if (listener != null) listener.onZukanListSortFragmentChange();
-//            }
-//        });
     }
 }

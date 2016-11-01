@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.example.b1014100_2.projectmainver3.R;
@@ -57,21 +58,32 @@ public class ZukanListSortTypeFragment extends Fragment {
 
     private void setButtons() {
         final ArrayList<String> type_romajis = ZukanListActivity.type_romajis;
-        for (int i = 0; i < type_romajis.size(); i++) {
-            Log.d("typeromajis", "setButtons: " + "zukan_list_sort_type_" + type_romajis.get(i));
-        }
 
         for (int i = 0; i < type_romajis.size(); i++) {
             final int index = i;
             final String resViewName = "zukan_list_sort_type_" + type_romajis.get(index);
             int viewId = getActivity().getResources().getIdentifier(resViewName, "id", getActivity().getPackageName());
-            Log.d("viewId", "setButtons: " + "viewId: " + viewId + " resViewName: " + resViewName);
-            getActivity().findViewById(viewId).setOnClickListener(new View.OnClickListener() {
+            final ImageButton imageButton = (ImageButton) getActivity().findViewById(viewId);
+            //selected
+            String selectedImageName = resViewName + "_sorted";
+            final int selectedImageId = getActivity().getResources().getIdentifier(selectedImageName, "drawable", getActivity().getPackageName());
+
+            //ソート条件になっているとき
+            if(ZukanListActivity.sortType == ZukanListActivity.TYPE_TYPE && i == ZukanListActivity.sortNo && selectedImageId != 0){
+                imageButton.setImageResource(selectedImageId);
+            }
+
+            imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanType(type_romajis.get(index));
                     int viewId = getActivity().getResources().getIdentifier(resViewName + "_sorted", "drawable", getActivity().getPackageName());
                     ((ImageView) getActivity().findViewById(R.id.zukan_list_sort_unselected)).setImageResource(viewId);
+                    //ソート条件をセット
+                    ZukanListActivity.sortType = ZukanListActivity.TYPE_TYPE;
+                    ZukanListActivity.sortNo = index;
+                    imageButton.setImageResource(selectedImageId);
+                    //押されたときにActivityに通知
                     if (listener != null) listener.onZukanListSortFragmentChange();
                 }
             });

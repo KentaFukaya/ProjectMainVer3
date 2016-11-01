@@ -22,11 +22,19 @@ import java.util.ArrayList;
 
 public class ZukanListActivity extends AppCompatActivity implements ZukanListSortFragmentListener {
 
+    public final static int TYPE_SYLLABARY = 1;
+    public final static int TYPE_TYPE = 2;
+    public final static int TYPE_SEASON = 3;
+
     //QuizSQLiteOpenHelperで使う
     private static Context ctx;
     //表示する図鑑データ
     public static ArrayList<Zukan> zukans;
     public static ArrayList<String> type_romajis;
+
+    //ソート情報を保持
+    public static int sortType;
+    public static int sortNo;
 
     ViewPager viewPager;
     ZukanListFragmentPagerAdapter adapter;
@@ -42,6 +50,9 @@ public class ZukanListActivity extends AppCompatActivity implements ZukanListSor
         //図鑑を全て表示にする
         zukans = new ZukanDatabase(this).getZukanAll();
         type_romajis = new ZukanDatabase(this).getZukanListSortTypeRomajis();
+
+        sortType = 0;
+        sortNo = 0;
 
         setContentView(R.layout.activity_zukan_list);
         setViews();
@@ -79,14 +90,7 @@ public class ZukanListActivity extends AppCompatActivity implements ZukanListSor
         findViewById(R.id.zukan_list_sort_syllabary).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("syllabary", "onClick: ");
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.zukan_list_drawer_view, new ZukanListSortSyllabaryFragment());
-                fragmentTransaction.commit();
-
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.zukan_list_drawer_layout);
-                drawer.openDrawer(GravityCompat.END);
+                openSortDrawer(ZukanListSortSyllabaryFragment.newInstance());
             }
         });
 
@@ -94,7 +98,7 @@ public class ZukanListActivity extends AppCompatActivity implements ZukanListSor
         findViewById(R.id.zukan_list_sort_type).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openSortDrawer(new ZukanListSortTypeFragment());
+                openSortDrawer(ZukanListSortTypeFragment.newInstance());
             }
         });
 
@@ -102,7 +106,7 @@ public class ZukanListActivity extends AppCompatActivity implements ZukanListSor
         findViewById(R.id.zukan_list_sort_season).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openSortDrawer(new ZukanListSortSeasonFragment());
+                openSortDrawer(ZukanListSortSeasonFragment.newInstance());
             }
         });
 
