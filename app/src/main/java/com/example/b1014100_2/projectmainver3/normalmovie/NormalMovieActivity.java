@@ -34,7 +34,7 @@ import java.util.StringTokenizer;
 public class NormalMovieActivity extends Activity {
     AggregateMovieData movieDatas = new AggregateMovieData();
     int id;
-    String moviename;
+    String moviename, path;
     VideoView Vv;
     ImageButton nMovieback, nMoviereplay;
     ImageView nMoviebg;
@@ -65,15 +65,15 @@ public class NormalMovieActivity extends Activity {
 
         //make path
         int movie_R_Id = getResources().getIdentifier(moviename, "raw", getPackageName());//get R.raw."moviename"
-        String path = "android.resource://" + getPackageName() + "/" + movie_R_Id;
+        path = "android.resource://" + getPackageName() + "/" + movie_R_Id;
         Vv.setVideoURI(Uri.parse(path));
+        Vv.seekTo(400000);
         Vv.start();
 
         //movie finish listener
         Vv.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             public void onCompletion(MediaPlayer mp) {
                 Log.d("MoviePlayer:test", "moive FInfished");
-                Vv.seekTo(0);//初期位置に戻す
                 setReplayView(true);
             }
         });
@@ -190,6 +190,9 @@ public class NormalMovieActivity extends Activity {
             nMovieback.setVisibility(View.VISIBLE);
             nMoviebg.setVisibility(View.VISIBLE);
             Vv.setVisibility(View.VISIBLE);
+            Vv.seekTo(40000);
+            Vv.start();
+            Vv.pause();
         } else {
             nMoviereplay.setVisibility(View.INVISIBLE);
             nMovieback.setVisibility(View.INVISIBLE);
