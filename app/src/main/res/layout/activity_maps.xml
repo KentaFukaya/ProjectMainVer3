@@ -23,17 +23,30 @@
             android:scaleType="fitXY"
             android:src="@drawable/map_button_zukan" />
 
+        <!--<ImageButton-->
+            <!--android:id="@+id/map_areabutton"-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:layout_marginBottom="12dp"-->
+            <!--android:adjustViewBounds="true"-->
+            <!--android:background="@null"-->
+            <!--android:scaleType="fitXY"-->
+            <!--android:src="@drawable/map_button_test"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentStart="true" />-->
+
         <ImageButton
             android:id="@+id/map_areabutton"
             android:layout_width="144dp"
             android:layout_height="44dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="19dp"
             android:adjustViewBounds="true"
             android:background="@null"
             android:scaleType="fitXY"
-            android:src="@drawable/map_button_tiki" />
+            android:src="@drawable/map_button_tiki"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/map_tozukanbutton"
+            android:layout_alignParentStart="true" />
     </RelativeLayout>
 
     <!-- Side navigation drawer UI -->

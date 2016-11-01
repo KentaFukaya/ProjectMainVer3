@@ -35,9 +35,14 @@ public class MapListViewAdapter extends ArrayAdapter<MapData> {
             TextView tv;
             MapData md = getItem(position);
             if (md.getLocation_id() == -1) {//Area
-                convertView = mInflater.inflate(R.layout.activity_maps_list_area, parent, false);
+
+                if(position != 0)
+                    convertView = mInflater.inflate(R.layout.activity_maps_list_area, parent, false);
+                else
+                    convertView = mInflater.inflate(R.layout.activity_maps_list_area_first, parent, false);
+
                 tv = (TextView) convertView.findViewById(R.id.map_list_contents);
-                //convertView.setBackgroundColor(Color.GREEN);
+
                 setClickColor(convertView, md,tv);
             } else {//location
                 convertView = mInflater.inflate(R.layout.activity_maps_list_location, parent, false);
