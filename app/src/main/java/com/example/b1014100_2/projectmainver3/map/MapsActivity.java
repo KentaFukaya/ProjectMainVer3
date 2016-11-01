@@ -356,6 +356,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
         mAdapter = new MapListViewAdapter(this, MapDatas, c_Area, c_Location);
+        mDrawerList.setDivider(null);
         mDrawerList.setAdapter(mAdapter);
     }
 

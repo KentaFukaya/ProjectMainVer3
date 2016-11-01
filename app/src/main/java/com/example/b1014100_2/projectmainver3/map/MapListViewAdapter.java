@@ -37,7 +37,10 @@ public class MapListViewAdapter extends ArrayAdapter<MapData> {
             if (md.getLocation_id() == -1) {//Area
 
                 if(position != 0)
-                    convertView = mInflater.inflate(R.layout.activity_maps_list_area, parent, false);
+                    if(md.getName().length() == 3)
+                        convertView = mInflater.inflate(R.layout.activity_maps_list_area3, parent, false);
+                    else
+                        convertView = mInflater.inflate(R.layout.activity_maps_list_area2, parent, false);
                 else
                     convertView = mInflater.inflate(R.layout.activity_maps_list_area_first, parent, false);
 
@@ -48,7 +51,7 @@ public class MapListViewAdapter extends ArrayAdapter<MapData> {
                 convertView = mInflater.inflate(R.layout.activity_maps_list_location, parent, false);
                 tv = (TextView) convertView.findViewById(R.id.map_list_contents);
                 if (md.getCheck360() == 1) {//360movei
-                    convertView.setBackgroundColor(Color.RED);
+                    //convertView.setBackgroundColor(Color.RED);
                     setClickColor(convertView, md ,tv);
                 } else {//nomarmovie
                     convertView.setBackgroundColor(Color.BLUE);
