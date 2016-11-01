@@ -79,6 +79,8 @@ public class ZukanListFragment extends Fragment {
     }
 
     private void setViews(View view) {
+        String font = "noadd_FUJIPOP.TTC";
+
         for (i = 0; i < 8; i++) {
             if (fishIds[i] != 0) {
                 final int fishId = fishIds[i]-1;
@@ -91,7 +93,7 @@ public class ZukanListFragment extends Fragment {
                 image.setImageBitmap(decodeSampledBitmapFromResource(getResources(), imageId, 50, 50));
                 //魚の名前をセット
                 TextView fishNameView = (TextView) view.findViewById(zukanFishNameViewResId[i]);
-                fishNameView.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "FUJIPOP.TTC"));
+                fishNameView.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), font));
                 fishNameView.setText(zukans.get(fishId).getName());
                 //図鑑詳細画面に遷移リスナー
                 view.findViewById(zukanListItemResId[i]).setOnClickListener(new View.OnClickListener() {

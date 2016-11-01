@@ -3,8 +3,6 @@ package com.example.b1014100_2.projectmainver3.zukan;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -39,6 +37,8 @@ public class ZukanDetailActivity extends AppCompatActivity {
     }
 
     public void setViews(int fishId) {
+        String font = "noadd_FUJIPOP.TTC";
+
         Zukan zukan = ZukanListActivity.zukans.get(fishId);
         ImageView image = (ImageView) findViewById(R.id.zukan_detail_image);
         //文字列から画像のdrawableのIDを取得する
@@ -47,23 +47,23 @@ public class ZukanDetailActivity extends AppCompatActivity {
         image.setImageResource(imageId);
         //魚の名前セット
         TextView fishNameView = (TextView) findViewById(R.id.zukan_detail_fish_name);
-         fishNameView.setTypeface(Typeface.createFromAsset(getAssets(), "FUJIPOP.TTC"));
+         fishNameView.setTypeface(Typeface.createFromAsset(getAssets(), font));
         fishNameView.setText(zukan.getName());
         //魚の種類セット
         TextView fishTypeView = (TextView) findViewById(R.id.zukan_detail_fish_type);
-        fishTypeView.setTypeface(Typeface.createFromAsset(getAssets(), "FUJIPOP.TTC"));
+        fishTypeView.setTypeface(Typeface.createFromAsset(getAssets(), font));
         fishTypeView.setText(zukan.getType());
 //        ((TextView) findViewById(R.id.zukan_detail_fish_ka)).setText(zukan.getType());
         //魚の大きさセット
         TextView fishLengthView = (TextView) findViewById(R.id.zukan_detail_fish_length);
-        fishLengthView.setTypeface(Typeface.createFromAsset(getAssets(), "FUJIPOP.TTC"));
+        fishLengthView.setTypeface(Typeface.createFromAsset(getAssets(), font));
 //        ((TextView) findViewById(R.id.zukan_detail_fish_length)).setText(zukan.getLength() + "cm");
         fishLengthView.setText(zukan.getLength() + "cm");
         //説明文セット
         String hoge = zukan.getContent();
         hoge = hoge.replaceAll("\\\\n", "\n");
         TextView fishContentView = (TextView) findViewById(R.id.zukan_detail_fish_content);
-        fishContentView.setTypeface(Typeface.createFromAsset(getAssets(), "FUJIPOP.TTC"));
+        fishContentView.setTypeface(Typeface.createFromAsset(getAssets(), "noadd_FUJIPOP.TTC"));
         fishContentView.setText(hoge);
 //        ((TextView) findViewById(R.id.textView4)).setText(zukan.getContent());
 
