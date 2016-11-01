@@ -139,6 +139,8 @@ public class ZukanListActivity extends AppCompatActivity implements ZukanListSor
 
     private void clearZukans() {
         zukans = new ZukanDatabase(this).getZukanAll();
+        sortType = 0;
+        sortNo = 0;
     }
 
     //fragmentからのリスナーを受け取る
