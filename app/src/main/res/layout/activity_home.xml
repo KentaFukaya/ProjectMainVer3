@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/home_background"
     tools:context="com.example.b1014100_2.projectmainver3.HomeActivity">
-
     <ImageButton
         android:src="@drawable/home_divingbutton"
         android:scaleType="fitXY"
