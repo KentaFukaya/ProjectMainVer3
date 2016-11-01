@@ -1,6 +1,7 @@
 package com.example.b1014100_2.projectmainver3.zukan;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -45,17 +46,25 @@ public class ZukanDetailActivity extends AppCompatActivity {
         //画像をImageViewにセットする
         image.setImageResource(imageId);
         //魚の名前セット
-        ((TextView) findViewById(R.id.zukan_detail_fish_name)).setText(zukan.getName());
+        TextView fishNameView = (TextView) findViewById(R.id.zukan_detail_fish_name);
+         fishNameView.setTypeface(Typeface.createFromAsset(getAssets(), "FUJIPOP.TTC"));
+        fishNameView.setText(zukan.getName());
         //魚の種類セット
-        ((TextView) findViewById(R.id.textView2)).setText(zukan.getType());
+        TextView fishTypeView = (TextView) findViewById(R.id.zukan_detail_fish_type);
+        fishTypeView.setTypeface(Typeface.createFromAsset(getAssets(), "FUJIPOP.TTC"));
+        fishTypeView.setText(zukan.getType());
 //        ((TextView) findViewById(R.id.zukan_detail_fish_ka)).setText(zukan.getType());
         //魚の大きさセット
+        TextView fishLengthView = (TextView) findViewById(R.id.zukan_detail_fish_length);
+        fishLengthView.setTypeface(Typeface.createFromAsset(getAssets(), "FUJIPOP.TTC"));
 //        ((TextView) findViewById(R.id.zukan_detail_fish_length)).setText(zukan.getLength() + "cm");
-        ((TextView) findViewById(R.id.textView3)).setText(zukan.getLength() + "cm");
+        fishLengthView.setText(zukan.getLength() + "cm");
         //説明文セット
         String hoge = zukan.getContent();
         hoge = hoge.replaceAll("\\\\n", "\n");
-        ((TextView) findViewById(R.id.textView4)).setText(hoge);
+        TextView fishContentView = (TextView) findViewById(R.id.zukan_detail_fish_content);
+        fishContentView.setTypeface(Typeface.createFromAsset(getAssets(), "FUJIPOP.TTC"));
+        fishContentView.setText(hoge);
 //        ((TextView) findViewById(R.id.textView4)).setText(zukan.getContent());
 
     }

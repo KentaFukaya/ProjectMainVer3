@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -88,8 +89,11 @@ public class ZukanListFragment extends Fragment {
                 //画像をImageViewにセットする
 //                image.setImageResource(imageId);
                 image.setImageBitmap(decodeSampledBitmapFromResource(getResources(), imageId, 50, 50));
-                ((TextView) view.findViewById(zukanFishNameViewResId[i])).setText(zukans.get(fishId).getName());
-
+                //魚の名前をセット
+                TextView fishNameView = (TextView) view.findViewById(zukanFishNameViewResId[i]);
+                fishNameView.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "FUJIPOP.TTC"));
+                fishNameView.setText(zukans.get(fishId).getName());
+                //図鑑詳細画面に遷移リスナー
                 view.findViewById(zukanListItemResId[i]).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

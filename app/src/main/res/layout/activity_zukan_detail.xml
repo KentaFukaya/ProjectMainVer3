@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/zukan_detail_background_up"
-        android:id="@+id/imageView6"
+        android:id="@+id/zukan_detail_background_up"
         android:adjustViewBounds="true"
         android:scaleType="fitStart" />
 
@@ -27,7 +27,7 @@
         android:background="@android:color/holo_orange_dark"
         android:scaleType="fitXY"
         android:layout_marginBottom="10dp"
-        android:layout_alignBottom="@+id/imageView6" />
+        android:layout_alignBottom="@+id/zukan_detail_background_up" />
 
     <TextView
         android:text="カツオ"
@@ -36,30 +36,10 @@
         android:layout_toRightOf="@+id/zukan_detail_image"
         android:layout_below="@+id/zukan_detail_quiz_button"
         android:layout_marginLeft="65dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="10dp"
         android:textColor="@android:color/black"
         android:textSize="45sp"
         android:layout_height="55dp" />
-
-    <TextView
-        android:id="@+id/zukan_detail_fish_ka"
-        android:layout_alignStart="@+id/zukan_detail_fish_name"
-        android:layout_below="@+id/zukan_detail_fish_name"
-        android:layout_marginTop="35dp"
-        android:layout_width="115dp"
-        android:layout_height="35dp"
-        android:textColor="@android:color/black"
-        android:textSize="18sp" />
-
-    <TextView
-        android:layout_height="35dp"
-        android:id="@+id/zukan_detail_fish_length"
-        android:layout_alignTop="@+id/zukan_detail_fish_ka"
-        android:layout_toRightOf="@+id/zukan_detail_fish_ka"
-        android:layout_marginLeft="35dp"
-        android:textColor="@android:color/black"
-        android:textSize="24sp"
-        android:layout_width="90dp" />
 
     <ImageButton
         android:layout_width="140dp"
@@ -96,7 +76,7 @@
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/textView2"
+            android:id="@+id/zukan_detail_fish_type"
             android:layout_gravity="bottom"
             android:layout_marginTop="25dp"
             android:textSize="20sp"
@@ -106,7 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/zukan_detail_ruler"
-            android:id="@+id/imageView5"
+            android:id="@+id/zukanzukan_detail_ruler"
             android:adjustViewBounds="true"
             android:layout_marginTop="13dp"
             android:layout_marginStart="10dp"
@@ -117,7 +97,7 @@
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/textView3"
+            android:id="@+id/zukan_detail_fish_length"
             android:layout_gravity="bottom"
             android:layout_marginTop="25dp"
             android:textSize="20sp"
@@ -132,7 +112,7 @@
         android:id="@+id/imageView2"
         android:layout_alignParentEnd="false"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/imageView6"
+        android:layout_below="@+id/zukan_detail_background_up"
         android:adjustViewBounds="true"
         android:scaleType="fitXY" />
 
@@ -145,7 +125,7 @@
             android:text="TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView4"
+            android:id="@+id/zukan_detail_fish_content"
             android:textSize="18sp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp" />
