@@ -9,5 +9,5 @@
 .externalNativeBuild
 # add 2016 11 01 Kenta Fukaya
 # to ignore noadd_*
-app/src/main/assets/* 
-app/src/main/res/drawable/*
+app/src/main/assets/noadd_* 
+app/src/main/res/drawable/noadd_*
