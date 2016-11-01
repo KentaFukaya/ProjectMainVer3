@@ -26,6 +26,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -75,9 +76,8 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
     String moviename = "skyrim360.mp4";
     int id;
     AggregateMovieData movieDatas = new AggregateMovieData();
-    Button backButton;
-    Button replayButton;
-    RelativeLayout movieBg;
+    Button backButton, replayButton;
+    ImageView movieBg;
 
     /**
      * Creation and initalization of the Activitiy.
@@ -101,7 +101,7 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
 
         backButton = (Button) findViewById(R.id.movie_back_button);
         replayButton = (Button) findViewById(R.id.movie_replay_button);
-        movieBg = (RelativeLayout) findViewById(R.id.movie_bg);
+        movieBg = (ImageView) findViewById(R.id.movie_bg);
 
         _playButton.setOnClickListener(playListener);
         _stopButton.setOnClickListener(stopListener);

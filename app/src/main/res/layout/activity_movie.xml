@@ -71,10 +71,14 @@
             android:paddingTop="6dp" />
 
         <RelativeLayout
-            android:id="@+id/movie_bg"
-            android:background="@color/wallet_holo_blue_light"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/movie_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/movie_redive_haikei" />
 
             <Button
                 android:text="backtomap"
@@ -93,6 +97,7 @@
                 android:layout_alignEnd="@+id/movie_back_button"
                 android:layout_marginTop="45dp"
                 android:id="@+id/movie_replay_button" />
+
         </RelativeLayout>
     </RelativeLayout>
 
