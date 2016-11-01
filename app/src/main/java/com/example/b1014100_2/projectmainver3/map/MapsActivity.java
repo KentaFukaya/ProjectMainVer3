@@ -9,11 +9,13 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -67,6 +69,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     final float firstZoom = 4;
     double o_xcor = 32.713744363054765, o_ycor = 135.45937590301037;
     float o_zoom = 4;
+
+    ImageButton toZukanButton, InfoButton;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -88,13 +92,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ReadLocaitonCsv();
         ReadAreaCsv();
         /*--------------------------- slide menu ---------------------------*/
-        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.navList);
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.map_drawer_layout);
+        mDrawerList = (ListView) findViewById(R.id.map_navList);
         setMenu();
         /*---------------------------clicklistner---------------------------*/
 
-        Button toQuizbutton = (Button) findViewById(R.id.map_to_quiz_button);
-        toQuizbutton.setOnClickListener(new View.OnClickListener() {
+        toZukanButton = (ImageButton) findViewById(R.id.map_tozukanbutton);
+        toZukanButton.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    //押したときの動作
+                    toZukanButton.setImageResource(R.drawable.map_button_zukan_ontouch);
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    //離したときの動作
+                    toZukanButton.setImageResource(R.drawable.map_button_zukan);
+                }
+                return false; //trueにすると他のリスナーが呼ばれない
+            }
+        });
+        toZukanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplication(), ZukanListActivity.class); //ダイビングアクティビティに飛ぶ処理
@@ -102,7 +118,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        Button InfoButton = (Button) findViewById(R.id.map_getinfo);
+        InfoButton = (ImageButton) findViewById(R.id.map_areabutton);
+        InfoButton.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    //押したときの動作
+                    InfoButton.setImageResource(R.drawable.map_button_tiki_ontouch);
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    //離したときの動作
+                    InfoButton.setImageResource(R.drawable.map_button_tiki);
+                }
+                return false; //trueにすると他のリスナーが呼ばれない
+            }
+        });
         InfoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
