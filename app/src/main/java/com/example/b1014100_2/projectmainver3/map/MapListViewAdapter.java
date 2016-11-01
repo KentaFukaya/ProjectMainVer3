@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.b1014100_2.projectmainver3.R;
@@ -31,7 +32,6 @@ public class MapListViewAdapter extends ArrayAdapter<MapData> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
             TextView tv;
             MapData md = getItem(position);
             if (md.getLocation_id() == -1) {//Area
@@ -60,14 +60,16 @@ public class MapListViewAdapter extends ArrayAdapter<MapData> {
             }
             tv.setTypeface(typeFace);
             tv.setText(md.getName());
-        }
+
         return convertView;
     }
 
     public void setClickColor(View view, MapData mapData, TextView textView) {
         if (mapData.getArea_id() == area)
             if (mapData.getLocation_id() == -1) {// Clicked && Area
-                textView.setTextColor(Color.argb(187,51,181,229));
+                textView.setTextColor(Color.rgb(51,181,229));
+                ImageView imageView = (ImageView) view.findViewById(R.id.map_list_bg);
+                imageView.setImageResource(R.drawable.map_areabg_ontouch);
             } else if (mapData.getLocation_id() == location) {//clicked && location
                 if (mapData.getCheck360() == 1) {//360movei
                     view.setBackgroundColor(Color.BLACK);
