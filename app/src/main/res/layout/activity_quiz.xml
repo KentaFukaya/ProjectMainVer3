@@ -38,8 +38,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/quiz_kokuban"
-        android:layout_toEndOf="@+id/quiz_return_button"
-        android:layout_below="@+id/quiz_return_button">
+        android:layout_marginTop="48dp"
+        android:layout_marginLeft="100dp">
 
         <ImageView
             android:layout_width="70dp"
@@ -142,8 +142,7 @@
         android:layout_height="80dp"
         app:srcCompat="@drawable/quiz_hatena"
         android:id="@+id/quiz_hatena"
-        android:layout_below="@+id/quiz_return_button"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="20dp"/>
+        android:layout_alignTop="@+id/quiz_ika"
+        android:layout_marginTop="-60dp"/>
 
 </RelativeLayout>
