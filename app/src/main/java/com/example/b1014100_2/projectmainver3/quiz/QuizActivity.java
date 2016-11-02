@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.b1014100_2.projectmainver3.R;
 import com.example.b1014100_2.projectmainver3.zukan.ZukanActivity;
+import com.example.b1014100_2.projectmainver3.zukan.ZukanListActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,7 +34,7 @@ public class QuizActivity extends AppCompatActivity{
     private Quiz quiz;
     private String DB_NAME = "noadd_quizdata.db";
     private String TABLE_NAME = "quizdata";
-    private int DB_VERSION = 4;
+    private int DB_VERSION = 3;
     private String[] FROM = {"_id", "name", "question", "choice1", "choice2", "choice3", "answer", "comment", "image_name"};
     private String ORDER_BY = "_id" + " ASC";//並べる順
 
@@ -80,7 +81,7 @@ public class QuizActivity extends AppCompatActivity{
         // 魚の画像を設定
         ImageView image = (ImageView) findViewById(R.id.quiz_image);
         //文字列から画像のdrawableのIDを取得する
-        int imageId = getResources().getIdentifier(quiz.getImageName(), "drawable", this.getPackageName());
+        int imageId = getResources().getIdentifier(quiz.getImageName(), "drawable", getPackageName());
         image.setImageResource(imageId);
         // 問題文の設定
         TextView question = (TextView) findViewById(R.id.quiz_question);
@@ -156,8 +157,7 @@ public class QuizActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 // 図鑑画面に遷移
-                Intent intent = new Intent(QuizActivity.this, ZukanActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }
@@ -176,7 +176,7 @@ public class QuizActivity extends AppCompatActivity{
         }else{
             O_X.setText("不正解");
             ika.setImageResource(R.drawable.quiz_ika_sad);
-            maru_batsu.setImageResource(R.drawable.quiz_batsu);
+            maru_batsu.setImageResource(R.drawable.quiz_batsu2);
         }
         // 正解の選択肢の設定
         TextView answer = (TextView) findViewById(R.id.quiz_answer);

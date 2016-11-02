@@ -20,6 +20,7 @@ import com.example.b1014100_2.projectmainver3.DesiginPattern.Iterator;
 import com.example.b1014100_2.projectmainver3.R;
 import com.example.b1014100_2.projectmainver3.movie.MovieActivity;
 import com.example.b1014100_2.projectmainver3.normalmovie.NormalMovieActivity;
+import com.example.b1014100_2.projectmainver3.quiz.QuizActivity;
 import com.example.b1014100_2.projectmainver3.zukan.ZukanListActivity;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -210,12 +211,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 int clicked_check360 = aggregateMapLocation.getMapLocationAt(clicked_id).getCheck360();
                 Log.d("Map", "onMarkerClick:id =" + clicked_id + ", Name :" + marker.getTitle() +
                         ", Check360 : " + clicked_check360);
+
                 if (clicked_check360 == 1) {//start 360movie activity
                     intent = new Intent(getApplication(), MovieActivity.class);
                 } else {//start normal movie activity
                     intent = new Intent(getApplication(), NormalMovieActivity.class);
                 }
                 intent.putExtra("id", clicked_id);
+
+                if(clicked_id == 7) {
+                    intent = new Intent(getApplication(), QuizActivity.class);
+                    intent.putExtra("id", 1);
+                }
                 startActivity(intent);
             }
         });
