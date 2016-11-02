@@ -2,30 +2,24 @@ package com.example.b1014100_2.projectmainver3.map;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
-import android.graphics.Movie;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.example.b1014100_2.projectmainver3.DesiginPattern.Iterator;
-import com.example.b1014100_2.projectmainver3.HomeActivity;
 import com.example.b1014100_2.projectmainver3.R;
 import com.example.b1014100_2.projectmainver3.movie.MovieActivity;
 import com.example.b1014100_2.projectmainver3.normalmovie.NormalMovieActivity;
-import com.example.b1014100_2.projectmainver3.zukan.ZukanActivity;
 import com.example.b1014100_2.projectmainver3.zukan.ZukanListActivity;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -67,6 +61,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     final float firstZoom = 4;
     double o_xcor = 32.713744363054765, o_ycor = 135.45937590301037;
     float o_zoom = 4;
+
+    ImageButton toZukanButton, InfoButton;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -88,13 +84,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ReadLocaitonCsv();
         ReadAreaCsv();
         /*--------------------------- slide menu ---------------------------*/
-        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.navList);
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.map_drawer_layout);
+        mDrawerList = (ListView) findViewById(R.id.map_navList);
         setMenu();
         /*---------------------------clicklistner---------------------------*/
 
-        Button toQuizbutton = (Button) findViewById(R.id.map_to_quiz_button);
-        toQuizbutton.setOnClickListener(new View.OnClickListener() {
+        toZukanButton = (ImageButton) findViewById(R.id.map_tozukanbutton);
+        toZukanButton.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    //押したときの動作
+                    toZukanButton.setImageResource(R.drawable.map_button_zukan_ontouch);
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    //離したときの動作
+                    toZukanButton.setImageResource(R.drawable.map_button_zukan);
+                }
+                return false; //trueにすると他のリスナーが呼ばれない
+            }
+        });
+        toZukanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplication(), ZukanListActivity.class); //ダイビングアクティビティに飛ぶ処理
@@ -102,11 +110,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        Button InfoButton = (Button) findViewById(R.id.map_getinfo);
+        InfoButton = (ImageButton) findViewById(R.id.map_areabutton);
+        InfoButton.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    //押したときの動作
+                    InfoButton.setImageResource(R.drawable.map_button_tiki_ontouch);
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    //離したときの動作
+                    InfoButton.setImageResource(R.drawable.map_button_tiki);
+                }
+                return false; //trueにすると他のリスナーが呼ばれない
+            }
+        });
         InfoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("TEST Map", mMap.getCameraPosition().toString());
+                InfoButton.setImageResource(R.drawable.map_button_tiki);
                 drawer.openDrawer(Gravity.RIGHT);
             }
         });
@@ -136,7 +157,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     c_Area = item.getArea_id();
                     c_Location = item.getLocation_id();
                 }
-
+                setMenu();
                 setCamera();
                 /*----------------check infowindow--------------------------*/
                 if (item.getLocation_id() != -1) {//choice infowindo
@@ -147,7 +168,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if (c_Location == -1 && c_marker.isInfoWindowShown())
                         c_marker.hideInfoWindow();
                 }
-                setMenu();
             }
         });
     }
@@ -170,6 +190,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //remove polyline
         Polyline polyline = this.mMap.addPolyline(new PolylineOptions());
         polyline.remove();
+
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
@@ -310,8 +331,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             n_ycor = mapLocation.getYcor();
             n_zoom = o_zoom;
         }
-        //Log.d("TEST", "setCamera: xcor =" + n_xcor + ", ycor =" + n_ycor + ", n_zoom=" + n_zoom);
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(n_xcor, n_ycor), n_zoom), 1500, null);
+
+        int diff =  (int) Math.max(Math.abs(n_xcor-o_xcor),Math.abs(n_ycor -o_ycor));
+        Log.d("TEST", "setCamera: n_xcor =" + n_xcor + ", n_ycor =" + n_ycor + ", n_zoom=" + n_zoom);
+        Log.d("TEST", "setCamera: o_xcor =" + o_xcor + ", o_ycor =" + o_ycor + ", o_zoom=" + o_zoom);
+        Log.d("TEST", "setCamera: diff = " +diff);
+        if(diff == 0)
+            diff = 800;
+        else if(diff < 2)
+            diff = 1500;
+        else
+            diff = 2000;
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(n_xcor, n_ycor), n_zoom), diff, null);
         o_xcor = n_xcor;
         o_ycor = n_ycor;
         o_zoom = n_zoom;
@@ -322,7 +353,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ArrayList<MapData> MapDatas = new ArrayList<>();
         Iterator it_area = (Iterator) aggregateMapArea.Iterator();
         while (it_area.hasNext()) {
-            Log.d("TEST", "setMenu: i=" + i + ", c_area = " + c_Area + ", c_location=" + c_Location);
+            //Log.d("TEST", "setMenu: i=" + i + ", c_area = " + c_Area + ", c_location=" + c_Location);
             MapDatas.add(new MapData(i++, (MapArea) it_area.next()));
             if (c_Area != -1 && c_Area == i - 1) {
                 int n = 0;
@@ -336,6 +367,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
         mAdapter = new MapListViewAdapter(this, MapDatas, c_Area, c_Location);
+        mDrawerList.setDivider(null);
         mDrawerList.setAdapter(mAdapter);
     }
 

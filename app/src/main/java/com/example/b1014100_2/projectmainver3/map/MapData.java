@@ -11,6 +11,7 @@ public class MapData {
     private int check360;
     private double xcor, ycor;
     private float zoom;
+    private boolean checktouch;
 
     public MapData(int id, int location_id, MapLocation mapLocation) {
         this.id = id;
@@ -21,6 +22,7 @@ public class MapData {
         this.check360 = mapLocation.getCheck360();
         this.xcor = mapLocation.getXcor();
         this.ycor = mapLocation.getYcor();
+        this.checktouch = false;
     }
 
     public MapData(int id, MapArea mapArea) {
@@ -32,6 +34,7 @@ public class MapData {
         this.xcor = mapArea.getXcor();
         this.ycor = mapArea.getYcor();
         this.zoom = mapArea.getZoom();
+        this.checktouch = false;
     }
 
     /*getter*/
@@ -67,4 +70,9 @@ public class MapData {
         return zoom;
     }
 
+   public boolean getCheckTouch(){return  checktouch;}
+
+    public void setCheck360(boolean checktouch) {
+        this.checktouch = checktouch;
+    }
 }
