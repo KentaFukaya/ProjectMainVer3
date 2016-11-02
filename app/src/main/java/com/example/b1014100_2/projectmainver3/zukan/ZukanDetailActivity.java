@@ -21,7 +21,7 @@ public class ZukanDetailActivity extends AppCompatActivity {
         Log.d("fishid", "onCreate: " + intent.getIntExtra("id", 0));
         setContentView(R.layout.activity_zukan_detail);
         setViews(intent.getIntExtra("id", 0));
-        setButton();
+        setButton(intent.getIntExtra("id", 0));
     }
 
     @Override
@@ -53,23 +53,22 @@ public class ZukanDetailActivity extends AppCompatActivity {
         TextView fishTypeView = (TextView) findViewById(R.id.zukan_detail_fish_type);
         fishTypeView.setTypeface(Typeface.createFromAsset(getAssets(), font));
         fishTypeView.setText(zukan.getType());
-//        ((TextView) findViewById(R.id.zukan_detail_fish_ka)).setText(zukan.getType());
         //魚の大きさセット
         TextView fishLengthView = (TextView) findViewById(R.id.zukan_detail_fish_length);
         fishLengthView.setTypeface(Typeface.createFromAsset(getAssets(), font));
-//        ((TextView) findViewById(R.id.zukan_detail_fish_length)).setText(zukan.getLength() + "cm");
         fishLengthView.setText(zukan.getLength() + "cm");
         //説明文セット
         String hoge = zukan.getContent();
         hoge = hoge.replaceAll("\\\\n", "\n");
         TextView fishContentView = (TextView) findViewById(R.id.zukan_detail_fish_content);
-        fishContentView.setTypeface(Typeface.createFromAsset(getAssets(), "noadd_FUJIPOP.TTC"));
+        fishContentView.setTypeface(Typeface.createFromAsset(getAssets(), font));
         fishContentView.setText(hoge);
-//        ((TextView) findViewById(R.id.textView4)).setText(zukan.getContent());
 
     }
 
-    private void setButton() {
+    private void setButton(int fishIndex) {
+        final Zukan zukan = ZukanListActivity.zukans.get(fishIndex);
+
         //戻るボタン
         ImageButton buttonList = (ImageButton) findViewById(R.id.zukan_detail_back_button);
         buttonList.setOnClickListener(new View.OnClickListener() {
@@ -79,11 +78,16 @@ public class ZukanDetailActivity extends AppCompatActivity {
             }
         });
 
-        //戻るボタン
+        //クイズボタン
         ImageButton buttonListd = (ImageButton) findViewById(R.id.zukan_detail_quiz_button);
         buttonListd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Intent intent = new Intent(getApplication(), ZukanDetailActivity.class); //図鑑アクティビティにに飛ぶ処理
+                intent.putExtra("id", zukan.getId());
+                Log.d("zukandetailactivity", "onClick: zukanid:"+zukan.getId());
+//                startActivity(intent);
                 finish();
             }
         });

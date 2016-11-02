@@ -65,7 +65,7 @@ public class ZukanListSortTypeFragment extends Fragment {
             int viewId = getActivity().getResources().getIdentifier(resViewName, "id", getActivity().getPackageName());
             final ImageButton imageButton = (ImageButton) getActivity().findViewById(viewId);
             //selected
-            String selectedImageName = resViewName + "_sorted";
+            String selectedImageName = resViewName + "_sorted_list";
             final int selectedImageId = getActivity().getResources().getIdentifier(selectedImageName, "drawable", getActivity().getPackageName());
 
             //ソート条件になっているとき
@@ -76,13 +76,13 @@ public class ZukanListSortTypeFragment extends Fragment {
             imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    imageButton.setImageResource(selectedImageId);
                     ZukanListActivity.zukans = new ZukanDatabase(getActivity()).getZukanType(type_romajis.get(index));
                     int viewId = getActivity().getResources().getIdentifier(resViewName + "_sorted", "drawable", getActivity().getPackageName());
                     ((ImageView) getActivity().findViewById(R.id.zukan_list_sort_unselected)).setImageResource(viewId);
                     //ソート条件をセット
                     ZukanListActivity.sortType = ZukanListActivity.TYPE_TYPE;
                     ZukanListActivity.sortNo = index;
-                    imageButton.setImageResource(selectedImageId);
                     //押されたときにActivityに通知
                     if (listener != null) listener.onZukanListSortFragmentChange();
                 }

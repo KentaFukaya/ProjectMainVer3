@@ -61,7 +61,7 @@ public class ZukanListSortSeasonFragment extends Fragment {
             final String resViewName = "zukan_list_sort_season_" + season[index];
             int viewId = getActivity().getResources().getIdentifier(resViewName, "id", getActivity().getPackageName());
             final ImageButton imageButton = (ImageButton) getActivity().findViewById(viewId);
-            String selectedImageName = resViewName + "_sorted";
+            String selectedImageName = resViewName + "_sorted_list";
             final int selectedImageId = getActivity().getResources().getIdentifier(selectedImageName, "drawable", getActivity().getPackageName());
 
             //ソート条件になっているとき
