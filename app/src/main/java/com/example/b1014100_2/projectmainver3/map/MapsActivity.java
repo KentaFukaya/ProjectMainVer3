@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -126,6 +127,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 Log.d("TEST Map", mMap.getCameraPosition().toString());
+                InfoButton.setImageResource(R.drawable.map_button_tiki);
                 drawer.openDrawer(Gravity.RIGHT);
             }
         });
@@ -155,7 +157,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     c_Area = item.getArea_id();
                     c_Location = item.getLocation_id();
                 }
-
+                setMenu();
                 setCamera();
                 /*----------------check infowindow--------------------------*/
                 if (item.getLocation_id() != -1) {//choice infowindo
@@ -166,7 +168,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if (c_Location == -1 && c_marker.isInfoWindowShown())
                         c_marker.hideInfoWindow();
                 }
-                setMenu();
             }
         });
     }
@@ -355,6 +356,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
         mAdapter = new MapListViewAdapter(this, MapDatas, c_Area, c_Location);
+        mDrawerList.setDivider(null);
         mDrawerList.setAdapter(mAdapter);
     }
 
