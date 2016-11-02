@@ -5,16 +5,16 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.b1014100_2.projectmainver3.R;
-import com.example.b1014100_2.projectmainver3.zukan.ZukanActivity;
-import com.example.b1014100_2.projectmainver3.zukan.ZukanListActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,6 +25,7 @@ import java.util.Collections;
 public class QuizActivity extends AppCompatActivity{
 
     private Button choices[] = new Button[3];
+    private ImageButton re, re2;
     private ImageView O_img;
     private ImageView X_img;
     private AlphaAnimation O_Anime;
@@ -103,6 +104,9 @@ public class QuizActivity extends AppCompatActivity{
         choices[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                for(int i = 0; i < 3; i++){
+                    choices[i].setEnabled(false);
+                }
                 if(choices[0].getText().toString().equals(quiz.getAnswer()) || quiz.getId() == 7) {
                     // 正解演出
                     correct = true;
@@ -120,6 +124,9 @@ public class QuizActivity extends AppCompatActivity{
         choices[1].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                for(int i = 0; i < 3; i++){
+                    choices[i].setEnabled(false);
+                }
                 if(choices[1].getText().toString().equals(quiz.getAnswer()) || quiz.getId() == 7) {
                     // 正解演出
                     correct = true;
@@ -137,6 +144,9 @@ public class QuizActivity extends AppCompatActivity{
         choices[2].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                for(int i = 0; i < 3; i++){
+                    choices[i].setEnabled(false);
+                }
                 if(choices[2].getText().toString().equals(quiz.getAnswer()) || quiz.getId() == 7) {
                     // 正解演出
                     correct = true;
@@ -152,12 +162,24 @@ public class QuizActivity extends AppCompatActivity{
         });
 
         // 戻るボタンの設定
-        Button r = (Button) findViewById(R.id.quiz_return_button);
-        r.setOnClickListener(new View.OnClickListener() {
+        re = (ImageButton) findViewById(R.id.quiz_return_button);
+        re.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 図鑑画面に遷移
                 finish();
+            }
+        });
+        re.setOnTouchListener(new View.OnTouchListener(){
+            public boolean onTouch(View v, MotionEvent event){
+                if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                    //押したときの動作
+                    re.setImageResource(R.drawable.quiz_return_button_pressed);
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    //離したときの動作
+                    re.setImageResource(R.drawable.quiz_return_button);
+                }
+                return false; //trueにすると他のリスナーが呼ばれない
             }
         });
     }
@@ -176,7 +198,7 @@ public class QuizActivity extends AppCompatActivity{
         }else{
             O_X.setText("不正解");
             ika.setImageResource(R.drawable.quiz_ika_sad);
-            maru_batsu.setImageResource(R.drawable.quiz_batsu2);
+            maru_batsu.setImageResource(R.drawable.quiz_batsu);
         }
         // 正解の選択肢の設定
         TextView answer = (TextView) findViewById(R.id.quiz_answer);
@@ -185,13 +207,24 @@ public class QuizActivity extends AppCompatActivity{
         TextView comment = (TextView) findViewById(R.id.quiz_comment);
         comment.setText(quiz.getComment());
         // 戻るボタンの設定
-        Button r = (Button) findViewById(R.id.quiz_return_button2);
-        r.setOnClickListener(new View.OnClickListener() {
+        re2 = (ImageButton) findViewById(R.id.quiz_return_button2);
+        re2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 図鑑画面に遷移
-                Intent intent = new Intent(QuizActivity.this, ZukanActivity.class);
-                startActivity(intent);
+                finish();
+            }
+        });
+        re2.setOnTouchListener(new View.OnTouchListener(){
+            public boolean onTouch(View v, MotionEvent event){
+                if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                    //押したときの動作
+                    re2.setImageResource(R.drawable.quiz_return_button_pressed);
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    //離したときの動作
+                    re2.setImageResource(R.drawable.quiz_return_button);
+                }
+                return false; //trueにすると他のリスナーが呼ばれない
             }
         });
     }

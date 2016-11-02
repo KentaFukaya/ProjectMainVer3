@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/quiz_maru2"
+        app:srcCompat="@drawable/quiz_maru"
         android:layout_centerHorizontal="true"
         android:id="@+id/quiz_maru"
         android:layout_alignParentBottom="true"
@@ -19,18 +19,19 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/quiz_batsu2"
+        app:srcCompat="@drawable/quiz_batsu"
         android:layout_centerHorizontal="true"
         android:id="@+id/quiz_batsu"
         android:layout_alignParentBottom="true"
         android:translationZ="5dp" />
 
-    <Button
+    <ImageButton
         android:layout_width="140dp"
         android:layout_height="44dp"
-        android:background="@drawable/quiz_return_button"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/quiz_return_button"
         android:id="@+id/quiz_return_button" />
 
     <RelativeLayout
