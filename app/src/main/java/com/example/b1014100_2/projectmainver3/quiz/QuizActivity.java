@@ -31,7 +31,7 @@ public class QuizActivity extends AppCompatActivity{
     private boolean correct;
     // database関係
     private Quiz quiz;
-    private String DB_NAME = "quizdata.db";
+    private String DB_NAME = "noadd_quizdata.db";
     private String TABLE_NAME = "quizdata";
     private int DB_VERSION = 4;
     private String[] FROM = {"_id", "name", "question", "choice1", "choice2", "choice3", "answer", "comment", "image_name"};
@@ -44,8 +44,8 @@ public class QuizActivity extends AppCompatActivity{
 
         // 図鑑から魚の id か何かを取得し、対応するクイズを表示
         Intent intent = getIntent();
-        int id = intent.getIntExtra("ID", 0);
-        setQuiz(48);
+        int id = intent.getIntExtra("id", 0);
+        setQuiz(id);
 
         //アニメーションセット
         setAnime();
