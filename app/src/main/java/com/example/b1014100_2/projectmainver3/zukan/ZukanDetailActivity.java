@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.b1014100_2.projectmainver3.R;
+import com.example.b1014100_2.projectmainver3.quiz.QuizActivity;
 
 public class ZukanDetailActivity extends AppCompatActivity {
 
@@ -84,11 +85,11 @@ public class ZukanDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplication(), ZukanDetailActivity.class); //図鑑アクティビティにに飛ぶ処理
+                Intent intent = new Intent(getApplication(), QuizActivity.class); //図鑑アクティビティにに飛ぶ処理
                 intent.putExtra("id", zukan.getId());
                 Log.d("zukandetailactivity", "onClick: zukanid:"+zukan.getId());
-//                startActivity(intent);
-                finish();
+                startActivity(intent);
+//                finish();
             }
         });
     }

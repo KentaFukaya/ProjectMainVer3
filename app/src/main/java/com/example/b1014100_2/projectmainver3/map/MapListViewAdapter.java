@@ -33,6 +33,7 @@ public class MapListViewAdapter extends ArrayAdapter<MapData> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
             TextView tv;
+            ImageView imageView = null;
             MapData md = getItem(position);
             if (md.getLocation_id() == -1) {//Area
 
@@ -44,7 +45,7 @@ public class MapListViewAdapter extends ArrayAdapter<MapData> {
                 setClickColor(convertView, md);
             } else {//location
                 convertView = mInflater.inflate(R.layout.activity_maps_list_location, parent, false);
-                ImageView imageView = (ImageView) convertView.findViewById(R.id.map_list_bg);
+               imageView = (ImageView) convertView.findViewById(R.id.map_list_bg);
                 if (md.getCheck360() == 1) {//360movei
                     imageView.setImageResource(R.drawable.map_list_360);
                     setClickColor(convertView, md);
@@ -69,10 +70,10 @@ public class MapListViewAdapter extends ArrayAdapter<MapData> {
                 imageView.setImageResource(R.drawable.map_areabg_ontouch);
             } else if (mapData.getLocation_id() == location) {//clicked && location
                 if (mapData.getCheck360() == 1) {//360movei
-                    textView.setTextColor(Color.rgb(136, 136, 136));
+                    //textView.setTextColor(Color.rgb(136, 136, 136));
                     imageView.setImageResource(R.drawable.map_list_360_ontouch);
                 } else {//nomal movie
-                    textView.setTextColor(Color.rgb(136, 136, 136));
+                    //textView.setTextColor(Color.rgb(136, 136, 136));
                     imageView.setImageResource(R.drawable.map_list_normal_ontouch);
                 }
             }

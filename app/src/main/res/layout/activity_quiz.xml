@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/quiz_maru"
+        app:srcCompat="@drawable/quiz_maru2"
         android:layout_centerHorizontal="true"
         android:id="@+id/quiz_maru"
         android:layout_alignParentBottom="true"
@@ -19,15 +19,15 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/quiz_batsu"
+        app:srcCompat="@drawable/quiz_batsu2"
         android:layout_centerHorizontal="true"
         android:id="@+id/quiz_batsu"
         android:layout_alignParentBottom="true"
         android:translationZ="5dp" />
 
     <Button
-        android:layout_width="100dp"
-        android:layout_height="48dp"
+        android:layout_width="140dp"
+        android:layout_height="44dp"
         android:background="@drawable/quiz_return_button"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
@@ -38,8 +38,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/quiz_kokuban"
-        android:layout_toEndOf="@+id/quiz_return_button"
-        android:layout_below="@+id/quiz_return_button">
+        android:layout_marginTop="48dp"
+        android:layout_marginLeft="100dp">
 
         <ImageView
             android:layout_width="70dp"
@@ -142,8 +142,7 @@
         android:layout_height="80dp"
         app:srcCompat="@drawable/quiz_hatena"
         android:id="@+id/quiz_hatena"
-        android:layout_below="@+id/quiz_return_button"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="20dp"/>
+        android:layout_alignTop="@+id/quiz_ika"
+        android:layout_marginTop="-60dp"/>
 
 </RelativeLayout>
