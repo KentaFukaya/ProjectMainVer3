@@ -2,10 +2,12 @@ package com.example.b1014100_2.projectmainver3.map;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.b1014100_2.projectmainver3.R;
@@ -20,7 +22,7 @@ import java.util.ArrayList;
 public class MapListViewAdapter extends ArrayAdapter<MapData> {
     LayoutInflater mInflater;
     int area, location;
-
+    Typeface typeFace = Typeface.createFromAsset(getContext().getAssets(), "FUJIPOP.TTC");
     public MapListViewAdapter(Context context, ArrayList MapDates, int area, int loacrion) {
         super(context, 0, MapDates);
         mInflater = LayoutInflater.from(context);
@@ -30,39 +32,50 @@ public class MapListViewAdapter extends ArrayAdapter<MapData> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.activity_maps_list, parent, false);
-        }
-        MapData md = getItem(position);
-        if (md.getLocation_id() == -1) {//Area
-            convertView = mInflater.inflate(R.layout.activity_maps_list_area, parent, false);
-            convertView.setBackgroundColor(Color.GREEN);
-            setClickColor(convertView, md);
-        } else {//location
-            convertView = mInflater.inflate(R.layout.activity_maps_list_location, parent, false);
-            if (md.getCheck360() == 1) {//360movei
-                convertView.setBackgroundColor(Color.RED);
+            TextView tv;
+            MapData md = getItem(position);
+            if (md.getLocation_id() == -1) {//Area
+
+                if(position != 0)
+                        convertView = mInflater.inflate(R.layout.activity_maps_list_area, parent, false);
+                else
+                    convertView = mInflater.inflate(R.layout.activity_maps_list_area_first, parent, false);
+
                 setClickColor(convertView, md);
-            } else {//nomarmovie
-                convertView.setBackgroundColor(Color.BLUE);
-                setClickColor(convertView, md);
+            } else {//location
+                convertView = mInflater.inflate(R.layout.activity_maps_list_location, parent, false);
+                ImageView imageView = (ImageView) convertView.findViewById(R.id.map_list_bg);
+                if (md.getCheck360() == 1) {//360movei
+                    imageView.setImageResource(R.drawable.map_list_360);
+                    setClickColor(convertView, md);
+                } else {//nomarmovie
+                    imageView.setImageResource(R.drawable.map_list_normal);
+                    setClickColor(convertView, md);
+                }
             }
-        }
-        TextView tv = (TextView) convertView.findViewById(R.id.contents);
-        tv.setText(md.getName());
+            tv = (TextView) convertView.findViewById(R.id.map_list_contents);
+            tv.setTypeface(typeFace);
+            tv.setText(md.getName());
+
         return convertView;
     }
 
     public void setClickColor(View view, MapData mapData) {
-        if (mapData.getArea_id() == area)
+        if (mapData.getArea_id() == area) {
+            TextView textView = (TextView)view.findViewById(R.id.map_list_contents);
+            ImageView imageView = (ImageView) view.findViewById(R.id.map_list_bg);
             if (mapData.getLocation_id() == -1) {// Clicked && Area
-                view.setBackgroundColor(Color.BLACK);
+                textView.setTextColor(Color.rgb(51, 181, 229));
+                imageView.setImageResource(R.drawable.map_areabg_ontouch);
             } else if (mapData.getLocation_id() == location) {//clicked && location
                 if (mapData.getCheck360() == 1) {//360movei
-                    view.setBackgroundColor(Color.BLACK);
+                    textView.setTextColor(Color.rgb(136, 136, 136));
+                    imageView.setImageResource(R.drawable.map_list_360_ontouch);
                 } else {//nomal movie
-                    view.setBackgroundColor(Color.BLACK);
+                    textView.setTextColor(Color.rgb(136, 136, 136));
+                    imageView.setImageResource(R.drawable.map_list_normal_ontouch);
                 }
             }
+        }
     }
 }
