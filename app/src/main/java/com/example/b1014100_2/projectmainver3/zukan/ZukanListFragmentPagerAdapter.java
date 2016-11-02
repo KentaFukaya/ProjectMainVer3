@@ -23,8 +23,8 @@ public class ZukanListFragmentPagerAdapter extends FragmentStatePagerAdapter{
 
     @Override
     public Fragment getItem(int position) {
-        Log.d("TEST", "getItem: ");
-        return ZukanListFragment.newInstance(position);
+        Log.d("ZukanListFPagerA", "getItem: ");
+        return ZukanListFragment.newInstance(position, getPageSize());
     }
 
     @Override
