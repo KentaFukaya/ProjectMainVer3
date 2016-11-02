@@ -190,6 +190,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //remove polyline
         Polyline polyline = this.mMap.addPolyline(new PolylineOptions());
         polyline.remove();
+
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
@@ -330,8 +331,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             n_ycor = mapLocation.getYcor();
             n_zoom = o_zoom;
         }
-        //Log.d("TEST", "setCamera: xcor =" + n_xcor + ", ycor =" + n_ycor + ", n_zoom=" + n_zoom);
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(n_xcor, n_ycor), n_zoom), 1500, null);
+
+        int diff =  (int) Math.max(Math.abs(n_xcor-o_xcor),Math.abs(n_ycor -o_ycor));
+        Log.d("TEST", "setCamera: n_xcor =" + n_xcor + ", n_ycor =" + n_ycor + ", n_zoom=" + n_zoom);
+        Log.d("TEST", "setCamera: o_xcor =" + o_xcor + ", o_ycor =" + o_ycor + ", o_zoom=" + o_zoom);
+        Log.d("TEST", "setCamera: diff = " +diff);
+        if(diff == 0)
+            diff = 800;
+        else if(diff < 2)
+            diff = 1500;
+        else
+            diff = 2000;
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(n_xcor, n_ycor), n_zoom), diff, null);
         o_xcor = n_xcor;
         o_ycor = n_ycor;
         o_zoom = n_zoom;
