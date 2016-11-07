@@ -14,8 +14,6 @@
         android:id="@+id/zukan_list_sort_season_spring"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -26,8 +24,6 @@
         android:id="@+id/zukan_list_sort_season_summer"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -38,8 +34,6 @@
         android:id="@+id/zukan_list_sort_season_fall"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -50,8 +44,6 @@
         android:id="@+id/zukan_list_sort_season_winter"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
 </LinearLayout>
