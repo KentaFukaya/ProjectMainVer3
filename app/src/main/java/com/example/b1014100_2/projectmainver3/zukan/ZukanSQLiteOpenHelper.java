@@ -13,9 +13,9 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 class ZukanSQLiteOpenHelper extends SQLiteOpenHelper {
 
-    static final String DB_NAME = "zukans.db";
+    static final String DB_NAME = "noadd_zukans.db";
     static final String TABLE_NAME = "fish";
-    static final int DB_VERSION = 1;
+    static final int DB_VERSION = 3 ;
 
     static final String CREATE_TABLE = "create table " + TABLE_NAME + "( " +
             "_id integer primary key not null, " +

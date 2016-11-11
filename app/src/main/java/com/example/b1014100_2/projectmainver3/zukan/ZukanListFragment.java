@@ -39,11 +39,12 @@ public class ZukanListFragment extends Fragment {
 
     private ArrayList<Zukan> zukans;
 
-    public static ZukanListFragment newInstance(int page) {
+    public static ZukanListFragment newInstance(int page, int finalPage) {
         //page数をBundleに詰める
         ZukanListFragment fragment = new ZukanListFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("page", page);
+        bundle.putInt("final_page", finalPage);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -75,6 +76,14 @@ public class ZukanListFragment extends Fragment {
 
     private void setViews(View view) {
         String font = "noadd_FUJIPOP.TTC";
+        //最初のページの時、前へ見えなくする
+        if(getArguments().getInt("page") == 0){
+            view.findViewById(R.id.zukan_list_prev).setVisibility(View.INVISIBLE);
+        }
+        //最後のページの時、次へ見えなくする
+        if(getArguments().getInt("page") == getArguments().getInt("final_page") - 1){
+            view.findViewById(R.id.zukan_list_next).setVisibility(View.INVISIBLE);
+        }
 
         for (i = 0; i < 8; i++) {
             if (fishIds[i] != 0) {

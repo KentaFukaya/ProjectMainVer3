@@ -194,4 +194,22 @@
 
 
 </android.support.percent.PercentRelativeLayout>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/zukan_list_prev"
+        android:id="@+id/zukan_list_prev"
+        android:adjustViewBounds="true"
+        android:layout_alignParentBottom="true" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/zukan_list_next"
+        android:id="@+id/zukan_list_next"
+        android:adjustViewBounds="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="50dp" />
 </RelativeLayout>
