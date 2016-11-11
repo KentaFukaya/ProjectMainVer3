@@ -219,10 +219,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
                 intent.putExtra("id", clicked_id);
 
-                if(clicked_id == 7) {
-                    intent = new Intent(getApplication(), QuizActivity.class);
-                    intent.putExtra("id", 1);
-                }
                 startActivity(intent);
             }
         });
