@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,10 +80,24 @@ public class ZukanListFragment extends Fragment {
         //最初のページの時、前へ見えなくする
         if(getArguments().getInt("page") == 0){
             view.findViewById(R.id.zukan_list_prev).setVisibility(View.INVISIBLE);
+        }else{
+            view.findViewById(R.id.zukan_list_prev).setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+//                    moveViewPager(-1);
+                }
+            });
         }
         //最後のページの時、次へ見えなくする
         if(getArguments().getInt("page") == getArguments().getInt("final_page") - 1){
             view.findViewById(R.id.zukan_list_next).setVisibility(View.INVISIBLE);
+        }else{
+            view.findViewById(R.id.zukan_list_next).setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+//                    moveViewPager(1);
+                }
+            });
         }
 
         for (i = 0; i < 8; i++) {
@@ -109,6 +124,13 @@ public class ZukanListFragment extends Fragment {
                 });
             }
         }
+    }
+
+    //ボタンを押したときにviewpagerの移動
+    //iは、1で進む、-1で戻る
+    private void moveViewPager(int i){
+        ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.zukan_list_viewpager);
+        viewPager.setCurrentItem(viewPager.getCurrentItem() + i);
     }
 
     public static int calculateInSampleSize(
