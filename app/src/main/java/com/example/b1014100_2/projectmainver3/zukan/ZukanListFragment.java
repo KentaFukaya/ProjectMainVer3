@@ -84,7 +84,7 @@ public class ZukanListFragment extends Fragment {
             view.findViewById(R.id.zukan_list_prev).setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
-//                    moveViewPager(-1);
+                    moveViewPager(-1);
                 }
             });
         }
@@ -95,7 +95,7 @@ public class ZukanListFragment extends Fragment {
             view.findViewById(R.id.zukan_list_next).setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
-//                    moveViewPager(1);
+                    moveViewPager(1);
                 }
             });
         }
