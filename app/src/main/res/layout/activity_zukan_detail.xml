@@ -136,7 +136,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/zukan_detail_fish_content"
                 android:textSize="18sp"
-                android:background="@drawable/dotted_line"
+                android:background="@drawable/zukan_deatil_dotted_square"
                 android:padding="10dp" />
 
         </FrameLayout>
