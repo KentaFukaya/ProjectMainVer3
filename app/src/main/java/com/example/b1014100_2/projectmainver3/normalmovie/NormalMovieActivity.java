@@ -88,6 +88,7 @@ public class NormalMovieActivity extends Activity {
         File dir = new File(path+"/Movies/"+moviename);
         video = new File(dir.getAbsolutePath()+"/"+moviename+random+".mp4");
         Log.d("NormalMovieActivity", "onCreate: dir ="+dir.toString()+", exisits = "+dir.exists() + ", video = "+video.toString()+", exisits = "+video.exists()+", mount ="+ getExternalStorageState());
+
         while(!video.exists())
             random = Random(id);
         Vv.setVideoPath(video.toString());
