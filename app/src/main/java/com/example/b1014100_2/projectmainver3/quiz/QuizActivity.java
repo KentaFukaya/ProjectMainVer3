@@ -3,11 +3,12 @@ package com.example.b1014100_2.projectmainver3.quiz;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -26,11 +27,13 @@ public class QuizActivity extends AppCompatActivity{
 
     private Button choices[] = new Button[3];
     private ImageButton re, re2;
-    private ImageView O_img;
-    private ImageView X_img;
-    private AlphaAnimation O_Anime;
-    private AlphaAnimation X_Anime;
     private boolean correct;
+    private QuizO quiz_O;
+    private QuizX quiz_X;
+    private QuizOAnimation animeO;
+    private QuizXAnimation animeX;
+    protected AttributeSet as = null;
+    protected QuizActivity activity;
     // database関係
     private Quiz quiz;
     private String DB_NAME = "noadd_quizdata.db";
@@ -49,15 +52,7 @@ public class QuizActivity extends AppCompatActivity{
         int id = intent.getIntExtra("id", 0);
         setQuiz(id);
 
-        //アニメーションセット
-        setAnime();
-
-        //正解　画像セット
-        O_img = (ImageView) findViewById(R.id.quiz_maru);
-        O_img.setVisibility(View.GONE);
-        //不正解　画像セット
-        X_img = (ImageView) findViewById(R.id.quiz_batsu);
-        X_img.setVisibility(View.GONE);
+        activity = this;
     }
 
     // i問目のクイズを取得
@@ -94,6 +89,7 @@ public class QuizActivity extends AppCompatActivity{
         list.add(quiz.getChoice3());
         // リストの並びをシャッフルします。
         Collections.shuffle(list);
+
         choices[0] = (Button) findViewById(R.id.quiz_choice1);
         choices[0].setText(list.get(0));
         choices[1] = (Button) findViewById(R.id.quiz_choice2);
@@ -101,23 +97,43 @@ public class QuizActivity extends AppCompatActivity{
         choices[2] = (Button) findViewById(R.id.quiz_choice3);
         choices[2].setText(list.get(2));
 
+        quiz_O = (QuizO) findViewById(R.id.quiz_O);
+        quiz_X = (QuizX) findViewById(R.id.quiz_X);
+
         choices[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 for(int i = 0; i < 3; i++){
                     choices[i].setEnabled(false);
                 }
+                // 7問目はすべて正解
                 if(choices[0].getText().toString().equals(quiz.getAnswer()) || quiz.getId() == 7) {
                     // 正解演出
                     correct = true;
-                    O_img.setVisibility(View.VISIBLE);
-                    O_img.startAnimation(O_Anime);
+                    // アニメーションセット
+                    setAnime();
+                    quiz_O.startAnimation(animeO);
                 }else{
                     // 不正解演出
                     correct = false;
-                    X_img.setVisibility(View.VISIBLE);
-                    X_img.startAnimation(X_Anime);
+                    // アニメーションセット
+                    setAnime();
+                    quiz_X.startAnimation(animeX);
                 }
+            }
+        });
+        choices[0].setOnTouchListener(new View.OnTouchListener(){
+            public boolean onTouch(View v, MotionEvent event){
+                if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                    //押したときの動作
+                    choices[0].setBackgroundResource(R.drawable.quiz_sentakushi_push);
+                    choices[0].setTextColor(Color.rgb(245,124,0));
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    //離したときの動作
+                    choices[0].setBackgroundResource(R.drawable.quiz_sentakushi);
+                    choices[0].setTextColor(Color.rgb(255,255,255));
+                }
+                return false; //trueにすると他のリスナーが呼ばれない
             }
         });
 
@@ -130,14 +146,30 @@ public class QuizActivity extends AppCompatActivity{
                 if(choices[1].getText().toString().equals(quiz.getAnswer()) || quiz.getId() == 7) {
                     // 正解演出
                     correct = true;
-                    O_img.setVisibility(View.VISIBLE);
-                    O_img.startAnimation(O_Anime);
+                    // アニメーションセット
+                    setAnime();
+                    quiz_O.startAnimation(animeO);
                 }else{
                     // 不正解演出
                     correct = false;
-                    X_img.setVisibility(View.VISIBLE);
-                    X_img.startAnimation(X_Anime);
+                    // アニメーションセット
+                    setAnime();
+                    quiz_X.startAnimation(animeX);
                 }
+            }
+        });
+        choices[1].setOnTouchListener(new View.OnTouchListener(){
+            public boolean onTouch(View v, MotionEvent event){
+                if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                    //押したときの動作
+                    choices[1].setBackgroundResource(R.drawable.quiz_sentakushi_push);
+                    choices[1].setTextColor(Color.rgb(245,124,0));
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    //離したときの動作
+                    choices[1].setBackgroundResource(R.drawable.quiz_sentakushi);
+                    choices[1].setTextColor(Color.rgb(255,255,255));
+                }
+                return false; //trueにすると他のリスナーが呼ばれない
             }
         });
 
@@ -150,14 +182,30 @@ public class QuizActivity extends AppCompatActivity{
                 if(choices[2].getText().toString().equals(quiz.getAnswer()) || quiz.getId() == 7) {
                     // 正解演出
                     correct = true;
-                    O_img.setVisibility(View.VISIBLE);
-                    O_img.startAnimation(O_Anime);
+                    // アニメーションセット
+                    setAnime();
+                    quiz_O.startAnimation(animeO);
                 }else{
                     // 不正解演出
                     correct = false;
-                    X_img.setVisibility(View.VISIBLE);
-                    X_img.startAnimation(X_Anime);
+                    // アニメーションセット
+                    setAnime();
+                    quiz_X.startAnimation(animeX);
                 }
+            }
+        });
+        choices[2].setOnTouchListener(new View.OnTouchListener(){
+            public boolean onTouch(View v, MotionEvent event){
+                if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                    //押したときの動作
+                    choices[2].setBackgroundResource(R.drawable.quiz_sentakushi_push);
+                    choices[2].setTextColor(Color.rgb(245,124,0));
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    //離したときの動作
+                    choices[2].setBackgroundResource(R.drawable.quiz_sentakushi);
+                    choices[2].setTextColor(Color.rgb(255,255,255));
+                }
+                return false; //trueにすると他のリスナーが呼ばれない
             }
         });
 
@@ -174,17 +222,17 @@ public class QuizActivity extends AppCompatActivity{
             public boolean onTouch(View v, MotionEvent event){
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
                     //押したときの動作
-                    re.setImageResource(R.drawable.quiz_return_button_pressed);
+                    re.setImageResource(R.drawable.zukan_list_back_button_pressed);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     //離したときの動作
-                    re.setImageResource(R.drawable.quiz_return_button);
+                    re.setImageResource(R.drawable.zukan_list_back_button);
                 }
                 return false; //trueにすると他のリスナーが呼ばれない
             }
         });
     }
 
-    private void setResult(){
+    protected void setResult(){
         // result画面に変更
         setContentView(R.layout.activity_quiz2);
         // 正解・不正解の設定
@@ -219,10 +267,10 @@ public class QuizActivity extends AppCompatActivity{
             public boolean onTouch(View v, MotionEvent event){
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
                     //押したときの動作
-                    re2.setImageResource(R.drawable.quiz_return_button_pressed);
+                    re2.setImageResource(R.drawable.zukan_list_back_button_pressed);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     //離したときの動作
-                    re2.setImageResource(R.drawable.quiz_return_button);
+                    re2.setImageResource(R.drawable.zukan_list_back_button);
                 }
                 return false; //trueにすると他のリスナーが呼ばれない
             }
@@ -231,37 +279,54 @@ public class QuizActivity extends AppCompatActivity{
 
     private void setAnime() {
         //正解アニメーション
-        O_Anime = new AlphaAnimation(0, 1);
-        O_Anime.setDuration(1000);
-        O_Anime.setAnimationListener(new Animation.AnimationListener() {
+        animeO = new QuizOAnimation(quiz_O, 360);
+        // アニメーションの起動期間を設定
+        animeO.setDuration(1000);
+        animeO.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
+
             }
-            //表示され終わったとき
+
             @Override
             public void onAnimationEnd(Animation animation) {
-                setResult();
+                try{
+                    Thread.sleep(400);
+                }catch(InterruptedException e){
+                }finally{
+                    setResult();
+                }
             }
+
             @Override
             public void onAnimationRepeat(Animation animation) {
+
             }
         });
         //不正解アニメーション
-        X_Anime = new AlphaAnimation(0, 1);
-        X_Anime.setDuration(1000);
-        X_Anime.setAnimationListener(new Animation.AnimationListener() {
+        animeX = new QuizXAnimation(quiz_X, quiz_X.getPositionX1() + 2 * quiz_X.radius, quiz_X.getPositionY1() + 2 * quiz_X.radius, quiz_X.getPositionX2() - 2 * quiz_X.radius, quiz_X.getPositionY2() + 2 * quiz_X.radius);
+        // アニメーションの起動期間を設定
+        animeX.setDuration(1000);
+        animeX.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
+
             }
-            //表示され終わったとき
+
             @Override
             public void onAnimationEnd(Animation animation) {
-                setResult();
+                try{
+                    Thread.sleep(400);
+                }catch(InterruptedException e){
+                }finally{
+                    setResult();
+                }
             }
+
             @Override
             public void onAnimationRepeat(Animation animation) {
+
             }
         });
     }
-
 }

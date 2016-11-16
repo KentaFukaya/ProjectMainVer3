@@ -12,7 +12,7 @@
         android:adjustViewBounds="true"
         android:background="@null"
         android:scaleType="fitXY"
-        android:src="@drawable/quiz_return_button"
+        android:src="@drawable/zukan_list_back_button"
         android:id="@+id/quiz_return_button2" />
 
     <RelativeLayout
