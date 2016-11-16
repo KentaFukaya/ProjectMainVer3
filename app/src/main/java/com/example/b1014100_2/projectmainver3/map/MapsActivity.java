@@ -87,6 +87,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         /*--------------------------- slide menu ---------------------------*/
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.map_drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.map_navList);
+        mDrawerList.setOverScrollMode(View.OVER_SCROLL_NEVER);
+
         setMenu();
         /*---------------------------clicklistner---------------------------*/
 
@@ -219,10 +221,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
                 intent.putExtra("id", clicked_id);
 
-                if(clicked_id == 7) {
-                    intent = new Intent(getApplication(), QuizActivity.class);
-                    intent.putExtra("id", 1);
-                }
                 startActivity(intent);
             }
         });

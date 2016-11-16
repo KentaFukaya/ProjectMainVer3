@@ -15,6 +15,7 @@ import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -42,6 +43,7 @@ import com.panframe.android.lib.PFObjectFactory;
 import com.panframe.android.lib.PFView;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -71,7 +73,8 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
     Button testbutton;
     //add 2016 10 03 Kenta Fukaya
     String moviename = "skyrim360.mp4";
-    int id;
+    String moviepath;
+    int id,random;
     AggregateMovieData movieDatas = new AggregateMovieData();
     ImageButton backButton, replayButton;
     ImageView movieBg;
@@ -123,7 +126,7 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
         _scrubber.setEnabled(false);
 
         setReplayView(false);//set INVISIBLE
-        showControls(true);//set moviemenu VISBE
+        showControls(false);//set moviemenu VISBE
 
         //add 2016 10 03 Kenta Fukaya
         Intent intent = getIntent();
@@ -133,13 +136,21 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
         //select movie name at random
         ReadMovieCsv();
         moviename = movieDatas.getMovieDataAt(id).getMovieName();
-        Log.d("TEST", "onCreate: MovieName is  " + movieDatas.getMovieDataAt(id).getMovieName() + ",random = " + Random(id));
+        moviename = moviename.substring(0,moviename.length() -4);
+        random  = Random(id);
+        Log.d("TEST", "onCreate: MovieName is  " +moviename + ",random = " + Random(id));
         SaveMovieCsv();
 
+        String path = Environment.getExternalStorageDirectory().getPath();
+        File dir = new File(path+"/Movies/"+moviename);
+        File video = new File(dir.getAbsolutePath()+"/"+moviename+random+".mp4");
+        if(!video.exists())
+            random = 1;
+
+        Log.d("movieActivity", "onCreate: video = "+video.getPath()+", exsist =" + video.exists());
+        moviepath = video.getPath();
         //auto start
-        if (_pfasset == null)
-            loadVideo("file:///android_asset/" + moviename);
-        _pfasset.play();
+            loadVideo(moviepath);
     }
 
 
@@ -201,6 +212,9 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
         hp2.setClickListener(this);
         */
         _frameContainer.addView(_pfview.getView(), 0);
+        _pfasset.setPLaybackTime(0);
+        _updateThumb = false;
+        _pfasset.play();
 
     }
 
@@ -286,7 +300,7 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
         public void onClick(View v) {
 
             if (_pfasset == null)
-                loadVideo("file:///android_asset/" + moviename);
+                loadVideo(moviepath);
 
             if (_pfasset.getStatus() == PFAssetStatus.PLAYING) {
                 _pfasset.pause();
@@ -390,6 +404,9 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
      */
     public void onStopTrackingTouch(SeekBar seekbar) {
         _pfasset.setPLaybackTime(seekbar.getProgress());
+        _pfasset.setPLaybackTime(0);
+
+        Log.d("test", "onStopTrackingTouch: ON");
         _updateThumb = true;
     }
 
@@ -516,7 +533,7 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
             min++;
         md.setWatchbynumber(min % md.getMax());
         //Log.d("TEST", "Random: id="+id+",return ="+min%md.getMax());
-        return min % md.getMax();
+        return min % md.getMax() + 1;
     }
 
     public void setReplayView(boolean check) {

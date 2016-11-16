@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,11 +42,12 @@ public class ZukanListFragment extends Fragment {
 
     private ArrayList<Zukan> zukans;
 
-    public static ZukanListFragment newInstance(int page) {
+    public static ZukanListFragment newInstance(int page, int finalPage) {
         //page数をBundleに詰める
         ZukanListFragment fragment = new ZukanListFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("page", page);
+        bundle.putInt("final_page", finalPage);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -75,6 +79,34 @@ public class ZukanListFragment extends Fragment {
 
     private void setViews(View view) {
         String font = "noadd_FUJIPOP.TTC";
+        //最初のページの時、前へ見えなくする
+        if(getArguments().getInt("page") == 0){
+            view.findViewById(R.id.zukan_list_prev).setVisibility(View.INVISIBLE);
+        }else{
+            view.findViewById(R.id.zukan_list_prev).setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    moveViewPager(-1);
+                }
+            });
+        }
+        //最後のページの時、次へ見えなくする
+        if(getArguments().getInt("page") == getArguments().getInt("final_page") - 1){
+            view.findViewById(R.id.zukan_list_next).setVisibility(View.INVISIBLE);
+        }else{
+            view.findViewById(R.id.zukan_list_next).setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    moveViewPager(1);
+                }
+            });
+        }
+
+        //ページ数表示
+        TextView pageNumber = (TextView) view.findViewById(R.id.zukan_list_page_number);
+        pageNumber.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), font));
+        pageNumber.setText(getArguments().getInt("page")+1+"/"+getArguments().getInt("final_page"));
+
 
         for (i = 0; i < 8; i++) {
             if (fishIds[i] != 0) {
@@ -88,6 +120,8 @@ public class ZukanListFragment extends Fragment {
                 //魚の名前をセット
                 TextView fishNameView = (TextView) view.findViewById(zukanFishNameViewResId[i]);
                 fishNameView.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), font));
+                fishNameView.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
+                fishNameView.setTextColor(Color.BLACK);
                 fishNameView.setText(zukans.get(fishId).getName());
                 //図鑑詳細画面に遷移リスナー
                 view.findViewById(zukanListItemResId[i]).setOnClickListener(new View.OnClickListener() {
@@ -100,6 +134,13 @@ public class ZukanListFragment extends Fragment {
                 });
             }
         }
+    }
+
+    //ボタンを押したときにviewpagerの移動
+    //iは、1で進む、-1で戻る
+    private void moveViewPager(int i){
+        ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.zukan_list_viewpager);
+        viewPager.setCurrentItem(viewPager.getCurrentItem() + i);
     }
 
     public static int calculateInSampleSize(

@@ -13,7 +13,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 class ZukanSQLiteOpenHelper extends SQLiteOpenHelper {
 
-    static final String DB_NAME = "zukans.db";
+    static final String DB_NAME = "noadd_zukans.db";
     static final String TABLE_NAME = "fish";
     static final int DB_VERSION = 1;
 

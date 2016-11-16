@@ -14,8 +14,6 @@
         android:id="@+id/zukan_list_sort_type_ainame"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -26,8 +24,6 @@
         android:id="@+id/zukan_list_sort_type_akaika"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding"/>
 
     <ImageButton
@@ -38,8 +34,6 @@
         android:id="@+id/zukan_list_sort_type_anago"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -50,8 +44,6 @@
         android:id="@+id/zukan_list_sort_type_ayu"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -62,8 +54,6 @@
         android:id="@+id/zukan_list_sort_type_ikanago"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -74,8 +64,6 @@
         android:id="@+id/zukan_list_sort_type_itabogaki"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -86,8 +74,6 @@
         android:id="@+id/zukan_list_sort_type_itayagai"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -98,8 +84,6 @@
         android:id="@+id/zukan_list_sort_type_ezobai"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -110,8 +94,6 @@
         android:id="@+id/zukan_list_sort_type_obahununi"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -122,8 +104,6 @@
         android:id="@+id/zukan_list_sort_type_kazika"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -134,8 +114,6 @@
         android:id="@+id/zukan_list_sort_type_katakutiiwasi"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -146,8 +124,6 @@
         android:id="@+id/zukan_list_sort_type_karei"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -158,8 +134,6 @@
         android:id="@+id/zukan_list_sort_type_gangiei"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -170,8 +144,6 @@
         android:id="@+id/zukan_list_sort_type_kyuriuo"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -182,8 +154,6 @@
         android:id="@+id/zukan_list_sort_type_kurigani"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -194,8 +164,6 @@
         android:id="@+id/zukan_list_sort_type_kemusikazika"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -206,8 +174,6 @@
         android:id="@+id/zukan_list_sort_type_koi"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -218,8 +184,6 @@
         android:id="@+id/zukan_list_sort_type_konbu"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -230,8 +194,6 @@
         android:id="@+id/zukan_list_sort_type_sake"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -242,8 +204,6 @@
         android:id="@+id/zukan_list_sort_type_saba"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -254,8 +214,6 @@
         android:id="@+id/zukan_list_sort_type_sanma"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -266,8 +224,6 @@
         android:id="@+id/zukan_list_sort_type_sikakunamako"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -278,8 +234,6 @@
         android:id="@+id/zukan_list_sort_type_sirauo"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -290,8 +244,6 @@
         android:id="@+id/zukan_list_sort_type_tauegazi"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -302,8 +254,6 @@
         android:id="@+id/zukan_list_sort_type_tara"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -314,8 +264,6 @@
         android:id="@+id/zukan_list_sort_type_tarabaebi"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -326,8 +274,6 @@
         android:id="@+id/zukan_list_sort_type_dangouo"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -338,8 +284,6 @@
         android:id="@+id/zukan_list_sort_type_tokubire"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -350,8 +294,6 @@
         android:id="@+id/zukan_list_sort_type_dojou"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -362,8 +304,6 @@
         android:id="@+id/zukan_list_sort_type_nisin"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -374,8 +314,6 @@
         android:id="@+id/zukan_list_sort_type_nikkougai"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -386,8 +324,6 @@
         android:id="@+id/zukan_list_sort_type_bakagai"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -398,8 +334,6 @@
         android:id="@+id/zukan_list_sort_type_hatahata"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -410,8 +344,6 @@
         android:id="@+id/zukan_list_sort_type_hirame"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -422,8 +354,6 @@
         android:id="@+id/zukan_list_sort_type_husakasago"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -434,8 +364,6 @@
         android:id="@+id/zukan_list_sort_type_madako"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -446,8 +374,6 @@
         android:id="@+id/zukan_list_sort_type_maboya"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -458,8 +384,6 @@
         android:id="@+id/zukan_list_sort_type_mimigai"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
         android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
 
     <ImageButton
@@ -470,8 +394,7 @@
         android:id="@+id/zukan_list_sort_type_yariika"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:paddingStart="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingEnd="@dimen/fragment_zukan_list_sort_button_padding"
-        android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding" />
+        android:paddingTop="@dimen/fragment_zukan_list_sort_button_padding"
+        android:paddingBottom="@dimen/fragment_zukan_list_sort_button_padding" />
 
 </LinearLayout>

@@ -23,6 +23,7 @@ public class MapListViewAdapter extends ArrayAdapter<MapData> {
     LayoutInflater mInflater;
     int area, location;
     Typeface typeFace = Typeface.createFromAsset(getContext().getAssets(), "noadd_FUJIPOP.TTC");
+
     public MapListViewAdapter(Context context, ArrayList MapDates, int area, int loacrion) {
         super(context, 0, MapDates);
         mInflater = LayoutInflater.from(context);

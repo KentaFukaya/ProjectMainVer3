@@ -6,6 +6,8 @@ import android.content.res.AssetManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -23,6 +25,7 @@ import com.example.b1014100_2.projectmainver3.movie.MovieActivity;
 import com.example.b1014100_2.projectmainver3.movie.MovieData;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -31,25 +34,34 @@ import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.StringTokenizer;
 
+import static android.os.Environment.getExternalStorageState;
+
 public class NormalMovieActivity extends Activity {
     AggregateMovieData movieDatas = new AggregateMovieData();
     int id;
-    String moviename, path;
+    String moviename;
+    int random;
     VideoView Vv;
+    File video;
     ImageButton nMovieback, nMoviereplay;
     ImageView nMoviebg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//full screan
-        requestWindowFeature(Window.FEATURE_NO_TITLE);//INVISIVLE titilebar
+
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
         setContentView(R.layout.activity_normal_movie);
 
         Vv = (VideoView) findViewById(R.id.videoView);
         nMoviebg = (ImageView) findViewById(R.id.n_movie_bg);
         nMovieback = (ImageButton) findViewById(R.id.n_movie_backbutton);
         nMoviereplay = (ImageButton) findViewById(R.id.n_movie_replaybutton);
+
+
         setReplayView(false);
 
         //get id from intent
@@ -59,14 +71,27 @@ public class NormalMovieActivity extends Activity {
 
         //select movie name at random
         ReadMovieCsv();
-        Log.d("TEST", "onCreate: id = " + id + ", MovieName is  " + movieDatas.getMovieDataAt(id).getMovieName() + ",random = " + Random(id));
+        random = Random(id);
         moviename = movieDatas.getMovieDataAt(id).getMovieName();
+        Log.d("NormalMovieActivity", "onCreate: id = " + id + ", MovieName is  " + moviename + ",random = " + random);
+
         SaveMovieCsv();
 
         //make path
-        int movie_R_Id = getResources().getIdentifier(moviename, "raw", getPackageName());//get R.raw."moviename"
+        //case video in R.raw
+        /*int movie_R_Id = getResources().getIdentifier(moviename, "raw", getPackageName());//get R.raw."moviename"
         path = "android.resource://" + getPackageName() + "/" + movie_R_Id;
-        Vv.setVideoURI(Uri.parse(path));
+        Vv.setVideoURI(Uri.parse(path));*/
+
+        //case video in Video
+        String path = Environment.getExternalStorageDirectory().getPath();
+        File dir = new File(path+"/Movies/"+moviename);
+        video = new File(dir.getAbsolutePath()+"/"+moviename+random+".mp4");
+        Log.d("NormalMovieActivity", "onCreate: dir ="+dir.toString()+", exisits = "+dir.exists() + ", video = "+video.toString()+", exisits = "+video.exists()+", mount ="+ getExternalStorageState());
+
+        while(!video.exists())
+            random = Random(id);
+        Vv.setVideoPath(video.toString());
         Vv.start();
 
         //movie finish listener
@@ -138,7 +163,7 @@ public class NormalMovieActivity extends Activity {
                     // Log.d("TEST", "ReadMovieCsv: id = "+i+",s ="+s+",watch = "+movieDatas.getMovieDataAt(i).getWatch(s));
                     s++;
                 }
-                // Log.d("TEST", "ReadMovieCsv: id = "+i+",watch = "+movieDatas.getMovieDataAt(i).getWatchtoString());
+                 Log.d("TEST", "ReadMovieCsv: id = "+i+",watch = "+movieDatas.getMovieDataAt(i).getWatchtoString());
             }
             bufferReader.close();
             // ストリームを閉じる
@@ -178,8 +203,7 @@ public class NormalMovieActivity extends Activity {
         while (md.checkWatch(min % md.getMax()))
             min++;
         md.setWatchbynumber(min % md.getMax());
-        //Log.d("TEST", "Random: id="+id+",return ="+min%md.getMax());
-        return min % md.getMax();
+        return min % md.getMax() + 1;
     }
 
     public void setReplayView(boolean visible) {

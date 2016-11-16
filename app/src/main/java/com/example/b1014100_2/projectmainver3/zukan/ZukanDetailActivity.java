@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.b1014100_2.projectmainver3.R;
@@ -64,6 +65,11 @@ public class ZukanDetailActivity extends AppCompatActivity {
         TextView fishContentView = (TextView) findViewById(R.id.zukan_detail_fish_content);
         fishContentView.setTypeface(Typeface.createFromAsset(getAssets(), font));
         fishContentView.setText(hoge);
+
+        //スクロールビューのスクロール消す
+        ScrollView fishContentScrollView = (ScrollView) findViewById(R.id.zukan_detail_fish_content_scroll);
+        fishContentScrollView.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        fishContentScrollView.setVerticalScrollBarEnabled(false);
 
     }
 
