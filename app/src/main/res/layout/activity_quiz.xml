@@ -7,23 +7,17 @@
     android:background="@drawable/quiz_background"
     android:id="@+id/quiz_layout">
 
-    <ImageView
+    <com.example.b1014100_2.projectmainver3.quiz.QuizO
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/quiz_maru"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/quiz_maru"
-        android:layout_alignParentBottom="true"
-        android:translationZ="5dp" />
+        android:id="@+id/quiz_O"
+        android:translationZ="5dp"/>
 
-    <ImageView
+    <com.example.b1014100_2.projectmainver3.quiz.QuizX
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/quiz_batsu"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/quiz_batsu"
-        android:layout_alignParentBottom="true"
-        android:translationZ="5dp" />
+        android:id="@+id/quiz_X"
+        android:translationZ="5dp"/>
 
     <ImageButton
         android:layout_width="140dp"
@@ -31,7 +25,7 @@
         android:adjustViewBounds="true"
         android:background="@null"
         android:scaleType="fitXY"
-        android:src="@drawable/quiz_return_button"
+        android:src="@drawable/zukan_list_back_button"
         android:id="@+id/quiz_return_button" />
 
     <RelativeLayout
