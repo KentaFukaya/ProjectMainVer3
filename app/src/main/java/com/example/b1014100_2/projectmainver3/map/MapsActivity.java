@@ -88,7 +88,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.map_drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.map_navList);
         mDrawerList.setOverScrollMode(View.OVER_SCROLL_NEVER);
-        
+
         setMenu();
         /*---------------------------clicklistner---------------------------*/
 
