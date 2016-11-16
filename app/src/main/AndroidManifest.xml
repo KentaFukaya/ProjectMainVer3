@@ -8,6 +8,9 @@
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
 
     <application
         android:largeHeap="true"
@@ -62,6 +65,7 @@
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".normalmovie.NormalMovieActivity"
+            android:theme="@style/Theme.Design.NoActionBar"
             android:screenOrientation="landscape"
             ></activity>
         <activity android:name=".zukan.ZukanListActivity"
