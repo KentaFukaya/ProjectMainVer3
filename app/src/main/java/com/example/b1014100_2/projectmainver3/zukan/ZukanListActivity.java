@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 
 import com.example.b1014100_2.projectmainver3.R;
 
@@ -66,6 +67,15 @@ public class ZukanListActivity extends AppCompatActivity implements ZukanListSor
         if (adapter != null) adapter.notifyDataSetChanged();
         adapter = new ZukanListFragmentPagerAdapter(manager);
         viewPager.setAdapter(adapter);
+        // ページ生成数を変える
+//        viewPager.setOffscreenPageLimit(adapter.getCount() - 1);
+        //viewpagerのスクロールバーを消す
+        viewPager.setOverScrollMode(View.OVER_SCROLL_NEVER);
+
+        //スクロールビューのスクロール消す
+        ScrollView fishContentScrollView = (ScrollView) findViewById(R.id.zukan_list_drawer_view);
+        fishContentScrollView.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        fishContentScrollView.setVerticalScrollBarEnabled(false);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

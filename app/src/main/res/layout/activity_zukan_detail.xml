@@ -16,7 +16,7 @@
         android:scaleType="fitStart" />
 
     <ImageView
-        app:srcCompat="@drawable/zukan_detail_image_sample"
+        app:srcCompat="@drawable/zukan_list_image_sample"
         android:id="@+id/zukan_detail_image"
         android:layout_below="@+id/zukan_detail_back_button"
         android:padding="5dp"
@@ -123,7 +123,8 @@
         android:layout_height="match_parent"
         android:layout_alignTop="@+id/imageView2"
         android:fillViewport="true"
-        android:background="@android:color/white">
+        android:background="@android:color/white"
+        android:id="@+id/zukan_detail_fish_content_scroll">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -137,7 +138,8 @@
                 android:id="@+id/zukan_detail_fish_content"
                 android:textSize="18sp"
                 android:background="@drawable/zukan_deatil_dotted_square"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:textColor="@android:color/black" />
 
         </FrameLayout>
     </ScrollView>

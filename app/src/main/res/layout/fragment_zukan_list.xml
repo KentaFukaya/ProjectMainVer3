@@ -195,21 +195,44 @@
 
 </android.support.percent.PercentRelativeLayout>
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/zukan_list_prev"
-        android:id="@+id/zukan_list_prev"
-        android:adjustViewBounds="true"
-        android:layout_alignParentBottom="true" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="50dp">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/zukan_list_next"
-        android:id="@+id/zukan_list_next"
-        android:adjustViewBounds="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="50dp" />
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/zukan_list_page_number"
+            android:layout_centerInParent="false"
+            android:textSize="14sp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="false"
+            android:layout_centerVertical="false"
+            android:layout_alignParentRight="false"
+            android:layout_centerHorizontal="true"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="5dp" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/zukan_list_prev"
+            android:id="@+id/zukan_list_prev"
+            android:adjustViewBounds="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="false" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/zukan_list_next"
+            android:id="@+id/zukan_list_next"
+            android:adjustViewBounds="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
 </RelativeLayout>

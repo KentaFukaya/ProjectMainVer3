@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,6 +102,12 @@ public class ZukanListFragment extends Fragment {
             });
         }
 
+        //ページ数表示
+        TextView pageNumber = (TextView) view.findViewById(R.id.zukan_list_page_number);
+        pageNumber.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), font));
+        pageNumber.setText(getArguments().getInt("page")+1+"/"+getArguments().getInt("final_page"));
+
+
         for (i = 0; i < 8; i++) {
             if (fishIds[i] != 0) {
                 final int fishId = fishIds[i]-1;
@@ -112,6 +120,8 @@ public class ZukanListFragment extends Fragment {
                 //魚の名前をセット
                 TextView fishNameView = (TextView) view.findViewById(zukanFishNameViewResId[i]);
                 fishNameView.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), font));
+                fishNameView.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
+                fishNameView.setTextColor(Color.BLACK);
                 fishNameView.setText(zukans.get(fishId).getName());
                 //図鑑詳細画面に遷移リスナー
                 view.findViewById(zukanListItemResId[i]).setOnClickListener(new View.OnClickListener() {
