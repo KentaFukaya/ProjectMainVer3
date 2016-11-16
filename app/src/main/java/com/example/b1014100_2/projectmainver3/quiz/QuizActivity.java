@@ -267,10 +267,10 @@ public class QuizActivity extends AppCompatActivity{
             public boolean onTouch(View v, MotionEvent event){
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
                     //押したときの動作
-                    re2.setImageResource(R.drawable.quiz_return_button_pressed);
+                    re2.setImageResource(R.drawable.zukan_list_back_button_pressed);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     //離したときの動作
-                    re2.setImageResource(R.drawable.quiz_return_button);
+                    re2.setImageResource(R.drawable.zukan_list_back_button);
                 }
                 return false; //trueにすると他のリスナーが呼ばれない
             }
