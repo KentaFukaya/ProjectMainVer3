@@ -18,6 +18,7 @@ import android.widget.ListView;
 
 import com.example.b1014100_2.projectmainver3.DesiginPattern.Iterator;
 import com.example.b1014100_2.projectmainver3.R;
+import com.example.b1014100_2.projectmainver3.Result.ResultActivity;
 import com.example.b1014100_2.projectmainver3.Tutorial.TutorialActivity;
 import com.example.b1014100_2.projectmainver3.movie.MovieActivity;
 import com.example.b1014100_2.projectmainver3.normalmovie.NormalMovieActivity;
@@ -152,7 +153,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ResultButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplication(), TutorialActivity.class); //ダイビングアクティビティに飛ぶ処理
+                Intent intent = new Intent(getApplication(), ResultActivity.class); //ダイビングアクティビティに飛ぶ処理
                 startActivity(intent);
             }
         });
