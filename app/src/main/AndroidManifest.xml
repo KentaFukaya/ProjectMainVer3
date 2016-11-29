@@ -76,7 +76,6 @@
             android:name=".Result.ResultActivity"
             android:label="@string/title_activity_result"
             android:theme="@style/AppTheme" />
-        <activity android:name=".test"></activity>
     </application>
 
 </manifest>
