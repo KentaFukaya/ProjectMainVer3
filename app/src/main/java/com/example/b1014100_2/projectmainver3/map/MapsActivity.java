@@ -18,6 +18,7 @@ import android.widget.ListView;
 
 import com.example.b1014100_2.projectmainver3.DesiginPattern.Iterator;
 import com.example.b1014100_2.projectmainver3.R;
+import com.example.b1014100_2.projectmainver3.Tutorial.TutorialActivity;
 import com.example.b1014100_2.projectmainver3.movie.MovieActivity;
 import com.example.b1014100_2.projectmainver3.normalmovie.NormalMovieActivity;
 import com.example.b1014100_2.projectmainver3.quiz.QuizActivity;
@@ -63,7 +64,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     double o_xcor = 32.713744363054765, o_ycor = 135.45937590301037;
     float o_zoom = 4;
 
-    ImageButton toZukanButton, InfoButton;
+    ImageButton toZukanButton, InfoButton, ResultButton;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -135,7 +136,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        ResultButton = (ImageButton) findViewById(R.id.map_results);
+        ResultButton.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    //押したときの動作
+                    ResultButton.setImageResource(R.drawable.map_button_results_ontouch);
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    //離したときの動作
+                    ResultButton.setImageResource(R.drawable.map_button_results);
+                }
+                return false; //trueにすると他のリスナーが呼ばれない
+            }
+        });
+        ResultButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), TutorialActivity.class); //ダイビングアクティビティに飛ぶ処理
+                startActivity(intent);
+            }
+        });
+
+                mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
