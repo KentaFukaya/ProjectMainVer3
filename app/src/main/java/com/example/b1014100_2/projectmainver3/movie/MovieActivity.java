@@ -72,7 +72,7 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
     OrientationEventListener ol;
     Button testbutton;
     //add 2016 10 03 Kenta Fukaya
-    String moviename = "skyrim360.mp4";
+    String moviename = "";
     String moviepath;
     int id,random;
     AggregateMovieData movieDatas = new AggregateMovieData();
