@@ -19,6 +19,12 @@ public class AggregateResultData implements Aggregate {
         resultDatas = new ArrayList<ResultData>();
     }
 
+    public AggregateResultData(ArrayList<ResultData> list) {
+        resultDatas = list;
+        last = list.size();
+    }
+
+
     public int getLength() {
         return last;
     }

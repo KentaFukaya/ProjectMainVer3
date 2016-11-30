@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class ResultsDatabase {
     private static final String DB_NAME = "results.db";
-    private static final int DB_VERSION = 0;
+    private static final int DB_VERSION = 1;
 
     static final int RESULT = 0;
     static final int MOVIE = 1;
@@ -164,6 +164,26 @@ public class ResultsDatabase {
         ContentValues values = new ContentValues();
         values.put("flag", 1);
         values.put("flag_of_new", 1);
+
+        String whereClause = "_id = ?";
+        String whereArgs[] = new String[]{String.valueOf(id)};
+
+        try {
+            db.update(tableName, values, whereClause, whereArgs);
+        } finally {
+            db.close();
+        }
+
+    }
+
+    public static void setResultsFalse(Context context, int id) {
+        SQLiteOpenFromAssets helper = new SQLiteOpenFromAssets(context, DB_NAME, null, DB_VERSION);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        String tableName = "results";
+        ContentValues values = new ContentValues();
+        values.put("flag", 0);
+        values.put("flag_of_new", 0);
 
         String whereClause = "_id = ?";
         String whereArgs[] = new String[]{String.valueOf(id)};
