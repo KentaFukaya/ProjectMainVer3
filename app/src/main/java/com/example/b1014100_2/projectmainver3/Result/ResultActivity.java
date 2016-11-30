@@ -22,6 +22,8 @@ import com.example.b1014100_2.projectmainver3.R;
 import com.example.b1014100_2.projectmainver3.map.MapData;
 import com.example.b1014100_2.projectmainver3.map.MapsActivity;
 
+import java.util.ArrayList;
+
 import static android.R.attr.id;
 
 public class ResultActivity extends AppCompatActivity {
@@ -35,6 +37,8 @@ public class ResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+
+        ArrayList<ResultData> resultDatas = ResultsDatabase.getResultDatasAll(this);
 
         resultdates.appendResultData(new ResultData(0,1,0,1,"テスト0","説明0"));
         resultdates.appendResultData(new ResultData(1,1,0,2,"テスト1","説明1"));
