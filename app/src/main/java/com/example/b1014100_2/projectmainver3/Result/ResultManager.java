@@ -5,11 +5,11 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import static com.example.test.resultstest.ResultsDatabase.MOVIE;
-import static com.example.test.resultstest.ResultsDatabase.QUIZ;
-import static com.example.test.resultstest.ResultsDatabase.RESULT;
-import static com.example.test.resultstest.ResultsDatabase.ZUKAN;
-import static com.example.test.resultstest.ResultsDatabase.isRecordsIn;
+import static com.example.b1014100_2.projectmainver3.Result.ResultsDatabase.MOVIE;
+import static com.example.b1014100_2.projectmainver3.Result.ResultsDatabase.QUIZ;
+import static com.example.b1014100_2.projectmainver3.Result.ResultsDatabase.RESULT;
+import static com.example.b1014100_2.projectmainver3.Result.ResultsDatabase.ZUKAN;
+import static com.example.b1014100_2.projectmainver3.Result.ResultsDatabase.isRecordsIn;
 
 /**
  * Created by on 2016/11/28.
