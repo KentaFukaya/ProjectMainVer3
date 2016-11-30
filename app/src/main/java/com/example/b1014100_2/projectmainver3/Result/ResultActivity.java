@@ -29,49 +29,16 @@ import static android.R.attr.id;
 public class ResultActivity extends AppCompatActivity {
     ImageButton movie,zukan,quiz;
     ImageButton back;
-    int mode = 0, mode_old = 0;
-    AggregateResultData resultdates = new AggregateResultData();
+    int mode = 1, mode_old = 1;
+    AggregateResultData resultdates;
     ResultListAdapter adapter;
     ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-
-        ArrayList<ResultData> resultDatas = ResultsDatabase.getResultDatasAll(this);
-
-        resultdates.appendResultData(new ResultData(0,1,0,1,"テスト0","説明0"));
-        resultdates.appendResultData(new ResultData(1,1,0,2,"テスト1","説明1"));
-        resultdates.appendResultData(new ResultData(2,1,0,3,"テスト2","説明2"));
-        resultdates.appendResultData(new ResultData(3,1,0,4,"テスト3","説明3"));
-        resultdates.appendResultData(new ResultData(4,1,0,5,"テスト4","説明4"));
-        resultdates.appendResultData(new ResultData(5,0,0,1,"テスト5","説明5"));
-        resultdates.appendResultData(new ResultData(6,0,0,2,"テスト6","説明6"));
-        resultdates.appendResultData(new ResultData(7,0,0,3,"テスト7","説明7"));
-        resultdates.appendResultData(new ResultData(8,0,0,4,"テスト8","説明8"));
-        resultdates.appendResultData(new ResultData(9,0,0,5,"テスト9","説明9"));
-
-        resultdates.appendResultData(new ResultData(10,1,1,1,"テスト10","説明10"));
-        resultdates.appendResultData(new ResultData(11,1,1,2,"テスト11","説明11"));
-        resultdates.appendResultData(new ResultData(12,1,1,3,"テスト12","説明12"));
-        resultdates.appendResultData(new ResultData(13,1,1,4,"テスト13","説明13"));
-        resultdates.appendResultData(new ResultData(14,1,1,5,"テスト14","説明14"));
-        resultdates.appendResultData(new ResultData(15,0,1,1,"テスト15","説明15"));
-        resultdates.appendResultData(new ResultData(16,0,1,2,"テスト16","説明16"));
-        resultdates.appendResultData(new ResultData(17,0,1,3,"テスト17","説明17"));
-        resultdates.appendResultData(new ResultData(18,0,1,4,"テスト18","説明18"));
-        resultdates.appendResultData(new ResultData(19,0,1,5,"テスト19","説明19"));
-
-        resultdates.appendResultData(new ResultData(20,1,2,1,"テスト20","説明20"));
-        resultdates.appendResultData(new ResultData(21,1,2,2,"テスト21","説明21"));
-        resultdates.appendResultData(new ResultData(22,1,2,3,"テスト22","説明22"));
-        resultdates.appendResultData(new ResultData(23,1,2,4,"テスト23","説明23"));
-        resultdates.appendResultData(new ResultData(24,1,2,5,"テスト24","説明24"));
-        resultdates.appendResultData(new ResultData(25,0,2,1,"テスト25","説明25"));
-        resultdates.appendResultData(new ResultData(26,0,2,2,"テスト26","説明26"));
-        resultdates.appendResultData(new ResultData(27,0,2,3,"テスト27","説明27"));
-        resultdates.appendResultData(new ResultData(28,0,2,4,"テスト28","説明28"));
-        resultdates.appendResultData(new ResultData(29,0,2,5,"テスト29","説明29"));
+        ResultManager.titleCheckTrueorFalse(this,false);
+        resultdates = new AggregateResultData(ResultsDatabase.getResultDatasAll(this));
 
         listView = (ListView) findViewById(R.id.result_listview);
         //viewpagerのスクロールバーを消す
@@ -119,7 +86,7 @@ public class ResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mode_old = mode;
-                mode = 0;
+                mode = 1;
                 setButtons();
                 setAdapter();
             }
@@ -129,7 +96,7 @@ public class ResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mode_old = mode;
-                mode = 1;
+                mode = 2;
                 setButtons();
                 setAdapter();
 
@@ -140,7 +107,7 @@ public class ResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mode_old = mode;
-                mode = 2;
+                mode = 3;
                 setButtons();
                 setAdapter();
             }
@@ -150,29 +117,29 @@ public class ResultActivity extends AppCompatActivity {
 
     public void setButtons(){
         switch (mode_old){
-            case 0:
+            case 1:
                 movie.setImageResource(R.drawable.result_button_movie);
                 break;
 
-            case 1:
+            case 2:
                 zukan.setImageResource(R.drawable.result_button_zukan);
                 break;
 
-            case 2:
+            case 3:
                 quiz.setImageResource(R.drawable.result_button_quiz);
                 break;
         }
 
         switch (mode){
-            case 0:
+            case 1:
                 movie.setImageResource(R.drawable.result_button_movie_onclick);
                 break;
 
-            case 1:
+            case 2:
                 zukan.setImageResource(R.drawable.result_button_zukan_onclick);
                 break;
 
-            case 2:
+            case 3:
                 quiz.setImageResource(R.drawable.result_button_quiz_onclick);
 
         }
