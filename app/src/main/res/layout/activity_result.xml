@@ -26,6 +26,10 @@
         android:layout_height="match_parent"
         android:layout_width="500dp"
         android:background="#1766C0"
+        android:paddingTop="0dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="0dp"
         android:id="@+id/result_listview"
         android:layout_below="@+id/result_button_back"
         android:layout_centerHorizontal="true"
@@ -41,7 +45,7 @@
 
         <ImageButton
             android:background="@null"
-            app:srcCompat="@drawable/result_button_movie"
+            app:srcCompat="@drawable/result_button_movie_onclick"
             android:id="@+id/result_movie"
             android:scaleType="fitXY"
             android:layout_height="35dp"
@@ -64,5 +68,16 @@
             android:layout_width="130dp" />
 
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="320dp"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/result_feedback"
+        android:id="@+id/imageView"
+        android:scaleType="fitStart"
+        android:layout_weight="1"
+        android:layout_alignTop="@+id/linearLayout"
+        android:layout_toEndOf="@+id/result_listview" />
 
 </RelativeLayout>
