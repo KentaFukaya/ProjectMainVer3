@@ -96,10 +96,11 @@ public class ResultManager {
             //正解数チェック
             ArrayList<RecordsQuizCorrect> recordsQuizCorrects = ResultsDatabase.getRecordsQuizCorrectFalse(context);
             if(!recordsQuizCorrects.isEmpty()){
-                //正解数が false のものだけをチェック
+                //正解数テーブル(quiz_correct)の要素が false のものだけをチェック
                 for (int i = 0; i < recordsQuizCorrects.size(); i++) {
-
-                    int sum = ResultsDatabase.getSumRecordsQuizSumRight(context);
+//                    int sum = ResultsDatabase.getSumRecordsQuizSumRight(context);
+                    int sum = (int)ResultsDatabase.getSumRecordsQuizTrue(context);
+                    Log.d("ResultManager", "setRecordFlagTrue: sumRecordsQuiz:" + sum);
                     //各正解数をチェック
                     if(recordsQuizCorrects.get(i).getCorrect() <= sum){
                         int idQuizCorrect = recordsQuizCorrects.get(i).getId();

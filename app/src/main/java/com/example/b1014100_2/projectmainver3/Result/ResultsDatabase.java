@@ -3,6 +3,7 @@ package com.example.b1014100_2.projectmainver3.Result;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -340,6 +341,19 @@ public class ResultsDatabase {
         db.close();
 
         return sumRight;
+    }
+
+    public static long getSumRecordsQuizTrue(Context context) {
+        String TABLE_NAME = "records_quiz";
+
+        SQLiteOpenFromAssets helper = new SQLiteOpenFromAssets(context, DB_NAME, null, DB_VERSION);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        // db=SQLiteDatabase http://qiita.com/operandoOS/items/eb829a56f28d2c56a436
+        long recodeCount = DatabaseUtils.queryNumEntries(db, TABLE_NAME,"flag = ?",new String[]{ "1" });
+        db.close();
+
+        return recodeCount;
     }
 
     public static boolean isRecordsIn(Context context, int tableName, String[] ids) {
