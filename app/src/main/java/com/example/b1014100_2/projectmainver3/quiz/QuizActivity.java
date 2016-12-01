@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.b1014100_2.projectmainver3.R;
+import com.example.b1014100_2.projectmainver3.Result.ResultManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,6 +31,7 @@ public class QuizActivity extends AppCompatActivity{
     private Button choices[] = new Button[3];
     private ImageButton re, re2;
     private boolean correct;
+    private int id;
     private static int quiz_correct_sum = -1;
     private QuizO quiz_O;
     private QuizX quiz_X;
@@ -52,15 +54,14 @@ public class QuizActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        activity = this;
 
         // 現在の合計正解数を取得
         quiz_correct_sum = getQuizCorrectSum();
         // 図鑑から魚の id か何かを取得し、対応するクイズを表示
         Intent intent = getIntent();
-        int id = intent.getIntExtra("id", 0);
+        id = intent.getIntExtra("id", 0);
         setQuiz(id);
-
-        activity = this;
     }
 
     // i問目のクイズを取得
@@ -122,14 +123,15 @@ public class QuizActivity extends AppCompatActivity{
                     // 正解演出
                     correct = true;
                     // 初の正解なら正解数加算
-                    if(quiz.getCorrect() == 0){
-                        quiz.setCorrect(1);
-                        if(quiz_correct_sum == -1)
-                            quiz_correct_sum = 0;
-                        quiz_correct_sum++;
-                        // 正解数入力
-                        updateSum();
-                    }
+//                    if(quiz.getCorrect() == 0){
+//                        quiz.setCorrect(1);
+//                        if(quiz_correct_sum == -1)
+//                            quiz_correct_sum = 0;
+//                        quiz_correct_sum++;
+//                        // 正解数入力
+//                        updateSum();
+//                    }
+                    ResultManager.setRecordFlagTrue(activity, ResultManager.QUIZ_ACTIVITY, id);
                     // アニメーションセット
                     setAnime();
                     quiz_O.startAnimation(animeO);
@@ -167,14 +169,15 @@ public class QuizActivity extends AppCompatActivity{
                     // 正解演出
                     correct = true;
                     // 初の正解なら正解数加算
-                    if(quiz.getCorrect() == 0){
-                        quiz.setCorrect(1);
-                        if(quiz_correct_sum == -1)
-                            quiz_correct_sum = 0;
-                        quiz_correct_sum++;
-                        // 正解数入力
-                        updateSum();
-                    }
+//                    if(quiz.getCorrect() == 0){
+//                        quiz.setCorrect(1);
+//                        if(quiz_correct_sum == -1)
+//                            quiz_correct_sum = 0;
+//                        quiz_correct_sum++;
+//                        // 正解数入力
+//                        updateSum();
+//                    }
+                    ResultManager.setRecordFlagTrue(activity, ResultManager.QUIZ_ACTIVITY, id);
                     // アニメーションセット
                     setAnime();
                     quiz_O.startAnimation(animeO);
@@ -212,14 +215,15 @@ public class QuizActivity extends AppCompatActivity{
                     // 正解演出
                     correct = true;
                     // 初の正解なら正解数加算
-                    if(quiz.getCorrect() == 0){
-                        quiz.setCorrect(1);
-                        if(quiz_correct_sum == -1)
-                            quiz_correct_sum = 0;
-                        quiz_correct_sum++;
-                        // 正解数入力
-                        updateSum();
-                    }
+//                    if(quiz.getCorrect() == 0){
+//                        quiz.setCorrect(1);
+//                        if(quiz_correct_sum == -1)
+//                            quiz_correct_sum = 0;
+//                        quiz_correct_sum++;
+//                        // 正解数入力
+//                        updateSum();
+//                    }
+                    ResultManager.setRecordFlagTrue(activity, ResultManager.QUIZ_ACTIVITY, id);
                     // アニメーションセット
                     setAnime();
                     quiz_O.startAnimation(animeO);
