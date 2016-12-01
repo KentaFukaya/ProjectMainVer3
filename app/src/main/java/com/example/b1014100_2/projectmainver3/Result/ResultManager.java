@@ -149,8 +149,7 @@ public class ResultManager {
 
             //全ての要素が true だった場合、flag を true にする
             if(elementFlag){
-//                Toast.makeText(context, "テスト", Toast.LENGTH_LONG).show();
-
+                Toast.makeText(context, results.get(i).getName()+" "+results.get(i).getTitle(), Toast.LENGTH_LONG).show();
                 if(check)
                    ResultsDatabase.setResultsTrue(context, results.get(i).getId());
                 else
