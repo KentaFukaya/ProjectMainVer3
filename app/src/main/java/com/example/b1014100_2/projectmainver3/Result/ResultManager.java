@@ -2,6 +2,7 @@ package com.example.b1014100_2.projectmainver3.Result;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -25,12 +26,12 @@ import static com.example.b1014100_2.projectmainver3.Result.ResultsDatabase.setR
 
 public class ResultManager {
 
-    static final int MOVIE_ACTIVITY = TABLE_MOVIE;
-    static final int ZUKAN_ACTIVITY = TABLE_ZUKAN;
-    static final int QUIZ_ACTIVITY = TABLE_QUIZ;
+    public static final int MOVIE_ACTIVITY = TABLE_MOVIE;
+    public static final int ZUKAN_ACTIVITY = TABLE_ZUKAN;
+    public static final int QUIZ_ACTIVITY = TABLE_QUIZ;
 
-    static final int MOVIE_NORMAL = 0;
-    static final int MOVIE_SPEHER = 1;
+    public static final int MOVIE_NORMAL = 0;
+    public static final int MOVIE_SPEHER = 1;
 
 
     //TABLE_MOVIE の flag を true にする 動画専用
@@ -62,7 +63,7 @@ public class ResultManager {
     }
 
     //TABLE_RESULT TABLE_MOVIE TABLE_ZUKAN TABLE_QUIZ の flag を true にする
-    static void setRecordFlagTrue(Context context, int activityName, int id){
+    public static void setRecordFlagTrue(Context context, int activityName, int id){
         //activityName が異なるとき
         if(activityName != MOVIE_ACTIVITY && activityName != ZUKAN_ACTIVITY && activityName != QUIZ_ACTIVITY){
             Log.d("ResultManager", "setRecordFlagTrue: " + "error activityName");
@@ -133,7 +134,7 @@ public class ResultManager {
             if(results.get(i).getElements_new() != null)
                 elements[TABLE_NEW] = results.get(i).getElements_new().split(",");
 
-            //TABLE_RESULT TABLE_MOVIE TABLE_ZUKAN TABLE_QUIZ の4回
+            //TABLE_RESULT TABLE_MOVIE TABLE_ZUKAN TABLE_QUIZ TABLE_QUIZ_CORRECT TABLE_NEW の6回
             for (int j = 0; j < elements.length; j++) {
                 if(elementFlag) {
                     //要素が null 0 空文字　以外の時
@@ -148,7 +149,9 @@ public class ResultManager {
 
             //全ての要素が true だった場合、flag を true にする
             if(elementFlag){
-               if(check)
+//                Toast.makeText(context, "テスト", Toast.LENGTH_LONG).show();
+
+                if(check)
                    ResultsDatabase.setResultsTrue(context, results.get(i).getId());
                 else
                    ResultsDatabase.setResultsTrue(context, results.get(i).getId());

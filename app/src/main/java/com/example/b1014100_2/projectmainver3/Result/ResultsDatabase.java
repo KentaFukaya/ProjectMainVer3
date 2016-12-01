@@ -278,7 +278,6 @@ public class ResultsDatabase {
         return recordsZukens;
     }
 
-
     public static ArrayList<RecordsQuizCorrect> getRecordsQuizCorrectFalse(Context context) {
         String TABLE_NAME = "records_quiz_correct";
         String[] FROM = {"_id", "correct", "flag"};
