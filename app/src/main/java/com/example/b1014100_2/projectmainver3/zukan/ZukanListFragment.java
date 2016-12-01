@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.b1014100_2.projectmainver3.R;
+import com.example.b1014100_2.projectmainver3.Result.ResultManager;
 
 import java.util.ArrayList;
 
@@ -129,6 +130,7 @@ public class ZukanListFragment extends Fragment {
                     public void onClick(View view) {
                         Intent intent = new Intent(getActivity(), ZukanDetailActivity.class); //図鑑アクティビティにに飛ぶ処理
                         intent.putExtra("id", fishId);
+                        ResultManager.setRecordFlagTrue(getActivity(), ResultManager.ZUKAN_ACTIVITY, ZukanListActivity.zukans.get(fishId).getId());
                         startActivity(intent);
                     }
                 });

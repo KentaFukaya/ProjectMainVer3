@@ -14,5 +14,6 @@
 
     <item name="fragment_zukan_list_fish_image_heightPercent" type="dimen">70%</item>
     <item name="fragment_zukan_list_fish_name_heightPercent" type="dimen">30%</item>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>
