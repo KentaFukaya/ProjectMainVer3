@@ -61,7 +61,6 @@
         <activity android:name=".zukan.ZukanDetailActivity"
             android:screenOrientation="landscape"></activity>
         <activity android:name=".quiz.QuizActivity"
-            android:theme="@style/Theme.Design.NoActionBar"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".normalmovie.NormalMovieActivity"
