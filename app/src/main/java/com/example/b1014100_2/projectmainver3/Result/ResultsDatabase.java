@@ -184,6 +184,26 @@ public class ResultsDatabase {
 
     }
 
+    public static void setResultsFalse(Context context, int id) {
+        SQLiteOpenFromAssets helper = new SQLiteOpenFromAssets(context, DB_NAME, null, DB_VERSION);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        String tableName = "results";
+        ContentValues values = new ContentValues();
+        values.put("flag", 0);
+        values.put("flag_of_new", 0);
+
+        String whereClause = "_id = ?";
+        String whereArgs[] = new String[]{String.valueOf(id)};
+
+        try {
+            db.update(tableName, values, whereClause, whereArgs);
+        } finally {
+            db.close();
+        }
+
+    }
+
     public static void resetResultsFlagOfNew(Context context) {
         SQLiteOpenFromAssets helper = new SQLiteOpenFromAssets(context, DB_NAME, null, DB_VERSION);
         SQLiteDatabase db = helper.getWritableDatabase();

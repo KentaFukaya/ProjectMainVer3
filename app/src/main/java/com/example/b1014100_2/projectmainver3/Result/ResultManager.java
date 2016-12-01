@@ -108,11 +108,10 @@ public class ResultManager {
             }
 
         }
-
-        titleCheckTrue(context);
+        titleCheckTrueorFalse(context,true);
     }
 
-    static void titleCheckTrue(Context context){
+    static void titleCheckTrueorFalse(Context context,Boolean check){
         ArrayList<Result> results = ResultsDatabase.getResultsFalse(context);
         boolean elementFlag;
 
@@ -149,7 +148,11 @@ public class ResultManager {
 
             //全ての要素が true だった場合、flag を true にする
             if(elementFlag){
-                ResultsDatabase.setResultsTrue(context, results.get(i).getId());
+               if(check)
+                   ResultsDatabase.setResultsTrue(context, results.get(i).getId());
+                else
+                   ResultsDatabase.setResultsTrue(context, results.get(i).getId());
+
             }
         }
     }
