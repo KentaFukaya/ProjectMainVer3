@@ -47,7 +47,7 @@ public class QuizActivity extends AppCompatActivity{
     private static String DB_NAME = "noadd_quizdata.db";
     private static String TABLE_NAME = "quizdata";
     private static int DB_VERSION = 4;
-    private static String[] FROM = {"_id", "name", "question", "choice1", "choice2", "choice3", "answer", "comment", "image_name", "correct"};
+    private static String[] FROM = {"_id", "name", "question", "choice1", "choice2", "choice3", "answer", "comment", "image_name"};
     private static String ORDER_BY = "_id" + " ASC";//並べる順
 
     @Override
@@ -57,7 +57,7 @@ public class QuizActivity extends AppCompatActivity{
         activity = this;
 
         // 現在の合計正解数を取得
-        quiz_correct_sum = getQuizCorrectSum();
+//        quiz_correct_sum = getQuizCorrectSum();
         // 図鑑から魚の id か何かを取得し、対応するクイズを表示
         Intent intent = getIntent();
         id = intent.getIntExtra("id", 0);
@@ -82,7 +82,6 @@ public class QuizActivity extends AppCompatActivity{
         quiz.setAnswer(c.getString(6));
         quiz.setComment(c.getString(7));
         quiz.setImageName(c.getString(8));
-        quiz.setCorrect(c.getInt(9));
 
         db.close();
 
@@ -320,41 +319,41 @@ public class QuizActivity extends AppCompatActivity{
     }
 
     // 正解数をquizdataに入力(64行目のcorrectに)
-    private void updateSum(){
-        ContentValues values = new ContentValues();
-        values.put("correct", quiz_correct_sum);
-        String whereClause = "No = ?";
-        String whereArgs[] = new String[1];
-        whereArgs[0] = "64";
-        db = helper.getWritableDatabase();
-
-        int ret;
-        try {
-            ret = db.update(TABLE_NAME, values, whereClause, whereArgs);
-        } finally {
-            db.close();
-        }
-        if (ret == -1){
-            Toast.makeText(activity, "Update失敗", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(activity, "Update成功", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    // 現在のクイズ正解数
-    protected static int getQuizCorrectSum(){
-        // 起動後、初回参照の場合
-        if(quiz_correct_sum == -1) {
-            helper = new QuizSQLiteOpenFromAssets(activity, DB_NAME, null, DB_VERSION);
-            db = helper.getReadableDatabase();
-
-            c = db.query(TABLE_NAME, FROM, null, null, null, null, ORDER_BY);//queryの実行
-            c.moveToPosition(63);
-            quiz_correct_sum = c.getInt(9);
-            db.close();
-        }
-        return quiz_correct_sum;
-    }
+//    private void updateSum(){
+//        ContentValues values = new ContentValues();
+//        values.put("correct", quiz_correct_sum);
+//        String whereClause = "No = ?";
+//        String whereArgs[] = new String[1];
+//        whereArgs[0] = "64";
+//        db = helper.getWritableDatabase();
+//
+//        int ret;
+//        try {
+//            ret = db.update(TABLE_NAME, values, whereClause, whereArgs);
+//        } finally {
+//            db.close();
+//        }
+//        if (ret == -1){
+//            Toast.makeText(activity, "Update失敗", Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(activity, "Update成功", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+//
+//    // 現在のクイズ正解数
+//    protected static int getQuizCorrectSum(){
+//        // 起動後、初回参照の場合
+//        if(quiz_correct_sum == -1) {
+//            helper = new QuizSQLiteOpenFromAssets(activity, DB_NAME, null, DB_VERSION);
+//            db = helper.getReadableDatabase();
+//
+//            c = db.query(TABLE_NAME, FROM, null, null, null, null, ORDER_BY);//queryの実行
+//            c.moveToPosition(63);
+//            quiz_correct_sum = c.getInt(9);
+//            db.close();
+//        }
+//        return quiz_correct_sum;
+//    }
 
     private void setAnime() {
         //正解アニメーション
