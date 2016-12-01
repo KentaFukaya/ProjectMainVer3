@@ -15,12 +15,21 @@ import java.util.ArrayList;
  */
 public class ResultsDatabase {
     private static final String DB_NAME = "results.db";
-    private static final int DB_VERSION = 0;
+    private static final int DB_VERSION = 1;
 
-    static final int RESULT = 0;
-    static final int MOVIE = 1;
-    static final int ZUKAN = 2;
-    static final int QUIZ = 3;
+    static final int TABLE_RESULT = 0;
+    static final int TABLE_MOVIE = 1;
+    static final int TABLE_ZUKAN = 2;
+    static final int TABLE_QUIZ = 3;
+    static final int TABLE_QUIZ_CORRECT = 4;
+    static final int TABLE_NEW = 5;
+
+    static final int RECORDS_NEW_MOVIE = 1;
+    static final int RECORDS_NEW_MOVIE_NORMAL = 2;
+    static final int RECORDS_NEW_MOVIE_SPHERE = 3;
+    static final int RECORDS_NEW_ZUKAN = 4;
+    static final int RECORDS_NEW_QUIZ_CORRECT = 5;
+
 
     private static String ORDER_BY = "_id" + " ASC";//並べる順
 
@@ -28,7 +37,7 @@ public class ResultsDatabase {
     //------------------- Results -------------------//
     public static ArrayList<Result> getResultsAll(Context context) {
         String TABLE_NAME = "results";
-        String[] FROM = {"_id", "name", "title", "star_level", "flag", "flag_of_new", "type", "elements_result", "elements_movie", "elements_zukan", "elements_quiz"};
+        String[] FROM = {"_id", "name", "title", "star_level", "flag", "flag_of_new", "type", "elements_result", "elements_movie", "elements_zukan", "elements_quiz", "elements_quiz_correct", "elements_new"};
 
         ArrayList<Result> results = new ArrayList<>();
 
@@ -38,7 +47,7 @@ public class ResultsDatabase {
         Cursor c = db.query(TABLE_NAME, FROM, null, null, null, null, ORDER_BY);//queryの実行
 
         while (c.moveToNext()) {
-            Result result = new Result(c.getInt(0), c.getString(1), c.getString(2), c.getInt(3), c.getInt(4), c.getInt(5), c.getInt(6), c.getString(7), c.getString(8), c.getString(9), c.getString(10));
+            Result result = new Result(c.getInt(0), c.getString(1), c.getString(2), c.getInt(3), c.getInt(4), c.getInt(5), c.getInt(6), c.getString(7), c.getString(8), c.getString(9), c.getString(10), c.getString(11), c.getString(12));
             results.add(result);
         }
         c.close();
@@ -46,7 +55,6 @@ public class ResultsDatabase {
 
         return results;
     }
-
 
     public static ArrayList<ResultData> getResultDatasAll(Context context) {
         String TABLE_NAME = "results";
@@ -71,7 +79,7 @@ public class ResultsDatabase {
 
     public static ArrayList<Result> getResultsFalse(Context context) {
         String TABLE_NAME = "results";
-        String[] FROM = {"_id", "name", "title", "star_level", "flag", "flag_of_new", "type", "elements_result", "elements_movie", "elements_zukan", "elements_quiz"};
+        String[] FROM = {"_id", "name", "title", "star_level", "flag", "flag_of_new", "type", "elements_result", "elements_movie", "elements_zukan", "elements_quiz", "elements_quiz_correct", "elements_new"};
 
         ArrayList<Result> results = new ArrayList<>();
 
@@ -81,7 +89,7 @@ public class ResultsDatabase {
         Cursor c = db.query(TABLE_NAME, FROM, "flag = ?", new String[]{"0"}, null, null, ORDER_BY);//queryの実行
 
         while (c.moveToNext()) {
-            Result result = new Result(c.getInt(0), c.getString(1), c.getString(2), c.getInt(3), c.getInt(4), c.getInt(5), c.getInt(6), c.getString(7), c.getString(8), c.getString(9), c.getString(10));
+            Result result = new Result(c.getInt(0), c.getString(1), c.getString(2), c.getInt(3), c.getInt(4), c.getInt(5), c.getInt(6), c.getString(7), c.getString(8), c.getString(9), c.getString(10), c.getString(11), c.getString(12));
             results.add(result);
         }
         c.close();
@@ -92,7 +100,7 @@ public class ResultsDatabase {
 
     public static ArrayList<Result> getResultsFlagOfNew(Context context) {
         String TABLE_NAME = "results";
-        String[] FROM = {"_id", "name", "title", "star_level", "flag", "flag_of_new", "elements_result", "elements_movie", "elements_zukan", "elements_quiz"};
+        String[] FROM = {"_id", "name", "title", "star_level", "flag", "flag_of_new", "elements_result", "elements_movie", "elements_zukan", "elements_quiz", "elements_quiz_correct", "elements_new"};
 
         ArrayList<Result> results = new ArrayList<>();
 
@@ -102,7 +110,7 @@ public class ResultsDatabase {
         Cursor c = db.query(TABLE_NAME, FROM, "flag_of_new = ?", new String[]{"1"}, null, null, ORDER_BY);//queryの実行
 
         while (c.moveToNext()) {
-            Result result = new Result(c.getInt(0), c.getString(1), c.getString(2), c.getInt(3), c.getInt(4), c.getInt(5), c.getInt(6), c.getString(7), c.getString(8), c.getString(9), c.getString(10));
+            Result result = new Result(c.getInt(0), c.getString(1), c.getString(2), c.getInt(3), c.getInt(4), c.getInt(5), c.getInt(6), c.getString(7), c.getString(8), c.getString(9), c.getString(10), c.getString(11), c.getString(12));
             results.add(result);
         }
         c.close();
@@ -113,7 +121,7 @@ public class ResultsDatabase {
 
     public static ArrayList<Result> getResultsType(Context context, int type) {
         String TABLE_NAME = "results";
-        String[] FROM = {"_id", "name", "title", "star_level", "flag", "flag_of_new", "elements_result", "elements_movie", "elements_zukan", "elements_quiz"};
+        String[] FROM = {"_id", "name", "title", "star_level", "flag", "flag_of_new", "elements_result", "elements_movie", "elements_zukan", "elements_quiz", "elements_quiz_correct", "elements_new"};
 
         ArrayList<Result> results = new ArrayList<>();
 
@@ -123,7 +131,7 @@ public class ResultsDatabase {
         Cursor c = db.query(TABLE_NAME, FROM, "type = ?", new String[]{String.valueOf(type)}, null, null, ORDER_BY);//queryの実行
 
         while (c.moveToNext()) {
-            Result result = new Result(c.getInt(0), c.getString(1), c.getString(2), c.getInt(3), c.getInt(4), c.getInt(5), c.getInt(6), c.getString(7), c.getString(8), c.getString(9), c.getString(10));
+            Result result = new Result(c.getInt(0), c.getString(1), c.getString(2), c.getInt(3), c.getInt(4), c.getInt(5), c.getInt(6), c.getString(7), c.getString(8), c.getString(9), c.getString(10), c.getString(11), c.getString(12));
             results.add(result);
         }
         c.close();
@@ -250,10 +258,76 @@ public class ResultsDatabase {
         return recordsZukens;
     }
 
+
+    public static ArrayList<RecordsQuizCorrect> getRecordsQuizCorrectFalse(Context context) {
+        String TABLE_NAME = "records_quiz_correct";
+        String[] FROM = {"_id", "correct", "flag"};
+
+        ArrayList<RecordsQuizCorrect> recordsQuizCorrects = new ArrayList<>();
+
+        SQLiteOpenFromAssets helper = new SQLiteOpenFromAssets(context, DB_NAME, null, DB_VERSION);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        Cursor c = db.query(TABLE_NAME, FROM, "flag = ?", new String[]{"0"}, null, null, ORDER_BY);//queryの実行
+
+        while (c.moveToNext()) {
+            RecordsQuizCorrect recordsQuizCorrect = new RecordsQuizCorrect(c.getInt(0), c.getInt(1), c.getInt(2));
+            recordsQuizCorrects.add(recordsQuizCorrect);
+        }
+        c.close();
+        db.close();
+
+        return recordsQuizCorrects;
+    }
+
+    public static int getSumRecordsQuizSumRight(Context context) {
+        String TABLE_NAME = "records_quiz";
+        String COLUMN_POINT = "sum_right";
+
+        int sum=0;
+        ArrayList<RecordsQuizCorrect> recordsQuizCorrects = new ArrayList<>();
+
+        SQLiteOpenFromAssets helper = new SQLiteOpenFromAssets(context, DB_NAME, null, DB_VERSION);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        //http://u64178.blogspot.com/2014/07/android-sqlite-sum-total.html
+        Cursor c = db.rawQuery(String.format("SELECT SUM(%s) FROM %s", COLUMN_POINT, TABLE_NAME), null);
+
+        if(c.moveToNext()){
+            sum = c.getInt(0);
+        }
+
+        c.close();
+        db.close();
+
+        return sum;
+    }
+
+    public static int getRecordsQuizSumRight(Context context, int id) {
+        String TABLE_NAME = "records_quiz";
+        String[] FROM = {"sum_right"};
+
+        int sumRight = 0;
+
+        SQLiteOpenFromAssets helper = new SQLiteOpenFromAssets(context, DB_NAME, null, DB_VERSION);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        Cursor c = db.query(TABLE_NAME, FROM, "_id = ?", new String[]{String.valueOf(id)}, null, null, ORDER_BY);//queryの実行
+
+        if (c.moveToNext()) {
+            sumRight = c.getInt(0);
+        }
+        c.close();
+        db.close();
+
+        return sumRight;
+    }
+
     public static boolean isRecordsIn(Context context, int tableName, String[] ids) {
 
-        if(tableName != RESULT && tableName != MOVIE && tableName != ZUKAN && tableName != QUIZ){
-            Log.d("ResultsDatabase", "isRecordsIn: " + "error tabelName");
+        if(tableName != TABLE_RESULT && tableName != TABLE_MOVIE && tableName != TABLE_ZUKAN && tableName != TABLE_QUIZ
+                && tableName != TABLE_QUIZ_CORRECT && tableName != TABLE_NEW){
+            Log.d("ResultsDatabase", "isRecordsIn: " + "error tableName");
             return false;
         }
 
@@ -263,17 +337,23 @@ public class ResultsDatabase {
         boolean flag = true;
 
         switch (tableName){
-            case RESULT:
+            case TABLE_RESULT:
                 TABLE_NAME = "results";
                 break;
-            case MOVIE:
+            case TABLE_MOVIE:
                 TABLE_NAME = "records_movie";
                 break;
-            case ZUKAN:
+            case TABLE_ZUKAN:
                 TABLE_NAME = "records_zukan";
                 break;
-            case QUIZ:
+            case TABLE_QUIZ:
                 TABLE_NAME = "records_quiz";
+                break;
+            case TABLE_QUIZ_CORRECT:
+                TABLE_NAME = "records_quiz_correct";
+                break;
+            case TABLE_NEW:
+                TABLE_NAME = "records_new";
                 break;
         }
 
@@ -309,8 +389,9 @@ public class ResultsDatabase {
 
     public static void setRecordsTrue(Context context, int tableName, int id) {
 
-        if(tableName != MOVIE && tableName != ZUKAN && tableName != QUIZ){
-            Log.d("ResultsDatabase", "setRecordsTrue: " + "error tabelName");
+        if(tableName != TABLE_MOVIE && tableName != TABLE_ZUKAN && tableName != TABLE_QUIZ
+                && tableName != TABLE_QUIZ_CORRECT && tableName != TABLE_NEW){
+            Log.d("ResultsDatabase", "setRecordsTrue: " + "error tableName");
             return;
         }
 
@@ -319,18 +400,44 @@ public class ResultsDatabase {
 
         String TABLE_NAME = "";
         switch (tableName){
-            case MOVIE:
+            case TABLE_MOVIE:
                 TABLE_NAME = "records_movie";
                 break;
-            case ZUKAN:
+            case TABLE_ZUKAN:
                 TABLE_NAME = "records_zukan";
                 break;
-            case QUIZ:
+            case TABLE_QUIZ:
                 TABLE_NAME = "records_quiz";
+                break;
+            case TABLE_QUIZ_CORRECT:
+                TABLE_NAME = "records_quiz_correct";
+                break;
+            case TABLE_NEW:
+                TABLE_NAME = "records_new";
                 break;
         }
         ContentValues values = new ContentValues();
         values.put("flag", 1);
+
+        String whereClause = "_id = ?";
+        String whereArgs[] = new String[]{String.valueOf(id)};
+
+        db.update(TABLE_NAME, values, whereClause, whereArgs);
+        db.close();
+
+    }
+
+    public static void setRecordsQuizSumRight(Context context, int id, int oldSumRight) {
+
+        SQLiteOpenFromAssets helper = new SQLiteOpenFromAssets(context, DB_NAME, null, DB_VERSION);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        String TABLE_NAME = "records_quiz";
+        int newCorrect = oldSumRight + 1;
+        Log.d("databese", "setRecordsQuizSumRight: old:" + oldSumRight);
+
+        ContentValues values = new ContentValues();
+        values.put("sum_right", newCorrect);
 
         String whereClause = "_id = ?";
         String whereArgs[] = new String[]{String.valueOf(id)};
