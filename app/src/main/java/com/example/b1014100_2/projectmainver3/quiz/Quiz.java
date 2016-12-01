@@ -14,6 +14,7 @@ public class Quiz {
     private String answer;
     private String comment;
     private String imageName;
+    private int correct;
 
     public int getId() {
         return id;
@@ -68,6 +69,12 @@ public class Quiz {
     }
     public void setImageName(String imageName) {
         this.imageName = imageName;
+    }
+    public int getCorrect() {
+        return correct;
+    }
+    public void setCorrect(int correct) {
+        this.correct = correct;
     }
 
     public Quiz() {
