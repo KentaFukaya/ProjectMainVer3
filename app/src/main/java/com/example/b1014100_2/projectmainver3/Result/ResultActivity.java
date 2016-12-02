@@ -52,7 +52,7 @@ public class ResultActivity extends AppCompatActivity {
         listView.addHeaderView(footer, null, false);
 
         setAdapter();
-
+        setResultBar();
 
 
         // リストビューのアイテムがクリックされた時に呼び出されるコールバックリスナーを登録します
@@ -155,5 +155,10 @@ public class ResultActivity extends AppCompatActivity {
         }
         // アダプターを設定します
         listView.setAdapter(adapter);
+    }
+
+    private void setResultBar(){
+        double rate = ResultsDatabase.getRateResultsTrue(this) * 100.0;
+        Log.d("resultactivity", "setResultBar: rate:" + rate);
     }
 }
