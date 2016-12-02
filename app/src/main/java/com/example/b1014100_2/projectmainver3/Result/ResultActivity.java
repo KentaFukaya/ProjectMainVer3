@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.b1014100_2.projectmainver3.DesiginPattern.Iterator;
@@ -160,5 +161,9 @@ public class ResultActivity extends AppCompatActivity {
     private void setResultBar(){
         double rate = ResultsDatabase.getRateResultsTrue(this) * 100.0;
         Log.d("resultactivity", "setResultBar: rate:" + rate);
+
+        TextView rateParcent = (TextView) findViewById(R.id.result_parcent);
+        TextView rateView = (TextView) findViewById(R.id.result_rate);
+        rateView.setText(String.valueOf((int)rate));
     }
 }
