@@ -16,8 +16,10 @@ public class Result {
     private String elements_movie;
     private String elements_zukan;
     private String	elements_quiz;
+    private String elements_quiz_correct;
+    private String elements_new;
 
-    public Result(int id, String name, String title, int star_level, int flag, int flag_of_new, int type, String elements_result, String elements_movie, String elements_zukan, String elements_quiz) {
+    public Result(int id, String name, String title, int star_level, int flag, int flag_of_new, int type, String elements_result, String elements_movie, String elements_zukan, String elements_quiz, String elements_quiz_correct, String elements_new) {
         this.id = id;
         this.name = name;
         this.title = title;
@@ -29,6 +31,8 @@ public class Result {
         this.elements_movie = elements_movie;
         this.elements_zukan = elements_zukan;
         this.elements_quiz = elements_quiz;
+        this.elements_quiz_correct = elements_quiz_correct;
+        this.elements_new = elements_new;
     }
 
     public int getId() {
@@ -73,6 +77,14 @@ public class Result {
 
     public String getElements_quiz() {
         return elements_quiz;
+    }
+
+    public String getElements_quiz_correct() {
+        return elements_quiz_correct;
+    }
+
+    public String getElements_new() {
+        return elements_new;
     }
 
     public String printAll(){
