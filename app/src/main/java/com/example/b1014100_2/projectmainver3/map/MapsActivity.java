@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
 import com.example.b1014100_2.projectmainver3.DesiginPattern.Iterator;
@@ -326,14 +327,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     // TODO Auto-generated method stub
                     View view;
                     int clicked_id = aggregateMapLocation.getIdbyName(marker.getTitle());
-                    if (aggregateMapLocation.getMapLocationAt(clicked_id).getCheck360() == 1)
+                    if (aggregateMapLocation.getMapLocationAt(clicked_id).getCheck360() == 1) {
                         view = getLayoutInflater().inflate(R.layout.info_window3d, null);
-                    else
+                    }else
                         view = getLayoutInflater().inflate(R.layout.info_window2d, null);
 
                     // タイトル設定
-//                    TextView title = (TextView) view.findViewById(R.id.info_title);
-//                    title.setText(marker.getTitle());
+                    TextView title = (TextView) view.findViewById(R.id.info_title);
+                    title.setText(marker.getTitle());
                     return view;
                 }
             });
