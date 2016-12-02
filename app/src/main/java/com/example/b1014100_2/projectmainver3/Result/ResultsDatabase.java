@@ -141,6 +141,26 @@ public class ResultsDatabase {
         return results;
     }
 
+    public static double getRateResultsTrue(Context context) {
+        String TABLE_NAME = "results";
+
+        int sum = 0;
+        double rate = 0.0;
+
+        SQLiteOpenFromAssets helper = new SQLiteOpenFromAssets(context, DB_NAME, null, DB_VERSION);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        // db=SQLiteDatabase User.TABLE_NAME=users
+        long recodeCount = DatabaseUtils.queryNumEntries(db, TABLE_NAME);
+        long correctCount = DatabaseUtils.queryNumEntries(db, TABLE_NAME,"flag = ?",new String[]{ "1" });
+
+        db.close();
+
+        rate = (double) correctCount / (double) recodeCount;
+
+        return rate;
+    }
+
     public static boolean isResultsFlagOfNew(Context context) {
 
         String TABLE_NAME = "results";
