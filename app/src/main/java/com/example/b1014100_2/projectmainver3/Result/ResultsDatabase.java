@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class ResultsDatabase {
     private static final String DB_NAME = "results.db";
-    private static final int DB_VERSION = 2;
+    private static final int DB_VERSION = 1;
 
     static final int TABLE_RESULT = 0;
     static final int TABLE_MOVIE = 1;
