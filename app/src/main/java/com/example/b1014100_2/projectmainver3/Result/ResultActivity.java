@@ -63,7 +63,8 @@ public class ResultActivity extends AppCompatActivity {
                 ListView listView = (ListView) parent;
                 // クリックされたアイテムを取得します
                 ResultData item = (ResultData) listView.getItemAtPosition(position);
-                Toast.makeText(ResultActivity.this, item.getDesc(), Toast.LENGTH_LONG).show();
+                if(item.getMode() == 1)
+                    Toast.makeText(ResultActivity.this, item.getDesc(), Toast.LENGTH_SHORT).show();
             }
         });
 
