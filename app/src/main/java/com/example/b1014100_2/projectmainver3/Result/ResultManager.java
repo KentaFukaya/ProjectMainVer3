@@ -17,6 +17,7 @@ import static com.example.b1014100_2.projectmainver3.Result.ResultsDatabase.RECO
 import static com.example.b1014100_2.projectmainver3.Result.ResultsDatabase.RECORDS_NEW_MOVIE_SPHERE;
 import static com.example.b1014100_2.projectmainver3.Result.ResultsDatabase.RECORDS_NEW_ZUKAN;
 import static com.example.b1014100_2.projectmainver3.Result.ResultsDatabase.RECORDS_NEW_QUIZ_CORRECT;
+import static com.example.b1014100_2.projectmainver3.Result.ResultsDatabase.getRecordsMovieId;
 import static com.example.b1014100_2.projectmainver3.Result.ResultsDatabase.isRecordsIn;
 import static com.example.b1014100_2.projectmainver3.Result.ResultsDatabase.setRecordsTrue;
 
@@ -35,10 +36,16 @@ public class ResultManager {
 
 
     //TABLE_MOVIE の flag を true にする 動画専用
-    static void setRecordFlagTrue(Context context, int activityName, int id, int movieType) {
+    static void setRecordFlagTrue(Context context, int activityName, String name, int movieType) {
         //activityName が異なるとき
         if(activityName != MOVIE_ACTIVITY){
             Log.d("ResultManager", "setRecordFlagTrue: " + "error activityName");
+            return;
+        }
+
+        int id = getRecordsMovieId(context, name);
+        if(id == 0){
+            Log.d("ResultManager", "setRecordFlagTrue: " + "error movie id");
             return;
         }
 

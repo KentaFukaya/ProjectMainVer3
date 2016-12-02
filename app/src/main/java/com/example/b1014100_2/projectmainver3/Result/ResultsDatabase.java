@@ -343,6 +343,26 @@ public class ResultsDatabase {
         return sumRight;
     }
 
+    public static int getRecordsMovieId(Context context, String name) {
+        String TABLE_NAME = "records_movie";
+        String[] FROM = {"_id"};
+
+        int id = 0;
+
+        SQLiteOpenFromAssets helper = new SQLiteOpenFromAssets(context, DB_NAME, null, DB_VERSION);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        Cursor c = db.query(TABLE_NAME, FROM, "name = ?", new String[]{ name }, null, null, ORDER_BY);//queryの実行
+
+        if (c.moveToNext()) {
+            id = c.getInt(0);
+        }
+        c.close();
+        db.close();
+
+        return id;
+    }
+
     public static long getSumRecordsQuizTrue(Context context) {
         String TABLE_NAME = "records_quiz";
 
