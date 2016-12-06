@@ -298,7 +298,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 double ycor = Double.parseDouble(st.nextToken());
                 int check360 = Integer.parseInt(st.nextToken());
                 aggregateMapLocation.appendMapLocation(new MapLocation(id, area_id, name, xcor, ycor, check360));
-                // Log.d("ReadCsv", "read location"+id+","+name+","+xcor+","+ycor);
+                 Log.d("ReadlocationCsv", "read location"+id+","+name+","+xcor+","+ycor+","+check360);
             }
             bufferReader.close();
         } catch (IOException e) {
