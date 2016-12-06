@@ -135,7 +135,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         InfoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("TEST Map", mMap.getCameraPosition().toString());
+               // Log.d("TEST Map", mMap.getCameraPosition().toString());
                 InfoButton.setImageResource(R.drawable.map_button_tiki);
                 drawer.openDrawer(Gravity.RIGHT);
             }
@@ -238,8 +238,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Intent intent;
                 int clicked_id = aggregateMapLocation.getIdbyName(marker.getTitle());
                 int clicked_check360 = aggregateMapLocation.getMapLocationAt(clicked_id).getCheck360();
-                Log.d("Map", "onMarkerClick:id =" + clicked_id + ", Name :" + marker.getTitle() +
-                        ", Check360 : " + clicked_check360);
+//                Log.d("Map", "onMarkerClick:id =" + clicked_id + ", Name :" + marker.getTitle() +
+//                        ", Check360 : " + clicked_check360);
 
                 if (clicked_check360 == 1) {//start 360movie activity
                     intent = new Intent(getApplication(), MovieActivity.class);
@@ -298,7 +298,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 double ycor = Double.parseDouble(st.nextToken());
                 int check360 = Integer.parseInt(st.nextToken());
                 aggregateMapLocation.appendMapLocation(new MapLocation(id, area_id, name, xcor, ycor, check360));
-                 Log.d("ReadlocationCsv", "read location"+id+","+name+","+xcor+","+ycor+","+check360);
+                 //Log.d("ReadlocationCsv", "read location"+id+","+name+","+xcor+","+ycor+","+check360);
             }
             bufferReader.close();
         } catch (IOException e) {
@@ -365,9 +365,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         int diff =  (int) Math.max(Math.abs(n_xcor-o_xcor),Math.abs(n_ycor -o_ycor));
-        Log.d("TEST", "setCamera: n_xcor =" + n_xcor + ", n_ycor =" + n_ycor + ", n_zoom=" + n_zoom);
-        Log.d("TEST", "setCamera: o_xcor =" + o_xcor + ", o_ycor =" + o_ycor + ", o_zoom=" + o_zoom);
-        Log.d("TEST", "setCamera: diff = " +diff);
+//        Log.d("TEST", "setCamera: n_xcor =" + n_xcor + ", n_ycor =" + n_ycor + ", n_zoom=" + n_zoom);
+//        Log.d("TEST", "setCamera: o_xcor =" + o_xcor + ", o_ycor =" + o_ycor + ", o_zoom=" + o_zoom);
+//        Log.d("TEST", "setCamera: diff = " +diff);
         if(diff == 0)
             diff = 800;
         else if(diff < 2)
@@ -445,7 +445,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             flag = 1;
         else
             flag = 0;
-        Log.d("TEST flag = ",Integer.toString(flag));
+        //Log.d("TEST flag = ",Integer.toString(flag));
         setResultButton(flag);
 
         AppIndex.AppIndexApi.start(client, getIndexApiAction());
