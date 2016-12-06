@@ -12,7 +12,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,7 +43,7 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
         ResultManager.titleCheckTrueorFalse(this,false);
         resultdates = new AggregateResultData(ResultsDatabase.getResultDatasAll(this));
-
+        ResultsDatabase.setResultsTrueAll(this);
         listView = (ListView) findViewById(R.id.result_listview);
         //viewpagerのスクロールバーを消す
         listView.setOverScrollMode(View.OVER_SCROLL_NEVER);
@@ -64,7 +67,7 @@ public class ResultActivity extends AppCompatActivity {
                 ListView listView = (ListView) parent;
                 // クリックされたアイテムを取得します
                 ResultData item = (ResultData) listView.getItemAtPosition(position);
-                if(item.getMode() == 1)
+                if(item.getState() == 1)
                     Toast.makeText(ResultActivity.this, item.getDesc(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -166,5 +169,19 @@ public class ResultActivity extends AppCompatActivity {
         TextView rateParcent = (TextView) findViewById(R.id.result_parcent);
         TextView rateView = (TextView) findViewById(R.id.result_rate);
         rateView.setText(String.valueOf((int)rate));
+
+        ImageView bar = (ImageView) findViewById(R.id.imageView);
+
+        if(rate < 20)
+            bar.setImageResource(R.drawable.tutorial_20);
+        else if(rate < 40)
+            bar.setImageResource(R.drawable.tutorial_40);
+        else if(rate < 60)
+            bar.setImageResource(R.drawable.tutorial_60);
+        else if(rate < 80)
+            bar.setImageResource(R.drawable.tutorial_80);
+        else
+            bar.setImageResource(R.drawable.tutorial_100);
+
     }
 }

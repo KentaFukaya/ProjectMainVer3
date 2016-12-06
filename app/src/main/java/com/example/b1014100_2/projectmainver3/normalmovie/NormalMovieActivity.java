@@ -20,6 +20,7 @@ import android.widget.VideoView;
 
 import com.example.b1014100_2.projectmainver3.DesiginPattern.Iterator;
 import com.example.b1014100_2.projectmainver3.R;
+import com.example.b1014100_2.projectmainver3.Result.ResultManager;
 import com.example.b1014100_2.projectmainver3.movie.AggregateMovieData;
 import com.example.b1014100_2.projectmainver3.movie.MovieActivity;
 import com.example.b1014100_2.projectmainver3.movie.MovieData;
@@ -86,7 +87,11 @@ public class NormalMovieActivity extends Activity {
         //case video in Video
         String path = Environment.getExternalStorageDirectory().getPath();
         File dir = new File(path+"/Movies/"+moviename);
-        video = new File(dir.getAbsolutePath()+"/"+moviename+random+".mp4");
+        moviename = moviename+random+".mp4";
+        video = new File(dir.getAbsolutePath()+"/"+ moviename);
+
+        ResultManager.setRecordFlagTrue(this,ResultManager.MOVIE_ACTIVITY,moviename,ResultManager.MOVIE_NORMAL);
+
         Log.d("NormalMovieActivity", "onCreate: dir ="+dir.toString()+", exisits = "+dir.exists() + ", video = "+video.toString()+", exisits = "+video.exists()+", mount ="+ getExternalStorageState());
 
         while(!video.exists())
