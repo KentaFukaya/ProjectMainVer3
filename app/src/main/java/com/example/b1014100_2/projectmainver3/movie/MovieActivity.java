@@ -149,10 +149,13 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
         File video = new File(dir.getAbsolutePath()+"/"+moviename);
         ResultManager.setRecordFlagTrue(this,ResultManager.MOVIE_ACTIVITY,moviename,ResultManager.MOVIE_SPEHER);
 
-        if(!video.exists())
-            random = 1;
-
         Log.d("movieActivity", "onCreate: video = "+video.getPath()+", exsist =" + video.exists());
+        Log.d("movieActivity", "moviename "+moviename);
+        if(!video.exists()) {
+            random = 1;
+            Log.e("Error", "onCreate: video not exsist");
+            Log.d("movieActivity", "onCreate: video = "+video.getPath()+", exsist =" + video.exists());
+        }
         moviepath = video.getPath();
         //auto start
             loadVideo(moviepath);
