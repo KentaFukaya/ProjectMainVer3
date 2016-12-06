@@ -1,4 +1,5 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/map_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -39,7 +40,11 @@
             android:layout_marginTop="16dp"
             android:layout_below="@+id/map_areabutton"
             android:layout_alignParentStart="true" />
-        <ImageButton
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageButton
             android:id="@+id/map_results"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
@@ -48,9 +53,22 @@
             android:src="@drawable/map_button_results"
             android:layout_width="80dp"
             android:layout_marginTop="16dp"
-            android:layout_below="@+id/map_tozukanbutton"
             android:layout_alignParentStart="true" />
-        </LinearLayout>
+
+    <ImageView
+        android:padding="0dp"
+        android:background="@null"
+        android:src="@drawable/map_new"
+        android:id="@+id/mmap_new"
+        android:layout_alignEnd="@+id/map_results"
+        android:scaleType="fitStart"
+        android:layout_height="20dp"
+        android:layout_alignTop="@+id/map_results"
+        android:layout_width="40dp" />
+
+</RelativeLayout>
+    </LinearLayout>
+
         <!--<ImageButton-->
             <!--android:id="@+id/map_results"-->
             <!--android:layout_height="wrap_content"-->

@@ -1,5 +1,6 @@
 package com.example.b1014100_2.projectmainver3.Tutorial;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -9,9 +10,10 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.b1014100_2.projectmainver3.R;
+import com.example.b1014100_2.projectmainver3.map.MapsActivity;
 
 public class TutorialActivity extends AppCompatActivity {
-
+ImageButton skip;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,5 +28,8 @@ public class TutorialActivity extends AppCompatActivity {
         viewPager.setOverScrollMode(View.OVER_SCROLL_NEVER);
 
         viewPager.setAdapter(adapter);
+
     }
+
+
 }

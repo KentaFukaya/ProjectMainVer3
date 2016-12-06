@@ -161,7 +161,7 @@ public class ResultManager {
                 if(check)
                    ResultsDatabase.setResultsTrue(context, results.get(i).getId());
                 else
-                   ResultsDatabase.setResultsTrue(context, results.get(i).getId());
+                   ResultsDatabase.setResultsFalse(context, results.get(i).getId());
 
             }
         }

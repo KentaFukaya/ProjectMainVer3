@@ -21,6 +21,7 @@ import android.widget.VideoView;
 import com.example.b1014100_2.projectmainver3.DesiginPattern.Iterator;
 import com.example.b1014100_2.projectmainver3.R;
 import com.example.b1014100_2.projectmainver3.Result.ResultManager;
+import com.example.b1014100_2.projectmainver3.map.MapsActivity;
 import com.example.b1014100_2.projectmainver3.movie.AggregateMovieData;
 import com.example.b1014100_2.projectmainver3.movie.MovieActivity;
 import com.example.b1014100_2.projectmainver3.movie.MovieData;
@@ -53,7 +54,6 @@ public class NormalMovieActivity extends Activity {
 
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
 
         setContentView(R.layout.activity_normal_movie);
 

@@ -41,19 +41,20 @@ public class HomeActivity extends AppCompatActivity {
         Map_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, MapsActivity.class); //ダイビングアクティビティに飛ぶ処理
-                startActivity(intent);
+                //Intent intent = new Intent(HomeActivity.this, MapsActivity.class); //ダイビングアクティビティに飛ぶ処理
+                //startActivity(intent);
+
+                startTutorila();
             }
         });
 
+    }
 
-        Tutorial_btn = (ImageButton) findViewById(R.id.home_tutorialbutton);
-        Tutorial_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, TutorialActivity.class); //move to  TutorialActivity
-                startActivity(intent);
-            }
-        });
+    public void startTutorila(){
+        Intent intent1 = new Intent(HomeActivity.this, TutorialActivity.class); //move to  TutorialActivity
+        Intent intent2 = new Intent(HomeActivity.this,MapsActivity.class);
+
+        startActivity(intent2);
+        startActivity(intent1);
     }
 }
