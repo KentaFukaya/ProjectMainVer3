@@ -36,7 +36,7 @@ public class ResultManager {
 
 
     //TABLE_MOVIE の flag を true にする 動画専用
-    static void setRecordFlagTrue(Context context, int activityName, String name, int movieType) {
+    public static void setRecordFlagTrue(Context context, int activityName, String name, int movieType) {
         //activityName が異なるとき
         if(activityName != MOVIE_ACTIVITY){
             Log.d("ResultManager", "setRecordFlagTrue: " + "error activityName");

@@ -23,10 +23,22 @@
 
     <ImageButton
         android:layout_height="wrap_content"
-        android:src="@drawable/tutorial_next"
+        android:src="@drawable/tutorial_close"
         android:id="@+id/tutorial_next"
         android:scaleType="fitEnd"
         android:background="@null"
         android:layout_width="150dp"
         android:layout_alignBottom="@+id/tutorial_mae"
-        android:layout_alignParentEnd="true" /></RelativeLayout>
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:layout_width="150dp"
+        app:srcCompat="@drawable/tutorial_skip"
+        android:background="@null"
+        android:id="@+id/tutorial_skip"
+        android:scaleType="fitStart"
+        android:layout_marginTop="21dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>

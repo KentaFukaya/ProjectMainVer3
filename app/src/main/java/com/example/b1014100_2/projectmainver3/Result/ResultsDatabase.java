@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class ResultsDatabase {
     private static final String DB_NAME = "results.db";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
 
     static final int TABLE_RESULT = 0;
     static final int TABLE_MOVIE = 1;
@@ -199,6 +199,23 @@ public class ResultsDatabase {
 
         try {
             db.update(tableName, values, whereClause, whereArgs);
+        } finally {
+            db.close();
+        }
+
+    }
+
+    public static void setResultsTrueAll(Context context) {
+        SQLiteOpenFromAssets helper = new SQLiteOpenFromAssets(context, DB_NAME, null, DB_VERSION);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        String tableName = "results";
+        ContentValues values = new ContentValues();
+        values.put("flag", 1);
+        values.put("flag_of_new", 1);
+
+        try {
+            db.update(tableName, values, null, null);
         } finally {
             db.close();
         }

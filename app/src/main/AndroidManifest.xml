@@ -69,9 +69,11 @@
         <activity
             android:name=".zukan.ZukanListActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".Tutorial.TutorialActivity" />
+        <activity android:name=".Tutorial.TutorialActivity"
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".Result.ResultActivity"
+            android:screenOrientation="landscape"
             android:label="@string/title_activity_result"
             android:theme="@style/AppTheme" />
     </application>

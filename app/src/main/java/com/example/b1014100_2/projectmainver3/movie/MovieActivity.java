@@ -33,6 +33,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 
 import com.example.b1014100_2.projectmainver3.DesiginPattern.Iterator;
 import com.example.b1014100_2.projectmainver3.R;
+import com.example.b1014100_2.projectmainver3.Result.ResultManager;
 import com.panframe.android.lib.PFAsset;
 import com.panframe.android.lib.PFAssetObserver;
 import com.panframe.android.lib.PFAssetStatus;
@@ -137,13 +138,17 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
         ReadMovieCsv();
         moviename = movieDatas.getMovieDataAt(id).getMovieName();
         moviename = moviename.substring(0,moviename.length() -4);
+
         random  = Random(id);
         Log.d("TEST", "onCreate: MovieName is  " +moviename + ",random = " + Random(id));
         SaveMovieCsv();
 
         String path = Environment.getExternalStorageDirectory().getPath();
         File dir = new File(path+"/Movies/"+moviename);
-        File video = new File(dir.getAbsolutePath()+"/"+moviename+random+".mp4");
+        moviename = moviename+random+".mp4";
+        File video = new File(dir.getAbsolutePath()+"/"+moviename);
+        ResultManager.setRecordFlagTrue(this,ResultManager.MOVIE_ACTIVITY,moviename,ResultManager.MOVIE_SPEHER);
+
         if(!video.exists())
             random = 1;
 
@@ -211,6 +216,7 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
         hp2.setCoordinates(0, 40, 0);
         hp2.setClickListener(this);
         */
+
         _frameContainer.addView(_pfview.getView(), 0);
         _pfasset.setPLaybackTime(0);
         _updateThumb = false;
