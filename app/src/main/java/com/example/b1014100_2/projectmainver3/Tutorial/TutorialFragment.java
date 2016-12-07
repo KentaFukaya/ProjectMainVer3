@@ -58,7 +58,7 @@ public class TutorialFragment extends Fragment {
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Intent intent = new Intent(this, MapsActivity.class);
+                getActivity().finish();
             }
         });
 
@@ -69,6 +69,7 @@ public class TutorialFragment extends Fragment {
             mae.setVisibility(View.VISIBLE);
             skip.setVisibility(View.VISIBLE);
         }
+
         next = (ImageButton)view.findViewById(R.id.tutorial_next);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,11 +77,24 @@ public class TutorialFragment extends Fragment {
                 moveViewPager(+1);
             }
         });
-        if(page == FINAL_PAGE)
-            next.setImageResource(R.drawable.tutorial_close);
-        else
-            next.setImageResource(R.drawable.tutorial_close);
 
+        if(page == FINAL_PAGE) {
+            next.setImageResource(R.drawable.tutorial_close);
+            next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getActivity().finish();
+                }
+            });
+        }else {
+            next.setImageResource(R.drawable.tutorial_next);
+            next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    moveViewPager(+1);
+                }
+            });
+        }
         return view;
     }
     //ボタンを押したときにviewpagerの移動

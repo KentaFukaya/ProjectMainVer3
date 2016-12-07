@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import com.example.b1014100_2.projectmainver3.DesiginPattern.Iterator;
 import com.example.b1014100_2.projectmainver3.R;
 import com.example.b1014100_2.projectmainver3.Result.ResultActivity;
+import com.example.b1014100_2.projectmainver3.Result.ResultsDatabase;
 import com.example.b1014100_2.projectmainver3.Tutorial.TutorialActivity;
 import com.example.b1014100_2.projectmainver3.movie.MovieActivity;
 import com.example.b1014100_2.projectmainver3.normalmovie.NormalMovieActivity;
@@ -55,18 +57,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private AggregateMapLocation aggregateMapLocation = new AggregateMapLocation();
     private AggregateMapArea aggregateMapArea = new AggregateMapArea();
     private ArrayList<Marker> Markers = new ArrayList<>();
-
+    public int flag;
     private ListView mDrawerList;
     private MapListViewAdapter mAdapter;
     int c_Area = -1, c_Location = -1;
     Marker c_marker = null;
 
-    final double firstXcor = 32.713744363054765, firstYcor = 135.45937590301037;
-    final float firstZoom = 4;
+    final double firstXcor = 39.10952688469957, firstYcor = 136.29684370011088;
+    final float firstZoom = 3;
     double o_xcor = 32.713744363054765, o_ycor = 135.45937590301037;
     float o_zoom = 4;
 
     ImageButton toZukanButton, InfoButton, ResultButton;
+    ImageView new_flag;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -139,6 +142,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
         ResultButton = (ImageButton) findViewById(R.id.map_results);
+
         ResultButton.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -158,7 +162,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 startActivity(intent);
             }
         });
-
                 mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
@@ -295,7 +298,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 double ycor = Double.parseDouble(st.nextToken());
                 int check360 = Integer.parseInt(st.nextToken());
                 aggregateMapLocation.appendMapLocation(new MapLocation(id, area_id, name, xcor, ycor, check360));
-                // Log.d("ReadCsv", "read location"+id+","+name+","+xcor+","+ycor);
+                 Log.d("ReadlocationCsv", "read location"+id+","+name+","+xcor+","+ycor+","+check360);
             }
             bufferReader.close();
         } catch (IOException e) {
@@ -436,6 +439,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();
+
+        ////test
+        if(ResultsDatabase.isResultsFlagOfNew(this))
+            flag = 1;
+        else
+            flag = 0;
+        Log.d("TEST flag = ",Integer.toString(flag));
+        setResultButton(flag);
+
         AppIndex.AppIndexApi.start(client, getIndexApiAction());
     }
 
@@ -446,5 +458,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
+    }
+
+    public void setResultButton(int flag){
+        new_flag  = (ImageView) findViewById(R.id.mmap_new);
+        if(flag == 0)
+            new_flag.setVisibility(View.INVISIBLE);
+        else
+            new_flag.setVisibility(View.VISIBLE);
     }
 }

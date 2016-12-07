@@ -41,10 +41,11 @@ public class ResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-        ResultManager.titleCheckTrueorFalse(this,false);
-        resultdates = new AggregateResultData(ResultsDatabase.getResultDatasAll(this));
-        ResultsDatabase.setResultsTrueAll(this);
+         ResultsDatabase.resetResultsFlagOfNew(this);
+       resultdates = new AggregateResultData(ResultsDatabase.getResultDatasAll(this));
+        //ResultsDatabase.setResultsTrueAll(this);
         listView = (ListView) findViewById(R.id.result_listview);
+
         //viewpagerのスクロールバーを消す
         listView.setOverScrollMode(View.OVER_SCROLL_NEVER);
         listView.setVerticalScrollBarEnabled(false);

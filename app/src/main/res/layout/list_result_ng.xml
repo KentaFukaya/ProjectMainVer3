@@ -7,22 +7,50 @@
     android:layout_height="85dp">
 
     <ImageView
-        android:layout_width="74dp"
-        app:srcCompat="@drawable/result_revel1"
         android:id="@+id/result_star"
-        android:layout_marginTop="2dp"
-        android:layout_marginLeft="7dp"
+        android:src="@drawable/result_revel0"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="27dp"
         android:scaleType="fitXY"
-        android:layout_height="85dp" />
+        android:layout_height="50dp"
+        android:layout_width="50dp" />
 
     <TextView
-        android:text="TextView"
-        android:textSize="25dp"
-        android:layout_width="match_parent"
-        android:textColor="#91A5AE"
-        android:layout_marginTop="35dp"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/result_list_text"
-        android:layout_height="85dp" />
+    android:text="TextView"
+    android:textSize="25dp"
+    android:layout_width="match_parent"
+    android:textColor="#91A5AE"
+    android:layout_marginTop="35dp"
+    android:layout_marginLeft="40dp"
+    android:id="@+id/result_list_text"
+    android:layout_height="85dp" />
 
 </LinearLayout>
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--android:background="@drawable/result_ng"-->
+    <!--android:id="@+id/result_list_layout"-->
+    <!--android:orientation="horizontal" android:layout_width="match_parent"-->
+    <!--android:layout_height="85dp">-->
+
+    <!--<ImageView-->
+    <!--android:src="@drawable/result_revel0"-->
+    <!--android:id="@+id/result_star"-->
+    <!--android:layout_marginTop="2dp"-->
+    <!--android:layout_marginLeft="7dp"-->
+    <!--android:scaleType="fitXY"-->
+    <!--android:layout_width="100dp"-->
+    <!--android:layout_height="80dp" />-->
+
+    <!--<TextView-->
+    <!--android:text="TextView"-->
+    <!--android:textSize="25dp"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:textColor="#91A5AE"-->
+    <!--android:layout_marginTop="35dp"-->
+    <!--android:layout_marginLeft="20dp"-->
+    <!--android:id="@+id/result_list_text"-->
+    <!--android:layout_height="85dp" />-->
+
+    <!--</LinearLayout>-->
