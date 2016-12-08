@@ -109,21 +109,8 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
         _touchButton.setOnClickListener(touchListener);
         _scrubber.setOnSeekBarChangeListener(this);
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();//backto mapActivity
-            }
-        });
-        replayButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MovieActivity.this, MovieActivity.class); //ダイビングアクティビティに飛ぶ処理
-                intent.putExtra("id", id);
-                startActivity(intent);
-                finish();
-            }
-        });
+        backButton.setOnClickListener(stopListener);
+        replayButton.setOnClickListener(replayListener);
         _scrubber.setEnabled(false);
 
         setReplayView(false);//set INVISIBLE
@@ -340,10 +327,36 @@ public class MovieActivity extends FragmentActivity implements PFAssetObserver, 
 
             _frameContainer.removeView(_pfview.getView());
             _pfview = null;
-
+            finish();
         }
     };
 
+
+    /**
+     * Click listener for the stop/back button
+     */
+    private OnClickListener replayListener = new OnClickListener() {
+        public void onClick(View v) {
+            if (_pfasset == null)
+                return;
+
+            _pfasset.stop();
+
+            // cleanup
+            _pfview.release();
+            _pfasset.release();
+
+            _pfasset = null;
+
+            _frameContainer.removeView(_pfview.getView());
+            _pfview = null;
+
+            Intent intent = new Intent(MovieActivity.this, MovieActivity.class); //ダイビングアクティビティに飛ぶ処理
+            intent.putExtra("id", id);
+            startActivity(intent);
+            finish();
+        }
+    };
     /**
      * Click listener for the navigation mode (touch/motion (if available))
      */
